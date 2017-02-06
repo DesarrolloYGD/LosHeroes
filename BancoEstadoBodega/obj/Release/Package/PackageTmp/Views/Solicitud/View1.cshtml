@@ -1,0 +1,186 @@
+﻿@model BancoEstadoBodega.Models.SolicitudPedido
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View1</title>
+</head>
+<body>
+    <div>
+        <h4>SolicitudPedido</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.origen)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.origen)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.destino)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.destino)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.fechaSolicitud)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.fechaSolicitud)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.fechaEntrega)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.fechaEntrega)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.codigoSeguimiento)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.codigoSeguimiento)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.usuarioMandante)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.usuarioMandante)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.usuarioReceptor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.usuarioReceptor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.bultos)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.bultos)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.observacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.observacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.costeUnitario)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.costeUnitario)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.servicioMecanizado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.servicioMecanizado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.subtotal)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.subtotal)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.estado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.estado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Area.nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Area.nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoDespacho.descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoDespacho.descripcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoEmpaque.descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoEmpaque.descripcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoEncomienda.tipoEncomienda1)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoEncomienda.tipoEncomienda1)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoPedido.descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TipoPedido.descripcion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TrasladoDespacho.descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TrasladoDespacho.descripcion)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idSolicitud }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

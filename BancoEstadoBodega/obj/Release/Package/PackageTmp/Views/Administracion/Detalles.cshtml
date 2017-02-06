@@ -1,0 +1,246 @@
+﻿@model BancoEstadoBodega.Models.PRODUCTO
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles Producto</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaVencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaVencimiento)
+        </dd>
+
+        <dt>
+            Categoria
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIA.Nombre)
+        </dd>
+
+        <dt>
+            Area
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.Alias)
+        </dd>
+
+        @if (ViewContext.HttpContext.User.IsInRole("administradores"))
+        {
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.UnidadesXCaja)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UnidadesXCaja)
+            </dd>
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalCajas)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TotalCajas)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalSueltas)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TotalSueltas)
+            </dd>
+
+            <dt>
+                Quilicura Cajas
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StockQl)
+            </dd>
+
+            <dt>
+                Quilicura Sueltas
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SueltasQL)
+            </dd>
+
+            <dt>
+                Dardignac Cajas
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StockDÑ)
+            </dd>
+
+            <dt>
+                Dardignac Sueltas
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SueltasDÑ)
+            </dd>
+
+            <dt>
+                Posicion
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Posicion)
+            </dd>
+        }
+       
+
+        
+
+        <dt>
+            Imagen
+        </dt>
+
+        <dd>
+            <img width="250" height="250" src="@ViewBag.imagerurl" alt="Producto" class="imagine" />
+            <a href="@ViewBag.imagerurl" target="_blank" style="display:block; font-size: 20px;">Ver Imagen en Tamaño Real</a>    
+        </dd>
+    
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Volver", "Producto")
+</p>
+<!--  <a class="btn btn-info btn-sm" title="Editar" onclick="Editar(Editar('@Model.IDProducto'))" href="#"><span class="glyphicon glyphicon-pencil"></span> Edit</a>-->
+
+
+<div class="modal fade" id="modalEditarCliente">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="@Url.Action("EditProducto", "Producto")" method="post">
+                <div class="modal-header btn-primary">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Editar Producto</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">Codigo</span>
+                        <input type="text" class="form-control" name="Codigo" id="CodigoEdit"  required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Nombre</span>
+                        <input type="text" class="form-control" name="Nombre" id="NombrelEdit" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Giro</span>
+                        <input type="text" class="form-control" name="Giro" id="GiroEdit">
+                    </div>
+                    <br />
+
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Ciudad</span>
+                        <select class="form-control" name="idCiudad" id="CiudadesCod_CiudadEdit" required>
+                            <option>Seleccione Ciudad</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Comuna</span>
+                        <select class="form-control" name="idcomuna" id="COMUNASCod_ComunaEdit" required>
+                            <option>Seleccione Region</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Direccion</span>
+                        <input type="text" class="form-control" name="Direccion" id="direccionEdit" placeholder="direccion..." required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Telefono</span>
+                        <input type="text" class="form-control" name="Telefono" id="TelefonoEdit" placeholder="Telefono..." required>
+                    </div>
+                    <br />
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="idClientesedit" name="ID" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#REGIONESCod_Region").change(function () {
+            CompletarListbox("ComunasPorRegiones", "COMUNASCod_Comuna", $("#REGIONESCod_Region").val());
+            CompletarListbox("CiudadesPorRegiones", "CiudadesCod_Ciudad", $("#REGIONESCod_Region").val());
+        });
+    });
+
+    function Mostrarmodal2() {
+        $('#modalCrearCliente').modal('show');
+    }
+
+    function Editar(aux) {
+        $.getJSON("@Url.Action("DatosProveedores", "Proveedores")" + "/" + aux,
+            function (data) {
+                $('#idClientesedit').val(aux);
+                $('#RutEdit').val(data.Rut);
+                $('#RazonSocialEdit').val(data.RazonSocial);
+                $('#GiroEdit').val(data.Giro);
+                $('#direccionEdit').val(data.Direccion);
+                $('#DTEEdit').val(data.DTE);
+                $('#TelefonoEdit').val(data.Telefono);
+                $("#tieneDTEEdit option[value=" + data.TieneDTE + "]").attr("selected", true);
+                $('#REGIONESCod_RegionEdit').val(data.idRegion);
+                CompletarListbox("ComunasPorRegiones", "COMUNASCod_ComunaEdit", $("#REGIONESCod_RegionEdit").val());
+                CompletarListbox("CiudadesPorRegiones", "CiudadesCod_CiudadEdit", $("#REGIONESCod_RegionEdit").val());
+                $('#COMUNASCod_ComunaEdit').val(data.idComuna);
+                $('#CiudadesCod_CiudadEdit').val(data.idCiudad);
+            });
+        $('#modalEditarCliente').modal('show');
+    }
+</script>

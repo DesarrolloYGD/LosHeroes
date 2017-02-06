@@ -1,0 +1,61 @@
+﻿@model BancoEstadoBodega.Models.PRODUCTO
+
+@{
+    ViewBag.Title = "Actualizar Imagen";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm("EditarImagen", "Administracion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PRODUCTO</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDProducto)
+
+
+        <div class="form-group">
+            @Html.Label("Imagen Actual", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <img width="250" height="250" src="@ViewBag.imagerurl" alt="Producto" class="imagine" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Cambiar Imagen", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="imagenProducto" class="input-file" tam="300" />
+            </div>
+        </div>
+
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+
+        El tamaño máximo permitido es de 300Kb, si la imagen excede, puede redimencionarla en <a target="_blank" href="http://webresizer.com/resizer/">este link.</a>
+
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /* Valida el tamaño maximo de un archivo adjunto */
+        $('.input-file').change(function () {
+            var sizeByte = this.files[0].size;
+            var siezekiloByte = parseInt(sizeByte / 1024);
+
+            if (siezekiloByte > $(this).attr('tam')) {
+                alert('El tamaño supera el limite permitido (300kb)');
+                $(this).val('');
+            }
+        });
+    });
+</script>
+

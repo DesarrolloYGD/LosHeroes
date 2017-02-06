@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LosHeroesModelStoreContainer" CdmEntityContainer="LosHeroesEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="LosHeroesModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Area">
+      <EntityTypeMapping TypeName="LosHeroesModel.Area">
+        <MappingFragment StoreEntitySet="Area">
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="vigente" ColumnName="vigente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="LosHeroesModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="LosHeroesModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="LosHeroesModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="LosHeroesModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BODEGA">
+      <EntityTypeMapping TypeName="LosHeroesModel.BODEGA">
+        <MappingFragment StoreEntitySet="BODEGA">
+          <ScalarProperty Name="IDBodega" ColumnName="IDBodega" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="IDComunaFK" ColumnName="IDComunaFK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORIA">
+      <EntityTypeMapping TypeName="LosHeroesModel.CATEGORIA">
+        <MappingFragment StoreEntitySet="CATEGORIA">
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="IdCategoriaFK" ColumnName="IdCategoriaFK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CIUDAD">
+      <EntityTypeMapping TypeName="LosHeroesModel.CIUDAD">
+        <MappingFragment StoreEntitySet="CIUDAD">
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdRegionFK" ColumnName="IdRegionFK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE">
+      <EntityTypeMapping TypeName="LosHeroesModel.CLIENTE">
+        <MappingFragment StoreEntitySet="CLIENTE">
+          <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="CorreoDTE" ColumnName="CorreoDTE" />
+          <ScalarProperty Name="Giro" ColumnName="Giro" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="IDComunaFK" ColumnName="IDComunaFK" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMUNA">
+      <EntityTypeMapping TypeName="LosHeroesModel.COMUNA">
+        <MappingFragment StoreEntitySet="COMUNA">
+          <ScalarProperty Name="IdComuna" ColumnName="IdComuna" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdCiudadFK" ColumnName="IdCiudadFK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mecanizado">
+      <EntityTypeMapping TypeName="LosHeroesModel.Mecanizado">
+        <MappingFragment StoreEntitySet="Mecanizado">
+          <ScalarProperty Name="IdMeca" ColumnName="IdMeca" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTO">
+      <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
+        <MappingFragment StoreEntitySet="PRODUCTO">
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IDCategoriaFK" ColumnName="IDCategoriaFK" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="imagenProducto" ColumnName="imagenProducto" />
+          <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+          <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+          <ScalarProperty Name="UnidadesXCaja" ColumnName="UnidadesXCaja" />
+          <ScalarProperty Name="TotalCajas" ColumnName="TotalCajas" />
+          <ScalarProperty Name="TotalSueltas" ColumnName="TotalSueltas" />
+          <ScalarProperty Name="IDClienteFK" ColumnName="IDClienteFK" />
+          <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+          <ScalarProperty Name="StockQl" ColumnName="StockQl" />
+          <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+          <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
+          <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
+          <ScalarProperty Name="stock_ideal" ColumnName="stock_ideal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTOBODEGA">
+      <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTOBODEGA">
+        <MappingFragment StoreEntitySet="PRODUCTOBODEGA">
+          <ScalarProperty Name="PRODUCTO_IDProducto" ColumnName="PRODUCTO_IDProducto" />
+          <ScalarProperty Name="BODEGA_IDBodega" ColumnName="BODEGA_IDBodega" />
+          <ScalarProperty Name="Cajas" ColumnName="Cajas" />
+          <ScalarProperty Name="Sueltas" ColumnName="Sueltas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductoSolicitud">
+      <EntityTypeMapping TypeName="LosHeroesModel.ProductoSolicitud">
+        <MappingFragment StoreEntitySet="ProductoSolicitud">
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="NombreFK" ColumnName="NombreFK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGION">
+      <EntityTypeMapping TypeName="LosHeroesModel.REGION">
+        <MappingFragment StoreEntitySet="REGION">
+          <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SolicitudPedido">
+      <EntityTypeMapping TypeName="LosHeroesModel.SolicitudPedido">
+        <MappingFragment StoreEntitySet="SolicitudPedido">
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
+          <ScalarProperty Name="idTipoEmpaque" ColumnName="idTipoEmpaque" />
+          <ScalarProperty Name="origen" ColumnName="origen" />
+          <ScalarProperty Name="idTipoDespacho" ColumnName="idTipoDespacho" />
+          <ScalarProperty Name="idTrasladoDespacho" ColumnName="idTrasladoDespacho" />
+          <ScalarProperty Name="destino" ColumnName="destino" />
+          <ScalarProperty Name="fechaSolicitud" ColumnName="fechaSolicitud" />
+          <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+          <ScalarProperty Name="codigoSeguimiento" ColumnName="codigoSeguimiento" />
+          <ScalarProperty Name="idTipoPedido" ColumnName="idTipoPedido" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="usuarioMandante" ColumnName="usuarioMandante" />
+          <ScalarProperty Name="usuarioReceptor" ColumnName="usuarioReceptor" />
+          <ScalarProperty Name="bultos" ColumnName="bultos" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="costeUnitario" ColumnName="costeUnitario" />
+          <ScalarProperty Name="servicioMecanizado" ColumnName="servicioMecanizado" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="idMecanizado" ColumnName="idMecanizado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDespacho">
+      <EntityTypeMapping TypeName="LosHeroesModel.TipoDespacho">
+        <MappingFragment StoreEntitySet="TipoDespacho">
+          <ScalarProperty Name="idTipoDespacho" ColumnName="idTipoDespacho" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEmpaque">
+      <EntityTypeMapping TypeName="LosHeroesModel.TipoEmpaque">
+        <MappingFragment StoreEntitySet="TipoEmpaque">
+          <ScalarProperty Name="idTipoEmpaque" ColumnName="idTipoEmpaque" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEncomienda">
+      <EntityTypeMapping TypeName="LosHeroesModel.TipoEncomienda">
+        <MappingFragment StoreEntitySet="TipoEncomienda">
+          <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
+          <ScalarProperty Name="tipoEncomienda1" ColumnName="tipoEncomienda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPedido">
+      <EntityTypeMapping TypeName="LosHeroesModel.TipoPedido">
+        <MappingFragment StoreEntitySet="TipoPedido">
+          <ScalarProperty Name="idTipoPedido" ColumnName="idTipoPedido" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrasladoDespacho">
+      <EntityTypeMapping TypeName="LosHeroesModel.TrasladoDespacho">
+        <MappingFragment StoreEntitySet="TrasladoDespacho">
+          <ScalarProperty Name="idTrasladoDespacho" ColumnName="idTrasladoDespacho" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="LosHeroesModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="LosHeroesModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_listarProductos" FunctionName="LosHeroesModel.Store.sp_listarProductos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LosHeroesModel.sp_listarProductos_Result">
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IDCategoriaFK" ColumnName="IDCategoriaFK" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="imagenProducto" ColumnName="imagenProducto" />
+          <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+          <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+          <ScalarProperty Name="UnidadesXCaja" ColumnName="UnidadesXCaja" />
+          <ScalarProperty Name="TotalCajas" ColumnName="TotalCajas" />
+          <ScalarProperty Name="TotalSueltas" ColumnName="TotalSueltas" />
+          <ScalarProperty Name="IDClienteFK" ColumnName="IDClienteFK" />
+          <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+          <ScalarProperty Name="StockQl" ColumnName="StockQl" />
+          <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+          <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
+          <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
+          <ScalarProperty Name="stock_ideal" ColumnName="stock_ideal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_obtenerDistribucion" FunctionName="LosHeroesModel.Store.sp_obtenerDistribucion" />
+    <FunctionImportMapping FunctionImportName="sp_vincularProductosSolicitud" FunctionName="LosHeroesModel.Store.sp_vincularProductosSolicitud" />
+  </EntityContainerMapping>
+</Mapping>

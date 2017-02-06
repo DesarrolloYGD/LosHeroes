@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="pruebatotalNewModelStoreContainer" CdmEntityContainer="pruebatotalNewEntities">
+    <EntitySetMapping Name="BODEGA">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.BODEGA">
+        <MappingFragment StoreEntitySet="BODEGA">
+          <ScalarProperty Name="IDComunaFK" ColumnName="IDComunaFK" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="IDBodega" ColumnName="IDBodega" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CATEGORIA">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.CATEGORIA">
+        <MappingFragment StoreEntitySet="CATEGORIA">
+          <ScalarProperty Name="IdCategoriaFK" ColumnName="IdCategoriaFK" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CIUDAD">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.CIUDAD">
+        <MappingFragment StoreEntitySet="CIUDAD">
+          <ScalarProperty Name="IdRegionFK" ColumnName="IdRegionFK" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENTE">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.CLIENTE">
+        <MappingFragment StoreEntitySet="CLIENTE">
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="IDComunaFK" ColumnName="IDComunaFK" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Giro" ColumnName="Giro" />
+          <ScalarProperty Name="CorreoDTE" ColumnName="CorreoDTE" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMUNA">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.COMUNA">
+        <MappingFragment StoreEntitySet="COMUNA">
+          <ScalarProperty Name="IdCiudadFK" ColumnName="IdCiudadFK" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdComuna" ColumnName="IdComuna" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTO">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.PRODUCTO">
+        <MappingFragment StoreEntitySet="PRODUCTO">
+          <ScalarProperty Name="stock_ideal" ColumnName="stock_ideal" />
+          <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+          <ScalarProperty Name="imagenProducto" ColumnName="imagenProducto" />
+          <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
+          <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
+          <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
+          <ScalarProperty Name="StockQl" ColumnName="StockQl" />
+          <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+          <ScalarProperty Name="IDClienteFK" ColumnName="IDClienteFK" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="TotalSueltas" ColumnName="TotalSueltas" />
+          <ScalarProperty Name="TotalCajas" ColumnName="TotalCajas" />
+          <ScalarProperty Name="IDCategoriaFK" ColumnName="IDCategoriaFK" />
+          <ScalarProperty Name="UnidadesXCaja" ColumnName="UnidadesXCaja" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTOBODEGA">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.PRODUCTOBODEGA">
+        <MappingFragment StoreEntitySet="PRODUCTOBODEGA">
+          <ScalarProperty Name="Sueltas" ColumnName="Sueltas" />
+          <ScalarProperty Name="Cajas" ColumnName="Cajas" />
+          <ScalarProperty Name="BODEGA_IDBodega" ColumnName="BODEGA_IDBodega" />
+          <ScalarProperty Name="PRODUCTO_IDProducto" ColumnName="PRODUCTO_IDProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGION">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.REGION">
+        <MappingFragment StoreEntitySet="REGION">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_obtenerDistribucion" FunctionName="pruebatotalNewModel.Store.sp_obtenerDistribucion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="pruebatotalNewModel.sp_obtenerDistribucion_Result">
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IDCategoriaFK" ColumnName="IDCategoriaFK" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="imagenProducto" ColumnName="imagenProducto" />
+          <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+          <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+          <ScalarProperty Name="UnidadesXCaja" ColumnName="UnidadesXCaja" />
+          <ScalarProperty Name="TotalCajas" ColumnName="TotalCajas" />
+          <ScalarProperty Name="TotalSueltas" ColumnName="TotalSueltas" />
+          <ScalarProperty Name="IDClienteFK" ColumnName="IDClienteFK" />
+          <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+          <ScalarProperty Name="StockQl" ColumnName="StockQl" />
+          <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+          <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
+          <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
+          <ScalarProperty Name="idDistribucion" ColumnName="idDistribucion" />
+          <ScalarProperty Name="idProducto1" ColumnName="idProducto1" />
+          <ScalarProperty Name="idStock" ColumnName="idStock" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Area">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Area">
+        <MappingFragment StoreEntitySet="Area">
+          <ScalarProperty Name="vigente" ColumnName="vigente" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SolicitudPedido">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.SolicitudPedido">
+        <MappingFragment StoreEntitySet="SolicitudPedido">
+          <ScalarProperty Name="idMecanizado" ColumnName="idMecanizado" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="servicioMecanizado" ColumnName="servicioMecanizado" />
+          <ScalarProperty Name="costeUnitario" ColumnName="costeUnitario" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="bultos" ColumnName="bultos" />
+          <ScalarProperty Name="usuarioReceptor" ColumnName="usuarioReceptor" />
+          <ScalarProperty Name="usuarioMandante" ColumnName="usuarioMandante" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="idTipoPedido" ColumnName="idTipoPedido" />
+          <ScalarProperty Name="codigoSeguimiento" ColumnName="codigoSeguimiento" />
+          <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+          <ScalarProperty Name="fechaSolicitud" ColumnName="fechaSolicitud" />
+          <ScalarProperty Name="destino" ColumnName="destino" />
+          <ScalarProperty Name="idTrasladoDespacho" ColumnName="idTrasladoDespacho" />
+          <ScalarProperty Name="idTipoDespacho" ColumnName="idTipoDespacho" />
+          <ScalarProperty Name="origen" ColumnName="origen" />
+          <ScalarProperty Name="idTipoEmpaque" ColumnName="idTipoEmpaque" />
+          <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDespacho">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.TipoDespacho">
+        <MappingFragment StoreEntitySet="TipoDespacho">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idTipoDespacho" ColumnName="idTipoDespacho" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEmpaque">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.TipoEmpaque">
+        <MappingFragment StoreEntitySet="TipoEmpaque">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idTipoEmpaque" ColumnName="idTipoEmpaque" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEncomienda">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.TipoEncomienda">
+        <MappingFragment StoreEntitySet="TipoEncomienda">
+          <ScalarProperty Name="tipoEncomienda1" ColumnName="tipoEncomienda" />
+          <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPedido">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.TipoPedido">
+        <MappingFragment StoreEntitySet="TipoPedido">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idTipoPedido" ColumnName="idTipoPedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrasladoDespacho">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.TrasladoDespacho">
+        <MappingFragment StoreEntitySet="TrasladoDespacho">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idTrasladoDespacho" ColumnName="idTrasladoDespacho" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_vincularProductosSolicitud" FunctionName="pruebatotalNewModel.Store.sp_vincularProductosSolicitud" />
+    <EntitySetMapping Name="ProductoSolicitud">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.ProductoSolicitud">
+        <MappingFragment StoreEntitySet="ProductoSolicitud">
+          <ScalarProperty Name="NombreFK" ColumnName="NombreFK" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_listarProductos" FunctionName="pruebatotalNewModel.Store.sp_listarProductos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="pruebatotalNewModel.sp_listarProductos_Result">
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IDCategoriaFK" ColumnName="IDCategoriaFK" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="imagenProducto" ColumnName="imagenProducto" />
+          <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+          <ScalarProperty Name="CantidadTotal" ColumnName="CantidadTotal" />
+          <ScalarProperty Name="UnidadesXCaja" ColumnName="UnidadesXCaja" />
+          <ScalarProperty Name="TotalCajas" ColumnName="TotalCajas" />
+          <ScalarProperty Name="TotalSueltas" ColumnName="TotalSueltas" />
+          <ScalarProperty Name="IDClienteFK" ColumnName="IDClienteFK" />
+          <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+          <ScalarProperty Name="StockQl" ColumnName="StockQl" />
+          <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+          <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
+          <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Cargo">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Cargo">
+        <MappingFragment StoreEntitySet="Cargo">
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Categorias">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="vigencia" ColumnName="vigencia" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Distribucion">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Distribucion">
+        <MappingFragment StoreEntitySet="Distribucion">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="idStock" ColumnName="idStock" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="idDistribucion" ColumnName="idDistribucion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Productos">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="costoUnidad" ColumnName="costoUnidad" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="sku" ColumnName="sku" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solicitud">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Solicitud">
+        <MappingFragment StoreEntitySet="Solicitud">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="servicioMecanizado" ColumnName="servicioMecanizado" />
+          <ScalarProperty Name="costeUnitario" ColumnName="costeUnitario" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="bultos" ColumnName="bultos" />
+          <ScalarProperty Name="usuarioReceptor" ColumnName="usuarioReceptor" />
+          <ScalarProperty Name="usuarioMandante" ColumnName="usuarioMandante" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="idTipoPedido" ColumnName="idTipoPedido" />
+          <ScalarProperty Name="codigoSeguimiento" ColumnName="codigoSeguimiento" />
+          <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+          <ScalarProperty Name="fechaSolicitud" ColumnName="fechaSolicitud" />
+          <ScalarProperty Name="idTrasladoDespacho" ColumnName="idTrasladoDespacho" />
+          <ScalarProperty Name="idTipoDespacho" ColumnName="idTipoDespacho" />
+          <ScalarProperty Name="destino" ColumnName="destino" />
+          <ScalarProperty Name="origen" ColumnName="origen" />
+          <ScalarProperty Name="idTipoEmpaque" ColumnName="idTipoEmpaque" />
+          <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solicitudes">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Solicitudes">
+        <MappingFragment StoreEntitySet="Solicitudes">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="servicioMecanizado" ColumnName="servicioMecanizado" />
+          <ScalarProperty Name="costeUnitario" ColumnName="costeUnitario" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="bultos" ColumnName="bultos" />
+          <ScalarProperty Name="usuarioReceptor" ColumnName="usuarioReceptor" />
+          <ScalarProperty Name="usuarioMandante" ColumnName="usuarioMandante" />
+          <ScalarProperty Name="idArea" ColumnName="idArea" />
+          <ScalarProperty Name="idTipoPedido" ColumnName="idTipoPedido" />
+          <ScalarProperty Name="codigoSeguimiento" ColumnName="codigoSeguimiento" />
+          <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+          <ScalarProperty Name="fechaSolicitud" ColumnName="fechaSolicitud" />
+          <ScalarProperty Name="idTrasladoDespacho" ColumnName="idTrasladoDespacho" />
+          <ScalarProperty Name="idTipoDespacho" ColumnName="idTipoDespacho" />
+          <ScalarProperty Name="destino" ColumnName="destino" />
+          <ScalarProperty Name="origen" ColumnName="origen" />
+          <ScalarProperty Name="idTipoEmpaque" ColumnName="idTipoEmpaque" />
+          <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stock">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Stock">
+        <MappingFragment StoreEntitySet="Stock">
+          <ScalarProperty Name="fechaVencimiento" ColumnName="fechaVencimiento" />
+          <ScalarProperty Name="cantidadDardignac" ColumnName="cantidadDardignac" />
+          <ScalarProperty Name="cantidadQuilicura" ColumnName="cantidadQuilicura" />
+          <ScalarProperty Name="cantidadPorCaja" ColumnName="cantidadPorCaja" />
+          <ScalarProperty Name="cantidadTotal" ColumnName="cantidadTotal" />
+          <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="idStock" ColumnName="idStock" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="IDCARGO" ColumnName="IDCARGO" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="PersSistema" ColumnName="PersSistema" />
+          <ScalarProperty Name="passw" ColumnName="passw" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="CONTRASEÑA" ColumnName="CONTRASEÑA" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="pruebatotalNewModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Mecanizado">
+      <EntityTypeMapping TypeName="pruebatotalNewModel.Mecanizado">
+        <MappingFragment StoreEntitySet="Mecanizado">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdMeca" ColumnName="IdMeca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,205 @@
+﻿@model BancoEstadoBodega.Models.SolicitudPedido
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Solicitud de Pedido - Detalle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Descripcion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            Tipo de despacho
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.origen)
+        </dd>
+
+        <dt>
+            Destino
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.destino)
+        </dd>
+
+        <dt>
+            Fecha de Solicitud
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaSolicitud)
+        </dd>
+
+        <dt>
+            Fecha de entrega
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaEntrega)
+        </dd>
+
+        <dt>
+            Cod. Seguimiento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigoSeguimiento)
+        </dd>
+
+        <dt>
+            Mandante
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarioMandante)
+        </dd>
+
+        <dt>
+            Receptor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarioReceptor)
+        </dd>
+
+        <dt>
+            Bultos
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bultos)
+        </dd>
+
+        <dt>
+            Observaciones
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacion)
+        </dd>
+
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            Categoría
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Area.nombre)
+        </dd>
+
+        <dt>
+            Tipo de Despacho
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDespacho.descripcion)
+        </dd>
+
+        <dt>
+            Tipo de Empaque
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoEmpaque.descripcion)
+        </dd>
+
+        <dt>
+            Tipo de Encomienda
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoEncomienda.tipoEncomienda1)
+        </dd>
+
+        <dt>
+            Tipo de Pedido
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPedido.descripcion)
+        </dd>
+
+        <dt>
+            Tipo de Traslado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrasladoDespacho.descripcion)
+        </dd>
+
+        <dt>
+            Correo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+
+    </dl>
+
+
+
+
+
+</div>
+
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>CODIGO</th>
+                    <th>PRODUCTO</th>
+                    <th>CANTIDAD</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ProductoSolicitud)
+                {
+                    if (@item.idProducto != 0)
+                    {
+                        
+                        {
+                            <tr>
+                                <td>
+                                    @item.idSolicitud
+                                </td>
+                                <td>
+                                    @item.PRODUCTO.Nombre
+                                </td>
+                                <td>
+                                    @item.cantidad
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Volver", "SolicitudPedido")
+</p>

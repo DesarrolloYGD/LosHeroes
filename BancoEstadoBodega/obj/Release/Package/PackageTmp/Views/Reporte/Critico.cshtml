@@ -1,0 +1,245 @@
+﻿@model IEnumerable<BancoEstadoBodega.Models.PRODUCTO>
+@{
+    ViewBag.Title = "Crítico";
+}
+
+<!-- Seccion que muestra la lista de productos -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 pull-right">
+                    @using (Html.BeginForm("ExportDataCritico", "ExportExcel", FormMethod.Post))
+                    {
+                        <p align="right">
+                            <button type="submit" name="btnExportLicensing" value="Export" id="exportLicensing" class="btn btn-primary"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Exportar Stock Critico</button>
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Lista Productos</h3>
+            </div>
+            <div class="panel-body">
+
+                @if (ViewContext.HttpContext.User.IsInRole("administradores"))
+                {
+                    <form action="@Url.Action("Producto", "Administracion")" enctype="multipart/form-data" method="post" class="form-inline">
+
+                        <div class="form-group">
+                            <label for="IDEmpresa">Empresa</label>
+                            @Html.DropDownList("IDEmpresa", null, "Todos", htmlAttributes: new { @class = "form-control input-sm" })
+                        </div>
+                        <div class="form-group">
+                            <label for="IDCategoria">Categoria</label>
+                            @Html.DropDownList("IDCategoria", null, "Todos", htmlAttributes: new { @class = "form-control input-sm" })
+                        </div>
+                        <button type="submit" class="btn btn-default btn-sm">Filtrar</button>
+                    </form>
+                }
+                else
+                {
+                    <form action="@Url.Action("Producto", "Administracion")" enctype="multipart/form-data" method="post" class="form-inline">
+                        <div class="form-group">
+                            <label for="IDCategoria">Categoria</label>
+                            @Html.DropDownList("IDCategoria", null, "Todos", htmlAttributes: new { @class = "form-control input-sm" })
+                        </div>
+                        <button type="submit" class="btn btn-default btn-sm">Filtrar</button>
+                    </form>
+                }
+
+                <br />
+                <div class="table-responsive">
+                    <table id="example" class="table table-striped table-bordered" cellspacing="0">
+                        <thead>
+                            <tr class="success">
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Stock Total</th>
+                                <th>Foto</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td> @item.Codigo </td>
+                                    <td>
+                                        @item.Nombre
+                                    </td>
+                                    <td> @item.CATEGORIA.Nombre </td>
+                                    <td> @item.CantidadTotal </td>
+                                    <td>
+                                        <img width="50" height="50" src="https://pruebasmarco.blob.core.windows.net/prueba-fotos/@(item.UrlImagen)" alt="Img Producto" onerror="imgError(this);" />
+                                    </td>
+
+
+                                    <td class="text-center">
+
+                                        <a class="btn btn-success btn-xs" title="Detalles" href="../../Administracion/Detalles/@item.IDProducto"> <span class="glyphicon glyphicon-folder-open"></span>Ver mas</a>
+                                        <br>
+
+                                        @if (ViewContext.HttpContext.User.IsInRole("administradores"))
+                                        {
+                                            <a class="btn btn-success btn-xs" title="Detalles" href="../../Administracion/Editar/@item.IDProducto"> <span class="glyphicon glyphicon-edit"></span>Editar</a>
+                                        }
+
+
+                                        <!--  a class="btn btn-info btn-sm" title="Editar" onclick="Editar(Editar('@item.IDProducto'))" href="#"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                        -->
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana agregar producto/-->
+
+<div class="modal fade" id="modalCrearCategoria">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="@Url.Action("AgregarProducto", "Administracion")" enctype="multipart/form-data" method="post">
+                <div class="modal-header btn-primary">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Agregar Producto</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">Codigo</span>
+                        <input type="text" class="form-control" name="Codigo" placeholder="Codigo" maxlength="50" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Nombre</span>
+                        <input type="text" class="form-control" name="Nombre" placeholder="Nombre" maxlength="100" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Imagen</span>
+                        <input type="file" id="imagenProducto" name="imagenProducto" class="input-file" size="300">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Unid. por Caja</span>
+                        <input type="number" class="form-control" name="UnidadesXcaja" placeholder="Cajas" min="0" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Quilicura(cajas)</span>
+                        <input type="number" class="form-control" name="StockQl" placeholder="Cajas" min="0" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Quilicura(sueltas)</span>
+                        <input type="number" class="form-control" name="SueltasQL" placeholder="Unidades" min="0" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Dardignac(cajas)</span>
+                        <input type="number" class="form-control" name="StockDÑ" placeholder="Cajas" min="0" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Dardignac(sueltas)</span>
+                        <input type="number" class="form-control" name="SueltasDÑ" placeholder="Unidades" min="0" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Costo</span>
+                        <input type="text" class="form-control" name="CostoUnid" placeholder="Costo" min="0" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Posicion</span>
+                        <input type="text" class="form-control" name="Posicion" placeholder="Posicion" maxlength="100" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Fecha Vencimiento</span>
+                        <input type="date" class="form-control" name="FechaVencimiento" placeholder="Fecha">
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">SubCategorias</span>
+                        @Html.DropDownList("IDCategoriaFK", null, "", htmlAttributes: new { @class = "form-control input-sm" })
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Empresa</span>
+                        @Html.DropDownList("IDClienteFK", null, "", htmlAttributes: new { @class = "form-control input-sm" })
+                    </div>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable();
+        $('[rel="popover"]').popover({
+            container: 'body',
+            html: true,
+            content: function () {
+                var clone = $($(this).data('popover-content')).clone(true).removeClass('hide');
+                return clone;
+            }
+        }).click(function (e) {
+            e.preventDefault();
+        });
+    });
+
+    function AgregarNuevo() {
+        $('#modalCrearCategoria').modal('show');
+    }
+
+
+
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /* Valida el tamaño maximo de un archivo adjunto */
+        $('.input-file').change(function () {
+            var sizeByte = this.files[0].size;
+            var siezekiloByte = parseInt(sizeByte / 1024);
+
+            if (siezekiloByte > $(this).attr('size')) {
+                alert('El tamaño supera el limite permitido (300kb)');
+                $(this).val('');
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    function imgError(image) {
+        image.onerror = "";
+        image.src = "https://pruebasmarco.blob.core.windows.net/prueba-fotos/noimage.jpg";
+        return true;
+    }
+</script>

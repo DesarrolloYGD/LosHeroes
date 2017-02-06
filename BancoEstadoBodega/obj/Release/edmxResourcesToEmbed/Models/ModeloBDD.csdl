@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pruebatotalNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="pruebatotalNewEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BODEGA" EntityType="pruebatotalNewModel.BODEGA" />
+    <EntitySet Name="CATEGORIA" EntityType="pruebatotalNewModel.CATEGORIA" />
+    <EntitySet Name="CIUDAD" EntityType="pruebatotalNewModel.CIUDAD" />
+    <EntitySet Name="CLIENTE" EntityType="pruebatotalNewModel.CLIENTE" />
+    <EntitySet Name="COMUNA" EntityType="pruebatotalNewModel.COMUNA" />
+    <EntitySet Name="PRODUCTO" EntityType="pruebatotalNewModel.PRODUCTO" />
+    <EntitySet Name="PRODUCTOBODEGA" EntityType="pruebatotalNewModel.PRODUCTOBODEGA" />
+    <EntitySet Name="REGION" EntityType="pruebatotalNewModel.REGION" />
+    <AssociationSet Name="FK__BODEGA__IDComuna__4E88ABD4" Association="pruebatotalNewModel.FK__BODEGA__IDComuna__4E88ABD4">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="BODEGA" EntitySet="BODEGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTOBODEGA_BODEGA" Association="pruebatotalNewModel.FK_PRODUCTOBODEGA_BODEGA">
+      <End Role="BODEGA" EntitySet="BODEGA" />
+      <End Role="PRODUCTOBODEGA" EntitySet="PRODUCTOBODEGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CATEGORIA__IdCat__31EC6D26" Association="pruebatotalNewModel.FK__CATEGORIA__IdCat__31EC6D26">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="CATEGORIA1" EntitySet="CATEGORIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCTO__IDCate__3E52440B" Association="pruebatotalNewModel.FK__PRODUCTO__IDCate__3E52440B">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CIUDAD__IdRegion__38996AB5" Association="pruebatotalNewModel.FK__CIUDAD__IdRegion__38996AB5">
+      <End Role="REGION" EntitySet="REGION" />
+      <End Role="CIUDAD" EntitySet="CIUDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COMUNA__IdCiudad__3B75D760" Association="pruebatotalNewModel.FK__COMUNA__IdCiudad__3B75D760">
+      <End Role="CIUDAD" EntitySet="CIUDAD" />
+      <End Role="COMUNA" EntitySet="COMUNA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CLIENTE__IDComun__5CD6CB2B" Association="pruebatotalNewModel.FK__CLIENTE__IDComun__5CD6CB2B">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCTO__IDClie__5DCAEF64" Association="pruebatotalNewModel.FK__PRODUCTO__IDClie__5DCAEF64">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTOBODEGA_PRODUCTO" Association="pruebatotalNewModel.FK_PRODUCTOBODEGA_PRODUCTO">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="PRODUCTOBODEGA" EntitySet="PRODUCTOBODEGA" />
+    </AssociationSet>
+    <FunctionImport Name="sp_obtenerDistribucion" ReturnType="Collection(pruebatotalNewModel.sp_obtenerDistribucion_Result)" />
+    <EntitySet Name="Area" EntityType="pruebatotalNewModel.Area" />
+    <EntitySet Name="SolicitudPedido" EntityType="pruebatotalNewModel.SolicitudPedido" />
+    <EntitySet Name="TipoDespacho" EntityType="pruebatotalNewModel.TipoDespacho" />
+    <EntitySet Name="TipoEmpaque" EntityType="pruebatotalNewModel.TipoEmpaque" />
+    <EntitySet Name="TipoEncomienda" EntityType="pruebatotalNewModel.TipoEncomienda" />
+    <EntitySet Name="TipoPedido" EntityType="pruebatotalNewModel.TipoPedido" />
+    <EntitySet Name="TrasladoDespacho" EntityType="pruebatotalNewModel.TrasladoDespacho" />
+    <AssociationSet Name="FK_SolicitudPedido_Area" Association="pruebatotalNewModel.FK_SolicitudPedido_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TipoDespacho1" Association="pruebatotalNewModel.FK_SolicitudPedido_TipoDespacho1">
+      <End Role="TipoDespacho" EntitySet="TipoDespacho" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TipoEmpaque" Association="pruebatotalNewModel.FK_SolicitudPedido_TipoEmpaque">
+      <End Role="TipoEmpaque" EntitySet="TipoEmpaque" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TipoEncomienda" Association="pruebatotalNewModel.FK_SolicitudPedido_TipoEncomienda">
+      <End Role="TipoEncomienda" EntitySet="TipoEncomienda" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TipoPedido" Association="pruebatotalNewModel.FK_SolicitudPedido_TipoPedido">
+      <End Role="TipoPedido" EntitySet="TipoPedido" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TrasladoDespacho" Association="pruebatotalNewModel.FK_SolicitudPedido_TrasladoDespacho">
+      <End Role="TrasladoDespacho" EntitySet="TrasladoDespacho" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <FunctionImport Name="sp_vincularProductosSolicitud" />
+    <EntitySet Name="ProductoSolicitud" EntityType="pruebatotalNewModel.ProductoSolicitud" />
+    <AssociationSet Name="FK_ProductoSolicitud_SolicitudPedido" Association="pruebatotalNewModel.FK_ProductoSolicitud_SolicitudPedido">
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+      <End Role="ProductoSolicitud" EntitySet="ProductoSolicitud" />
+    </AssociationSet>
+    <FunctionImport Name="sp_listarProductos" ReturnType="Collection(pruebatotalNewModel.sp_listarProductos_Result)" />
+    <AssociationSet Name="FK__ProductoS__Nombr__37C5420D" Association="pruebatotalNewModel.FK__ProductoS__Nombr__37C5420D">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="ProductoSolicitud" EntitySet="ProductoSolicitud" />
+    </AssociationSet>
+    <EntitySet Name="Cargo" EntityType="pruebatotalNewModel.Cargo" />
+    <EntitySet Name="Categorias" EntityType="pruebatotalNewModel.Categorias" />
+    <EntitySet Name="Distribucion" EntityType="pruebatotalNewModel.Distribucion" />
+    <EntitySet Name="Productos" EntityType="pruebatotalNewModel.Productos" />
+    <EntitySet Name="Solicitud" EntityType="pruebatotalNewModel.Solicitud" />
+    <EntitySet Name="Solicitudes" EntityType="pruebatotalNewModel.Solicitudes" />
+    <EntitySet Name="Stock" EntityType="pruebatotalNewModel.Stock" />
+    <EntitySet Name="Usuario" EntityType="pruebatotalNewModel.Usuario" />
+    <AssociationSet Name="FK_Solicitud_Area" Association="pruebatotalNewModel.FK_Solicitud_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cargo" Association="pruebatotalNewModel.fk_Cargo">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Productos" Association="pruebatotalNewModel.FK_Stock_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TipoDespacho" Association="pruebatotalNewModel.FK_Solicitud_TipoDespacho">
+      <End Role="TipoDespacho" EntitySet="TipoDespacho" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TipoEmpaque" Association="pruebatotalNewModel.FK_Solicitud_TipoEmpaque">
+      <End Role="TipoEmpaque" EntitySet="TipoEmpaque" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TipoEncomienda" Association="pruebatotalNewModel.FK_Solicitud_TipoEncomienda">
+      <End Role="TipoEncomienda" EntitySet="TipoEncomienda" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TipoPedido" Association="pruebatotalNewModel.FK_Solicitud_TipoPedido">
+      <End Role="TipoPedido" EntitySet="TipoPedido" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TrasladoDespacho" Association="pruebatotalNewModel.FK_Solicitud_TrasladoDespacho">
+      <End Role="TrasladoDespacho" EntitySet="TrasladoDespacho" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <EntitySet Name="database_firewall_rules" EntityType="pruebatotalNewModel.database_firewall_rules" />
+    <EntitySet Name="C__MigrationHistory" EntityType="pruebatotalNewModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="pruebatotalNewModel.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="pruebatotalNewModel.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="pruebatotalNewModel.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="pruebatotalNewModel.AspNetUsers" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="pruebatotalNewModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="pruebatotalNewModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="pruebatotalNewModel.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="Mecanizado" EntityType="pruebatotalNewModel.Mecanizado" />
+    <AssociationSet Name="FK__Solicitud__idMec__789EE131" Association="pruebatotalNewModel.FK__Solicitud__idMec__789EE131">
+      <End Role="Mecanizado" EntitySet="Mecanizado" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BODEGA">
+    <Key>
+      <PropertyRef Name="IDBodega" />
+    </Key>
+    <Property Name="IDBodega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IDComunaFK" Type="Int32" />
+    <NavigationProperty Name="COMUNA" Relationship="pruebatotalNewModel.FK__BODEGA__IDComuna__4E88ABD4" FromRole="BODEGA" ToRole="COMUNA" />
+    <NavigationProperty Name="PRODUCTOBODEGA" Relationship="pruebatotalNewModel.FK_PRODUCTOBODEGA_BODEGA" FromRole="BODEGA" ToRole="PRODUCTOBODEGA" />
+  </EntityType>
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="IdCategoriaFK" Type="Int32" />
+    <NavigationProperty Name="CATEGORIA1" Relationship="pruebatotalNewModel.FK__CATEGORIA__IdCat__31EC6D26" FromRole="CATEGORIA" ToRole="CATEGORIA1" />
+    <NavigationProperty Name="CATEGORIA2" Relationship="pruebatotalNewModel.FK__CATEGORIA__IdCat__31EC6D26" FromRole="CATEGORIA1" ToRole="CATEGORIA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="pruebatotalNewModel.FK__PRODUCTO__IDCate__3E52440B" FromRole="CATEGORIA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="CIUDAD">
+    <Key>
+      <PropertyRef Name="IdCiudad" />
+    </Key>
+    <Property Name="IdCiudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IdRegionFK" Type="Int32" />
+    <NavigationProperty Name="REGION" Relationship="pruebatotalNewModel.FK__CIUDAD__IdRegion__38996AB5" FromRole="CIUDAD" ToRole="REGION" />
+    <NavigationProperty Name="COMUNA" Relationship="pruebatotalNewModel.FK__COMUNA__IdCiudad__3B75D760" FromRole="CIUDAD" ToRole="COMUNA" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="IDCliente" />
+    </Key>
+    <Property Name="IDCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Alias" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RazonSocial" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Rut" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CorreoDTE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Giro" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="IDComunaFK" Type="Int32" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="COMUNA" Relationship="pruebatotalNewModel.FK__CLIENTE__IDComun__5CD6CB2B" FromRole="CLIENTE" ToRole="COMUNA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="pruebatotalNewModel.FK__PRODUCTO__IDClie__5DCAEF64" FromRole="CLIENTE" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="COMUNA">
+    <Key>
+      <PropertyRef Name="IdComuna" />
+    </Key>
+    <Property Name="IdComuna" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IdCiudadFK" Type="Int32" />
+    <NavigationProperty Name="BODEGA" Relationship="pruebatotalNewModel.FK__BODEGA__IDComuna__4E88ABD4" FromRole="COMUNA" ToRole="BODEGA" />
+    <NavigationProperty Name="CIUDAD" Relationship="pruebatotalNewModel.FK__COMUNA__IdCiudad__3B75D760" FromRole="COMUNA" ToRole="CIUDAD" />
+    <NavigationProperty Name="CLIENTE" Relationship="pruebatotalNewModel.FK__CLIENTE__IDComun__5CD6CB2B" FromRole="COMUNA" ToRole="CLIENTE" />
+  </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="IDProducto" />
+    </Key>
+    <Property Name="IDProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UnidadesXCaja" Type="Int32" />
+    <Property Name="IDCategoriaFK" Type="Int32" />
+    <Property Name="TotalCajas" Type="Int32" />
+    <Property Name="TotalSueltas" Type="Int32" />
+    <Property Name="FechaVencimiento" Type="DateTime" Precision="3" />
+    <Property Name="IDClienteFK" Type="Int32" />
+    <Property Name="UrlImagen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CATEGORIA" Relationship="pruebatotalNewModel.FK__PRODUCTO__IDCate__3E52440B" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+    <NavigationProperty Name="CLIENTE" Relationship="pruebatotalNewModel.FK__PRODUCTO__IDClie__5DCAEF64" FromRole="PRODUCTO" ToRole="CLIENTE" />
+    <NavigationProperty Name="PRODUCTOBODEGA" Relationship="pruebatotalNewModel.FK_PRODUCTOBODEGA_PRODUCTO" FromRole="PRODUCTO" ToRole="PRODUCTOBODEGA" />
+    <Property Name="StockQl" Type="Int32" />
+    <Property Name="StockDÑ" Type="Int32" />
+    <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Posicion" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="SueltasQL" Type="Int32" />
+    <Property Name="SueltasDÑ" Type="Int32" />
+    <Property Name="imagenProducto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CantidadTotal" Type="Int32" />
+    <NavigationProperty Name="ProductoSolicitud" Relationship="pruebatotalNewModel.FK__ProductoS__Nombr__37C5420D" FromRole="PRODUCTO" ToRole="ProductoSolicitud" />
+    <Property Name="stock_ideal" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PRODUCTOBODEGA">
+    <Key>
+      <PropertyRef Name="PRODUCTO_IDProducto" />
+      <PropertyRef Name="BODEGA_IDBodega" />
+    </Key>
+    <Property Name="PRODUCTO_IDProducto" Type="Int32" Nullable="false" />
+    <Property Name="BODEGA_IDBodega" Type="Int32" Nullable="false" />
+    <Property Name="Cajas" Type="Int32" Nullable="false" />
+    <Property Name="Sueltas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BODEGA" Relationship="pruebatotalNewModel.FK_PRODUCTOBODEGA_BODEGA" FromRole="PRODUCTOBODEGA" ToRole="BODEGA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="pruebatotalNewModel.FK_PRODUCTOBODEGA_PRODUCTO" FromRole="PRODUCTOBODEGA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="IdRegion" />
+    </Key>
+    <Property Name="IdRegion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CIUDAD" Relationship="pruebatotalNewModel.FK__CIUDAD__IdRegion__38996AB5" FromRole="REGION" ToRole="CIUDAD" />
+  </EntityType>
+  <Association Name="FK__BODEGA__IDComuna__4E88ABD4">
+    <End Type="pruebatotalNewModel.COMUNA" Role="COMUNA" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.BODEGA" Role="BODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="IdComuna" />
+      </Principal>
+      <Dependent Role="BODEGA">
+        <PropertyRef Name="IDComunaFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTOBODEGA_BODEGA">
+    <End Type="pruebatotalNewModel.BODEGA" Role="BODEGA" Multiplicity="1" />
+    <End Type="pruebatotalNewModel.PRODUCTOBODEGA" Role="PRODUCTOBODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BODEGA">
+        <PropertyRef Name="IDBodega" />
+      </Principal>
+      <Dependent Role="PRODUCTOBODEGA">
+        <PropertyRef Name="BODEGA_IDBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CATEGORIA__IdCat__31EC6D26">
+    <End Type="pruebatotalNewModel.CATEGORIA" Role="CATEGORIA" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.CATEGORIA" Role="CATEGORIA1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="CATEGORIA1">
+        <PropertyRef Name="IdCategoriaFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCTO__IDCate__3E52440B">
+    <End Type="pruebatotalNewModel.CATEGORIA" Role="CATEGORIA" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="IDCategoriaFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CIUDAD__IdRegion__38996AB5">
+    <End Type="pruebatotalNewModel.REGION" Role="REGION" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.CIUDAD" Role="CIUDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="IdRegion" />
+      </Principal>
+      <Dependent Role="CIUDAD">
+        <PropertyRef Name="IdRegionFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COMUNA__IdCiudad__3B75D760">
+    <End Type="pruebatotalNewModel.CIUDAD" Role="CIUDAD" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.COMUNA" Role="COMUNA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CIUDAD">
+        <PropertyRef Name="IdCiudad" />
+      </Principal>
+      <Dependent Role="COMUNA">
+        <PropertyRef Name="IdCiudadFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CLIENTE__IDComun__5CD6CB2B">
+    <End Type="pruebatotalNewModel.COMUNA" Role="COMUNA" Multiplicity="1" />
+    <End Type="pruebatotalNewModel.CLIENTE" Role="CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="IdComuna" />
+      </Principal>
+      <Dependent Role="CLIENTE">
+        <PropertyRef Name="IDComunaFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCTO__IDClie__5DCAEF64">
+    <End Type="pruebatotalNewModel.CLIENTE" Role="CLIENTE" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="IDCliente" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="IDClienteFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTOBODEGA_PRODUCTO">
+    <End Type="pruebatotalNewModel.PRODUCTO" Role="PRODUCTO" Multiplicity="1" />
+    <End Type="pruebatotalNewModel.PRODUCTOBODEGA" Role="PRODUCTOBODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="PRODUCTOBODEGA">
+        <PropertyRef Name="PRODUCTO_IDProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_obtenerDistribucion_Result">
+    <Property Type="Int32" Name="IDProducto" Nullable="false" />
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="IDCategoriaFK" Nullable="true" />
+    <Property Type="DateTime" Name="FechaVencimiento" Nullable="true" Precision="23" />
+    <Property Type="Binary" Name="imagenProducto" Nullable="true" />
+    <Property Type="String" Name="Posicion" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="CantidadTotal" Nullable="true" />
+    <Property Type="Int32" Name="UnidadesXCaja" Nullable="true" />
+    <Property Type="Int32" Name="TotalCajas" Nullable="true" />
+    <Property Type="Int32" Name="TotalSueltas" Nullable="true" />
+    <Property Type="Int32" Name="IDClienteFK" Nullable="true" />
+    <Property Type="String" Name="UrlImagen" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="StockQl" Nullable="true" />
+    <Property Type="Int32" Name="StockDÑ" Nullable="true" />
+    <Property Type="Binary" Name="foto" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="ImageMimeType" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SueltasQL" Nullable="true" />
+    <Property Type="Int32" Name="SueltasDÑ" Nullable="true" />
+    <Property Type="Int32" Name="idDistribucion" Nullable="false" />
+    <Property Type="Int32" Name="idProducto1" Nullable="true" />
+    <Property Type="Int32" Name="idStock" Nullable="true" />
+    <Property Type="Int32" Name="idArea" Nullable="true" />
+    <Property Type="Int32" Name="cantidad" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="idArea" />
+    </Key>
+    <Property Name="idArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="vigente" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="pruebatotalNewModel.FK_SolicitudPedido_Area" FromRole="Area" ToRole="SolicitudPedido" />
+    <NavigationProperty Name="Solicitud" Relationship="pruebatotalNewModel.FK_Solicitud_Area" FromRole="Area" ToRole="Solicitud" />
+  </EntityType>
+  <EntityType Name="SolicitudPedido">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoEncomienda" Type="Int32" />
+    <Property Name="idTipoEmpaque" Type="Int32" />
+    <Property Name="origen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoDespacho" Type="Int32" />
+    <Property Name="idTrasladoDespacho" Type="Int32" />
+    <Property Name="destino" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fechaSolicitud" Type="DateTime" Precision="7" />
+    <Property Name="fechaEntrega" Type="DateTime" Precision="3" />
+    <Property Name="codigoSeguimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoPedido" Type="Int32" />
+    <Property Name="idArea" Type="Int32" />
+    <Property Name="usuarioMandante" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="usuarioReceptor" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="bultos" Type="Int32" />
+    <Property Name="observacion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="costeUnitario" Type="Int64" />
+    <Property Name="servicioMecanizado" Type="Int64" />
+    <Property Name="subtotal" Type="Int64" />
+    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Area" Relationship="pruebatotalNewModel.FK_SolicitudPedido_Area" FromRole="SolicitudPedido" ToRole="Area" />
+    <NavigationProperty Name="TipoDespacho" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TipoDespacho1" FromRole="SolicitudPedido" ToRole="TipoDespacho" />
+    <NavigationProperty Name="TipoEmpaque" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TipoEmpaque" FromRole="SolicitudPedido" ToRole="TipoEmpaque" />
+    <NavigationProperty Name="TipoEncomienda" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TipoEncomienda" FromRole="SolicitudPedido" ToRole="TipoEncomienda" />
+    <NavigationProperty Name="TipoPedido" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TipoPedido" FromRole="SolicitudPedido" ToRole="TipoPedido" />
+    <NavigationProperty Name="TrasladoDespacho" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TrasladoDespacho" FromRole="SolicitudPedido" ToRole="TrasladoDespacho" />
+    <NavigationProperty Name="ProductoSolicitud" Relationship="pruebatotalNewModel.FK_ProductoSolicitud_SolicitudPedido" FromRole="SolicitudPedido" ToRole="ProductoSolicitud" />
+    <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="idMecanizado" Type="Int32" />
+    <NavigationProperty Name="Mecanizado" Relationship="pruebatotalNewModel.FK__Solicitud__idMec__789EE131" FromRole="SolicitudPedido" ToRole="Mecanizado" />
+  </EntityType>
+  <EntityType Name="TipoDespacho">
+    <Key>
+      <PropertyRef Name="idTipoDespacho" />
+    </Key>
+    <Property Name="idTipoDespacho" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TipoDespacho1" FromRole="TipoDespacho" ToRole="SolicitudPedido" />
+    <NavigationProperty Name="Solicitud" Relationship="pruebatotalNewModel.FK_Solicitud_TipoDespacho" FromRole="TipoDespacho" ToRole="Solicitud" />
+  </EntityType>
+  <EntityType Name="TipoEmpaque">
+    <Key>
+      <PropertyRef Name="idTipoEmpaque" />
+    </Key>
+    <Property Name="idTipoEmpaque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TipoEmpaque" FromRole="TipoEmpaque" ToRole="SolicitudPedido" />
+    <NavigationProperty Name="Solicitud" Relationship="pruebatotalNewModel.FK_Solicitud_TipoEmpaque" FromRole="TipoEmpaque" ToRole="Solicitud" />
+  </EntityType>
+  <EntityType Name="TipoEncomienda">
+    <Key>
+      <PropertyRef Name="idTipoEncomienda" />
+    </Key>
+    <Property Name="idTipoEncomienda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipoEncomienda1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TipoEncomienda" FromRole="TipoEncomienda" ToRole="SolicitudPedido" />
+    <NavigationProperty Name="Solicitud" Relationship="pruebatotalNewModel.FK_Solicitud_TipoEncomienda" FromRole="TipoEncomienda" ToRole="Solicitud" />
+  </EntityType>
+  <EntityType Name="TipoPedido">
+    <Key>
+      <PropertyRef Name="idTipoPedido" />
+    </Key>
+    <Property Name="idTipoPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TipoPedido" FromRole="TipoPedido" ToRole="SolicitudPedido" />
+    <NavigationProperty Name="Solicitud" Relationship="pruebatotalNewModel.FK_Solicitud_TipoPedido" FromRole="TipoPedido" ToRole="Solicitud" />
+  </EntityType>
+  <EntityType Name="TrasladoDespacho">
+    <Key>
+      <PropertyRef Name="idTrasladoDespacho" />
+    </Key>
+    <Property Name="idTrasladoDespacho" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="pruebatotalNewModel.FK_SolicitudPedido_TrasladoDespacho" FromRole="TrasladoDespacho" ToRole="SolicitudPedido" />
+    <NavigationProperty Name="Solicitud" Relationship="pruebatotalNewModel.FK_Solicitud_TrasladoDespacho" FromRole="TrasladoDespacho" ToRole="Solicitud" />
+  </EntityType>
+  <Association Name="FK_SolicitudPedido_Area">
+    <End Type="pruebatotalNewModel.Area" Role="Area" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="idArea" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TipoDespacho1">
+    <End Type="pruebatotalNewModel.TipoDespacho" Role="TipoDespacho" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDespacho">
+        <PropertyRef Name="idTipoDespacho" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTipoDespacho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TipoEmpaque">
+    <End Type="pruebatotalNewModel.TipoEmpaque" Role="TipoEmpaque" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEmpaque">
+        <PropertyRef Name="idTipoEmpaque" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTipoEmpaque" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TipoEncomienda">
+    <End Type="pruebatotalNewModel.TipoEncomienda" Role="TipoEncomienda" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEncomienda">
+        <PropertyRef Name="idTipoEncomienda" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTipoEncomienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TipoPedido">
+    <End Type="pruebatotalNewModel.TipoPedido" Role="TipoPedido" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPedido">
+        <PropertyRef Name="idTipoPedido" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTipoPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TrasladoDespacho">
+    <End Type="pruebatotalNewModel.TrasladoDespacho" Role="TrasladoDespacho" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrasladoDespacho">
+        <PropertyRef Name="idTrasladoDespacho" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTrasladoDespacho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProductoSolicitud">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idSolicitud" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="pruebatotalNewModel.FK_ProductoSolicitud_SolicitudPedido" FromRole="ProductoSolicitud" ToRole="SolicitudPedido" />
+    <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NombreFK" Type="Int32" />
+    <NavigationProperty Name="PRODUCTO" Relationship="pruebatotalNewModel.FK__ProductoS__Nombr__37C5420D" FromRole="ProductoSolicitud" ToRole="PRODUCTO" />
+  </EntityType>
+  <Association Name="FK_ProductoSolicitud_SolicitudPedido">
+    <End Type="pruebatotalNewModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="1" />
+    <End Type="pruebatotalNewModel.ProductoSolicitud" Role="ProductoSolicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudPedido">
+        <PropertyRef Name="idSolicitud" />
+      </Principal>
+      <Dependent Role="ProductoSolicitud">
+        <PropertyRef Name="idSolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_listarProductos_Result">
+    <Property Type="Int32" Name="IDProducto" Nullable="false" />
+    <Property Type="String" Name="Codigo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="IDCategoriaFK" Nullable="true" />
+    <Property Type="DateTime" Name="FechaVencimiento" Nullable="true" Precision="23" />
+    <Property Type="Binary" Name="imagenProducto" Nullable="true" />
+    <Property Type="String" Name="Posicion" Nullable="true" MaxLength="120" />
+    <Property Type="Int32" Name="CantidadTotal" Nullable="true" />
+    <Property Type="Int32" Name="UnidadesXCaja" Nullable="true" />
+    <Property Type="Int32" Name="TotalCajas" Nullable="true" />
+    <Property Type="Int32" Name="TotalSueltas" Nullable="true" />
+    <Property Type="Int32" Name="IDClienteFK" Nullable="true" />
+    <Property Type="String" Name="UrlImagen" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="StockQl" Nullable="true" />
+    <Property Type="Int32" Name="StockDÑ" Nullable="true" />
+    <Property Type="Binary" Name="foto" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="ImageMimeType" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SueltasQL" Nullable="true" />
+    <Property Type="Int32" Name="SueltasDÑ" Nullable="true" />
+  </ComplexType>
+  <Association Name="FK__ProductoS__Nombr__37C5420D">
+    <End Type="pruebatotalNewModel.PRODUCTO" Role="PRODUCTO" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.ProductoSolicitud" Role="ProductoSolicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="ProductoSolicitud">
+        <PropertyRef Name="NombreFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Usuario" Relationship="pruebatotalNewModel.fk_Cargo" FromRole="Cargo" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="idCategoria" />
+    </Key>
+    <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="vigencia" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Distribucion">
+    <Key>
+      <PropertyRef Name="idDistribucion" />
+    </Key>
+    <Property Name="idDistribucion" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" />
+    <Property Name="idStock" Type="Int32" />
+    <Property Name="idArea" Type="Int32" />
+    <Property Name="cantidad" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="idCategoria" Type="Int32" />
+    <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="costoUnidad" Type="Int64" />
+    <NavigationProperty Name="Stock" Relationship="pruebatotalNewModel.FK_Stock_Productos" FromRole="Productos" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Solicitud">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoEncomienda" Type="Int32" />
+    <Property Name="idTipoEmpaque" Type="Int32" />
+    <Property Name="origen" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="destino" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoDespacho" Type="Int32" Nullable="false" />
+    <Property Name="idTrasladoDespacho" Type="Int32" />
+    <Property Name="fechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechaEntrega" Type="DateTime" Precision="3" />
+    <Property Name="codigoSeguimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoPedido" Type="Int32" />
+    <Property Name="idArea" Type="Int32" Nullable="false" />
+    <Property Name="usuarioMandante" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="usuarioReceptor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bultos" Type="Int32" />
+    <Property Name="observacion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="costeUnitario" Type="Int64" />
+    <Property Name="servicioMecanizado" Type="Int64" />
+    <Property Name="subtotal" Type="Int64" />
+    <Property Name="estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Area" Relationship="pruebatotalNewModel.FK_Solicitud_Area" FromRole="Solicitud" ToRole="Area" />
+    <NavigationProperty Name="TipoDespacho" Relationship="pruebatotalNewModel.FK_Solicitud_TipoDespacho" FromRole="Solicitud" ToRole="TipoDespacho" />
+    <NavigationProperty Name="TipoEmpaque" Relationship="pruebatotalNewModel.FK_Solicitud_TipoEmpaque" FromRole="Solicitud" ToRole="TipoEmpaque" />
+    <NavigationProperty Name="TipoEncomienda" Relationship="pruebatotalNewModel.FK_Solicitud_TipoEncomienda" FromRole="Solicitud" ToRole="TipoEncomienda" />
+    <NavigationProperty Name="TipoPedido" Relationship="pruebatotalNewModel.FK_Solicitud_TipoPedido" FromRole="Solicitud" ToRole="TipoPedido" />
+    <NavigationProperty Name="TrasladoDespacho" Relationship="pruebatotalNewModel.FK_Solicitud_TrasladoDespacho" FromRole="Solicitud" ToRole="TrasladoDespacho" />
+  </EntityType>
+  <EntityType Name="Solicitudes">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoEncomienda" Type="Int32" />
+    <Property Name="idTipoEmpaque" Type="Int32" />
+    <Property Name="origen" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="destino" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoDespacho" Type="Int32" />
+    <Property Name="idTrasladoDespacho" Type="Int32" />
+    <Property Name="fechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechaEntrega" Type="DateTime" Precision="3" />
+    <Property Name="codigoSeguimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idTipoPedido" Type="Int32" />
+    <Property Name="idArea" Type="Int32" />
+    <Property Name="usuarioMandante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="usuarioReceptor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bultos" Type="Int32" />
+    <Property Name="observacion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="costeUnitario" Type="Int64" />
+    <Property Name="servicioMecanizado" Type="Int64" />
+    <Property Name="subtotal" Type="Int64" />
+    <Property Name="estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="idStock" />
+    </Key>
+    <Property Name="idStock" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idProducto" Type="Int32" />
+    <Property Name="ubicacion" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="cantidadTotal" Type="Int64" />
+    <Property Name="cantidadPorCaja" Type="Int32" />
+    <Property Name="cantidadQuilicura" Type="Int32" />
+    <Property Name="cantidadDardignac" Type="Int32" />
+    <Property Name="fechaVencimiento" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Productos" Relationship="pruebatotalNewModel.FK_Stock_Productos" FromRole="Stock" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CONTRASEÑA" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ESTADO" Type="Boolean" />
+    <Property Name="passw" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="PersSistema" Type="Boolean" Nullable="false" />
+    <Property Name="Alias" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDCARGO" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cargo" Relationship="pruebatotalNewModel.fk_Cargo" FromRole="Usuario" ToRole="Cargo" />
+  </EntityType>
+  <Association Name="FK_Solicitud_Area">
+    <End Type="pruebatotalNewModel.Area" Role="Area" Multiplicity="1" />
+    <End Type="pruebatotalNewModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="idArea" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cargo">
+    <End Type="pruebatotalNewModel.Cargo" Role="Cargo" Multiplicity="1" />
+    <End Type="pruebatotalNewModel.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IDCARGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Productos">
+    <End Type="pruebatotalNewModel.Productos" Role="Productos" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.Stock" Role="Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TipoDespacho">
+    <End Type="pruebatotalNewModel.TipoDespacho" Role="TipoDespacho" Multiplicity="1" />
+    <End Type="pruebatotalNewModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDespacho">
+        <PropertyRef Name="idTipoDespacho" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoDespacho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TipoEmpaque">
+    <End Type="pruebatotalNewModel.TipoEmpaque" Role="TipoEmpaque" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEmpaque">
+        <PropertyRef Name="idTipoEmpaque" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoEmpaque" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TipoEncomienda">
+    <End Type="pruebatotalNewModel.TipoEncomienda" Role="TipoEncomienda" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEncomienda">
+        <PropertyRef Name="idTipoEncomienda" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoEncomienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TipoPedido">
+    <End Type="pruebatotalNewModel.TipoPedido" Role="TipoPedido" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPedido">
+        <PropertyRef Name="idTipoPedido" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TrasladoDespacho">
+    <End Type="pruebatotalNewModel.TrasladoDespacho" Role="TrasladoDespacho" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrasladoDespacho">
+        <PropertyRef Name="idTrasladoDespacho" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTrasladoDespacho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="pruebatotalNewModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="pruebatotalNewModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="pruebatotalNewModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="pruebatotalNewModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="pruebatotalNewModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="pruebatotalNewModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="pruebatotalNewModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="pruebatotalNewModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="pruebatotalNewModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="pruebatotalNewModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="pruebatotalNewModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+    <End Type="pruebatotalNewModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Mecanizado">
+    <Key>
+      <PropertyRef Name="IdMeca" />
+    </Key>
+    <Property Name="IdMeca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="pruebatotalNewModel.FK__Solicitud__idMec__789EE131" FromRole="Mecanizado" ToRole="SolicitudPedido" />
+  </EntityType>
+  <Association Name="FK__Solicitud__idMec__789EE131">
+    <End Type="pruebatotalNewModel.Mecanizado" Role="Mecanizado" Multiplicity="0..1" />
+    <End Type="pruebatotalNewModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mecanizado">
+        <PropertyRef Name="IdMeca" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idMecanizado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

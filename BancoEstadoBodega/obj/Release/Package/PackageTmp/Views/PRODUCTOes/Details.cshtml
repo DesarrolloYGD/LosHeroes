@@ -1,0 +1,98 @@
+﻿@model BancoEstadoBodega.Models.PRODUCTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PRODUCTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnidadesXCaja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnidadesXCaja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostoUnid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostoUnid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCajas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCajas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSueltas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalSueltas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaVencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaVencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlImagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrlImagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORIA.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIA.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.Alias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.Alias)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDProducto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

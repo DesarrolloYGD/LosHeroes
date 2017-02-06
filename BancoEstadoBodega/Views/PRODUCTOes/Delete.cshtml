@@ -1,0 +1,104 @@
+﻿@model BancoEstadoBodega.Models.PRODUCTO
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PRODUCTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnidadesXCaja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnidadesXCaja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CostoUnid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CostoUnid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCajas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCajas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSueltas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalSueltas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaVencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaVencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlImagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrlImagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORIA.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIA.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.Alias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.Alias)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

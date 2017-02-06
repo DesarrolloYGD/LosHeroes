@@ -1,0 +1,911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pruebatotalNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="idArea" />
+    </Key>
+    <Property Name="idArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="vigente" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BODEGA">
+    <Key>
+      <PropertyRef Name="IDBodega" />
+    </Key>
+    <Property Name="IDBodega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="10" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="100" />
+    <Property Name="IDComunaFK" Type="int" />
+  </EntityType>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="120" />
+    <Property Name="Color" Type="nvarchar" MaxLength="7" />
+    <Property Name="IdCategoriaFK" Type="int" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="idCategoria" />
+    </Key>
+    <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="vigencia" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CIUDAD">
+    <Key>
+      <PropertyRef Name="IdCiudad" />
+    </Key>
+    <Property Name="IdCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="IdRegionFK" Type="int" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="IDCliente" />
+    </Key>
+    <Property Name="IDCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Alias" Type="nvarchar" MaxLength="50" />
+    <Property Name="RazonSocial" Type="nvarchar" MaxLength="250" />
+    <Property Name="Rut" Type="nvarchar" MaxLength="10" />
+    <Property Name="CorreoDTE" Type="nvarchar" MaxLength="100" />
+    <Property Name="Giro" Type="nvarchar" MaxLength="250" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="25" />
+    <Property Name="IDComunaFK" Type="int" Nullable="false" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="COMUNA">
+    <Key>
+      <PropertyRef Name="IdComuna" />
+    </Key>
+    <Property Name="IdComuna" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="IdCiudadFK" Type="int" />
+  </EntityType>
+  <EntityType Name="Distribucion">
+    <Key>
+      <PropertyRef Name="idDistribucion" />
+    </Key>
+    <Property Name="idDistribucion" Type="int" Nullable="false" />
+    <Property Name="idProducto" Type="int" />
+    <Property Name="idStock" Type="int" />
+    <Property Name="idArea" Type="int" />
+    <Property Name="cantidad" Type="int" />
+  </EntityType>
+  <EntityType Name="Mecanizado">
+    <Key>
+      <PropertyRef Name="IdMeca" />
+    </Key>
+    <Property Name="IdMeca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="IDProducto" />
+    </Key>
+    <Property Name="IDProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="IDCategoriaFK" Type="int" />
+    <Property Name="FechaVencimiento" Type="datetime" />
+    <Property Name="imagenProducto" Type="varbinary(max)" />
+    <Property Name="Posicion" Type="varchar" MaxLength="120" />
+    <Property Name="CantidadTotal" Type="int" />
+    <Property Name="UnidadesXCaja" Type="int" />
+    <Property Name="TotalCajas" Type="int" />
+    <Property Name="TotalSueltas" Type="int" />
+    <Property Name="IDClienteFK" Type="int" />
+    <Property Name="UrlImagen" Type="nvarchar" MaxLength="50" />
+    <Property Name="StockQl" Type="int" />
+    <Property Name="StockDÑ" Type="int" />
+    <Property Name="foto" Type="image" />
+    <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
+    <Property Name="SueltasQL" Type="int" />
+    <Property Name="SueltasDÑ" Type="int" />
+    <Property Name="stock_ideal" Type="int" />
+  </EntityType>
+  <EntityType Name="PRODUCTOBODEGA">
+    <Key>
+      <PropertyRef Name="PRODUCTO_IDProducto" />
+      <PropertyRef Name="BODEGA_IDBodega" />
+    </Key>
+    <Property Name="PRODUCTO_IDProducto" Type="int" Nullable="false" />
+    <Property Name="BODEGA_IDBodega" Type="int" Nullable="false" />
+    <Property Name="Cajas" Type="int" Nullable="false" />
+    <Property Name="Sueltas" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sku" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar" MaxLength="150" />
+    <Property Name="idCategoria" Type="int" />
+    <Property Name="imagen" Type="varbinary(max)" />
+    <Property Name="costoUnidad" Type="bigint" />
+  </EntityType>
+  <EntityType Name="ProductoSolicitud">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idSolicitud" Type="int" Nullable="false" />
+    <Property Name="idProducto" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="250" />
+    <Property Name="NombreFK" Type="int" />
+  </EntityType>
+  <EntityType Name="REGION">
+    <Key>
+      <PropertyRef Name="IdRegion" />
+    </Key>
+    <Property Name="IdRegion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Solicitud">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="idTipoEncomienda" Type="int" />
+    <Property Name="idTipoEmpaque" Type="int" />
+    <Property Name="origen" Type="varchar" MaxLength="150" />
+    <Property Name="destino" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="idTipoDespacho" Type="int" Nullable="false" />
+    <Property Name="idTrasladoDespacho" Type="int" />
+    <Property Name="fechaSolicitud" Type="datetime" Nullable="false" />
+    <Property Name="fechaEntrega" Type="datetime" />
+    <Property Name="codigoSeguimiento" Type="varchar" MaxLength="50" />
+    <Property Name="idTipoPedido" Type="int" />
+    <Property Name="idArea" Type="int" Nullable="false" />
+    <Property Name="usuarioMandante" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="usuarioReceptor" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="bultos" Type="int" />
+    <Property Name="observacion" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="costeUnitario" Type="bigint" />
+    <Property Name="servicioMecanizado" Type="bigint" />
+    <Property Name="subtotal" Type="bigint" />
+    <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Solicitudes">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="150" />
+    <Property Name="idTipoEncomienda" Type="int" />
+    <Property Name="idTipoEmpaque" Type="int" />
+    <Property Name="origen" Type="varchar" MaxLength="150" />
+    <Property Name="destino" Type="varchar" MaxLength="150" />
+    <Property Name="idTipoDespacho" Type="int" />
+    <Property Name="idTrasladoDespacho" Type="int" />
+    <Property Name="fechaSolicitud" Type="datetime" Nullable="false" />
+    <Property Name="fechaEntrega" Type="datetime" />
+    <Property Name="codigoSeguimiento" Type="varchar" MaxLength="50" />
+    <Property Name="idTipoPedido" Type="int" />
+    <Property Name="idArea" Type="int" />
+    <Property Name="usuarioMandante" Type="varchar" MaxLength="100" />
+    <Property Name="usuarioReceptor" Type="varchar" MaxLength="100" />
+    <Property Name="bultos" Type="int" />
+    <Property Name="observacion" Type="varchar" MaxLength="250" />
+    <Property Name="costeUnitario" Type="bigint" />
+    <Property Name="servicioMecanizado" Type="bigint" />
+    <Property Name="subtotal" Type="bigint" />
+    <Property Name="estado" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SolicitudPedido">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="150" />
+    <Property Name="idTipoEncomienda" Type="int" />
+    <Property Name="idTipoEmpaque" Type="int" />
+    <Property Name="origen" Type="varchar" MaxLength="100" />
+    <Property Name="idTipoDespacho" Type="int" />
+    <Property Name="idTrasladoDespacho" Type="int" />
+    <Property Name="destino" Type="varchar" MaxLength="150" />
+    <Property Name="fechaSolicitud" Type="datetime2" Precision="7" />
+    <Property Name="fechaEntrega" Type="datetime" />
+    <Property Name="codigoSeguimiento" Type="varchar" MaxLength="50" />
+    <Property Name="idTipoPedido" Type="int" />
+    <Property Name="idArea" Type="int" />
+    <Property Name="usuarioMandante" Type="varchar" MaxLength="150" />
+    <Property Name="usuarioReceptor" Type="varchar" MaxLength="150" />
+    <Property Name="bultos" Type="int" />
+    <Property Name="observacion" Type="varchar" MaxLength="250" />
+    <Property Name="costeUnitario" Type="bigint" />
+    <Property Name="servicioMecanizado" Type="bigint" />
+    <Property Name="subtotal" Type="bigint" />
+    <Property Name="estado" Type="varchar" MaxLength="50" />
+    <Property Name="correo" Type="varchar" MaxLength="100" />
+    <Property Name="idMecanizado" Type="int" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="idStock" />
+    </Key>
+    <Property Name="idStock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idProducto" Type="int" />
+    <Property Name="ubicacion" Type="varchar" MaxLength="120" />
+    <Property Name="cantidadTotal" Type="bigint" />
+    <Property Name="cantidadPorCaja" Type="int" />
+    <Property Name="cantidadQuilicura" Type="int" />
+    <Property Name="cantidadDardignac" Type="int" />
+    <Property Name="fechaVencimiento" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TipoDespacho">
+    <Key>
+      <PropertyRef Name="idTipoDespacho" />
+    </Key>
+    <Property Name="idTipoDespacho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoEmpaque">
+    <Key>
+      <PropertyRef Name="idTipoEmpaque" />
+    </Key>
+    <Property Name="idTipoEmpaque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoEncomienda">
+    <Key>
+      <PropertyRef Name="idTipoEncomienda" />
+    </Key>
+    <Property Name="idTipoEncomienda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipoEncomienda" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoPedido">
+    <Key>
+      <PropertyRef Name="idTipoPedido" />
+    </Key>
+    <Property Name="idTipoPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrasladoDespacho">
+    <Key>
+      <PropertyRef Name="idTrasladoDespacho" />
+    </Key>
+    <Property Name="idTrasladoDespacho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CONTRASEÑA" Type="nvarchar" MaxLength="20" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+    <Property Name="ESTADO" Type="bit" />
+    <Property Name="passw" Type="nvarchar" MaxLength="32" />
+    <Property Name="PersSistema" Type="bit" Nullable="false" />
+    <Property Name="Alias" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDCARGO" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'pruebatotalNew.sys.database_firewall_rules' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__BODEGA__IDComuna__52593CB8">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="0..1" />
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="IdComuna" />
+      </Principal>
+      <Dependent Role="BODEGA">
+        <PropertyRef Name="IDComunaFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CATEGORIA__IdCat__534D60F1">
+    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+    <End Role="CATEGORIA1" Type="Self.CATEGORIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="CATEGORIA1">
+        <PropertyRef Name="IdCategoriaFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CIUDAD__IdRegion__5441852A">
+    <End Role="REGION" Type="Self.REGION" Multiplicity="0..1" />
+    <End Role="CIUDAD" Type="Self.CIUDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REGION">
+        <PropertyRef Name="IdRegion" />
+      </Principal>
+      <Dependent Role="CIUDAD">
+        <PropertyRef Name="IdRegionFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CLIENTE__IDComun__5535A963">
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COMUNA">
+        <PropertyRef Name="IdComuna" />
+      </Principal>
+      <Dependent Role="CLIENTE">
+        <PropertyRef Name="IDComunaFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__COMUNA__IdCiudad__5629CD9C">
+    <End Role="CIUDAD" Type="Self.CIUDAD" Multiplicity="0..1" />
+    <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CIUDAD">
+        <PropertyRef Name="IdCiudad" />
+      </Principal>
+      <Dependent Role="COMUNA">
+        <PropertyRef Name="IdCiudadFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCTO__IDCate__571DF1D5">
+    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="IDCategoriaFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCTO__IDClie__5812160E">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="IDCliente" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="IDClienteFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductoS__Nombr__37C5420D">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="0..1" />
+    <End Role="ProductoSolicitud" Type="Self.ProductoSolicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="ProductoSolicitud">
+        <PropertyRef Name="NombreFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Solicitud__idMec__789EE131">
+    <End Role="Mecanizado" Type="Self.Mecanizado" Multiplicity="0..1" />
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mecanizado">
+        <PropertyRef Name="IdMeca" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idMecanizado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cargo">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IDCARGO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTOBODEGA_BODEGA">
+    <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="1" />
+    <End Role="PRODUCTOBODEGA" Type="Self.PRODUCTOBODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BODEGA">
+        <PropertyRef Name="IDBodega" />
+      </Principal>
+      <Dependent Role="PRODUCTOBODEGA">
+        <PropertyRef Name="BODEGA_IDBodega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTOBODEGA_PRODUCTO">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="PRODUCTOBODEGA" Type="Self.PRODUCTOBODEGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="PRODUCTOBODEGA">
+        <PropertyRef Name="PRODUCTO_IDProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductoSolicitud_SolicitudPedido">
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="1" />
+    <End Role="ProductoSolicitud" Type="Self.ProductoSolicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudPedido">
+        <PropertyRef Name="idSolicitud" />
+      </Principal>
+      <Dependent Role="ProductoSolicitud">
+        <PropertyRef Name="idSolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="idArea" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TipoDespacho">
+    <End Role="TipoDespacho" Type="Self.TipoDespacho" Multiplicity="1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDespacho">
+        <PropertyRef Name="idTipoDespacho" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoDespacho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TipoEmpaque">
+    <End Role="TipoEmpaque" Type="Self.TipoEmpaque" Multiplicity="0..1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEmpaque">
+        <PropertyRef Name="idTipoEmpaque" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoEmpaque" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TipoEncomienda">
+    <End Role="TipoEncomienda" Type="Self.TipoEncomienda" Multiplicity="0..1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEncomienda">
+        <PropertyRef Name="idTipoEncomienda" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoEncomienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TipoPedido">
+    <End Role="TipoPedido" Type="Self.TipoPedido" Multiplicity="0..1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPedido">
+        <PropertyRef Name="idTipoPedido" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTipoPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_TrasladoDespacho">
+    <End Role="TrasladoDespacho" Type="Self.TrasladoDespacho" Multiplicity="0..1" />
+    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrasladoDespacho">
+        <PropertyRef Name="idTrasladoDespacho" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idTrasladoDespacho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="idArea" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TipoDespacho1">
+    <End Role="TipoDespacho" Type="Self.TipoDespacho" Multiplicity="0..1" />
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDespacho">
+        <PropertyRef Name="idTipoDespacho" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTipoDespacho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TipoEmpaque">
+    <End Role="TipoEmpaque" Type="Self.TipoEmpaque" Multiplicity="0..1" />
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEmpaque">
+        <PropertyRef Name="idTipoEmpaque" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTipoEmpaque" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TipoEncomienda">
+    <End Role="TipoEncomienda" Type="Self.TipoEncomienda" Multiplicity="0..1" />
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEncomienda">
+        <PropertyRef Name="idTipoEncomienda" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTipoEncomienda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TipoPedido">
+    <End Role="TipoPedido" Type="Self.TipoPedido" Multiplicity="0..1" />
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPedido">
+        <PropertyRef Name="idTipoPedido" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTipoPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudPedido_TrasladoDespacho">
+    <End Role="TrasladoDespacho" Type="Self.TrasladoDespacho" Multiplicity="0..1" />
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrasladoDespacho">
+        <PropertyRef Name="idTrasladoDespacho" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="idTrasladoDespacho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_listarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_obtenerDistribucion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_vincularProductosSolicitud" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="pruebatotalNewModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BODEGA" EntityType="Self.BODEGA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CIUDAD" EntityType="Self.CIUDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Distribucion" EntityType="Self.Distribucion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mecanizado" EntityType="Self.Mecanizado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCTOBODEGA" EntityType="Self.PRODUCTOBODEGA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductoSolicitud" EntityType="Self.ProductoSolicitud" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REGION" EntityType="Self.REGION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Solicitud" EntityType="Self.Solicitud" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Solicitudes" EntityType="Self.Solicitudes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SolicitudPedido" EntityType="Self.SolicitudPedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoDespacho" EntityType="Self.TipoDespacho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoEmpaque" EntityType="Self.TipoEmpaque" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoEncomienda" EntityType="Self.TipoEncomienda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoPedido" EntityType="Self.TipoPedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrasladoDespacho" EntityType="Self.TrasladoDespacho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__BODEGA__IDComuna__52593CB8" Association="Self.FK__BODEGA__IDComuna__52593CB8">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="BODEGA" EntitySet="BODEGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CATEGORIA__IdCat__534D60F1" Association="Self.FK__CATEGORIA__IdCat__534D60F1">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="CATEGORIA1" EntitySet="CATEGORIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CIUDAD__IdRegion__5441852A" Association="Self.FK__CIUDAD__IdRegion__5441852A">
+      <End Role="REGION" EntitySet="REGION" />
+      <End Role="CIUDAD" EntitySet="CIUDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CLIENTE__IDComun__5535A963" Association="Self.FK__CLIENTE__IDComun__5535A963">
+      <End Role="COMUNA" EntitySet="COMUNA" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__COMUNA__IdCiudad__5629CD9C" Association="Self.FK__COMUNA__IdCiudad__5629CD9C">
+      <End Role="CIUDAD" EntitySet="CIUDAD" />
+      <End Role="COMUNA" EntitySet="COMUNA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCTO__IDCate__571DF1D5" Association="Self.FK__PRODUCTO__IDCate__571DF1D5">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCTO__IDClie__5812160E" Association="Self.FK__PRODUCTO__IDClie__5812160E">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductoS__Nombr__37C5420D" Association="Self.FK__ProductoS__Nombr__37C5420D">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="ProductoSolicitud" EntitySet="ProductoSolicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Solicitud__idMec__789EE131" Association="Self.FK__Solicitud__idMec__789EE131">
+      <End Role="Mecanizado" EntitySet="Mecanizado" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cargo" Association="Self.fk_Cargo">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTOBODEGA_BODEGA" Association="Self.FK_PRODUCTOBODEGA_BODEGA">
+      <End Role="BODEGA" EntitySet="BODEGA" />
+      <End Role="PRODUCTOBODEGA" EntitySet="PRODUCTOBODEGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTOBODEGA_PRODUCTO" Association="Self.FK_PRODUCTOBODEGA_PRODUCTO">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="PRODUCTOBODEGA" EntitySet="PRODUCTOBODEGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductoSolicitud_SolicitudPedido" Association="Self.FK_ProductoSolicitud_SolicitudPedido">
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+      <End Role="ProductoSolicitud" EntitySet="ProductoSolicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_Area" Association="Self.FK_Solicitud_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TipoDespacho" Association="Self.FK_Solicitud_TipoDespacho">
+      <End Role="TipoDespacho" EntitySet="TipoDespacho" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TipoEmpaque" Association="Self.FK_Solicitud_TipoEmpaque">
+      <End Role="TipoEmpaque" EntitySet="TipoEmpaque" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TipoEncomienda" Association="Self.FK_Solicitud_TipoEncomienda">
+      <End Role="TipoEncomienda" EntitySet="TipoEncomienda" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TipoPedido" Association="Self.FK_Solicitud_TipoPedido">
+      <End Role="TipoPedido" EntitySet="TipoPedido" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_TrasladoDespacho" Association="Self.FK_Solicitud_TrasladoDespacho">
+      <End Role="TrasladoDespacho" EntitySet="TrasladoDespacho" />
+      <End Role="Solicitud" EntitySet="Solicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_Area" Association="Self.FK_SolicitudPedido_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TipoDespacho1" Association="Self.FK_SolicitudPedido_TipoDespacho1">
+      <End Role="TipoDespacho" EntitySet="TipoDespacho" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TipoEmpaque" Association="Self.FK_SolicitudPedido_TipoEmpaque">
+      <End Role="TipoEmpaque" EntitySet="TipoEmpaque" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TipoEncomienda" Association="Self.FK_SolicitudPedido_TipoEncomienda">
+      <End Role="TipoEncomienda" EntitySet="TipoEncomienda" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TipoPedido" Association="Self.FK_SolicitudPedido_TipoPedido">
+      <End Role="TipoPedido" EntitySet="TipoPedido" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudPedido_TrasladoDespacho" Association="Self.FK_SolicitudPedido_TrasladoDespacho">
+      <End Role="TrasladoDespacho" EntitySet="TrasladoDespacho" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Productos" Association="Self.FK_Stock_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BancoEstadoBodega.Models.PRODUCTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnidadesXCaja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCajas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalSueltas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaVencimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlImagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CATEGORIA.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLIENTE.Alias)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnidadesXCaja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCajas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalSueltas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaVencimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlImagen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CATEGORIA.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLIENTE.Alias)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDProducto }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDProducto }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDProducto })
+        </td>
+    </tr>
+}
+
+</table>
