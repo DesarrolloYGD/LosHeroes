@@ -49,8 +49,11 @@ namespace BancoEstadoBodega.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Display(Name = "Nombre de Usuario")]
+        public string NombreDeUsuario { get; set; }
+
+        
+        
         public string Email { get; set; }
 
         [Required]
@@ -64,6 +67,10 @@ namespace BancoEstadoBodega.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Nombre de Usuario")]
+        public string NombreDeUsuario { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
