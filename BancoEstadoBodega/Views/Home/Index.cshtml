@@ -19,41 +19,45 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="alert alert-warning" role="alert">
-                            <h4 class="text-center">
-                                <a href="../../Solicitud/SolicitudPedido" class="alert-link"><span class="glyphicon glyphicon-send" aria-hidden="true"></span><br />Solicitudes</a>
-                            </h4>
+                    @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
+                    {
+                        <div class="col-md-2">
+                            <div class="alert alert-warning" role="alert">
+                                <h4 class="text-center">
+                                    <a href="../../Solicitud/SolicitudPedido" class="alert-link"><span class="glyphicon glyphicon-send" aria-hidden="true"></span><br />Solicitudes</a>
+                                </h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="alert alert-danger" role="alert">
-                            <h4 class="text-center">
-                                <a href="../../Solicitud/SolicitudPedido" class="alert-link"><span class="glyphicon glyphicon-road" aria-hidden="true"></span><br />Traslados</a>
-                            </h4>
+                        <div class="col-md-2">
+                            <div class="alert alert-danger" role="alert">
+                                <h4 class="text-center">
+                                    <a href="../../Solicitud/SolicitudPedido" class="alert-link"><span class="glyphicon glyphicon-road" aria-hidden="true"></span><br />Traslados</a>
+                                </h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="alert alert-success" role="alert">
-                            <h4 class="text-center">
-                                <a href="#" class="alert-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br />Clientes</a>
-                            </h4>
+                        <div class="col-md-2">
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="text-center">
+                                    <a href="#" class="alert-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br />Clientes</a>
+                                </h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="alert alert-warning" role="alert">
-                            <h4 class="text-center">
-                                <a href="../../Reporte" class="alert-link"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><br />Resumen</a>
-                            </h4>
+                        <div class="col-md-2">
+                            <div class="alert alert-warning" role="alert">
+                                <h4 class="text-center">
+                                    <a href="../../Reporte" class="alert-link"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><br />Resumen</a>
+                                </h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="alert alert-info" role="alert">
-                            <h4 class="text-center">
-                                <a href="#" class="alert-link"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><br />Contacto</a>
-                            </h4>
+                        <div class="col-md-2">
+                            <div class="alert alert-info" role="alert">
+                                <h4 class="text-center">
+                                    <a href="#" class="alert-link"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><br />Contacto</a>
+                                </h4>
+                            </div>
                         </div>
-                    </div>
+                    }
+                   
                     
                 </div>
             </div>

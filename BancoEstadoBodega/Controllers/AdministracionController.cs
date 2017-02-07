@@ -115,7 +115,7 @@ namespace BancoEstadoBodega.Controllers
         #region PRODUCTO
         public ActionResult Producto(int? IDEmpresa, int? IDCategoria)
         {
-            int codigo = EnRol();
+            //int codigo = EnRol();
 
             ViewBag.IDEmpresa = new SelectList(db.CLIENTE.ToList(), "IDCliente", "Alias", IDEmpresa);
             ViewBag.IDCategoria = new SelectList(db.CATEGORIA.ToList(), "IDCategoria", "Nombre", IDCategoria);
@@ -132,10 +132,7 @@ namespace BancoEstadoBodega.Controllers
                 lista = lista.Where(r => r.IDCategoriaFK == IDCategoria).ToList();
             }
 
-            if (!User.IsInRole("administradores"))
-            {
-                lista = lista.Where(r => r.IDClienteFK == codigo).ToList();
-            }
+            
 
 
 
