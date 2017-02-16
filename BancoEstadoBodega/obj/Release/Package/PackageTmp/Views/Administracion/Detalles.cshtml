@@ -28,7 +28,22 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CantidadTotal)
+            Descripcion
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            Stock Acuerdo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stock_ideal)
+        </dd>
+
+        <dt>
+            Stock
         </dt>
 
         <dd>
@@ -36,87 +51,30 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaVencimiento)
+            Unidades Pendientes
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechaVencimiento)
+            @Html.DisplayFor(model => model.pendiente)
         </dd>
 
-        <dt>
-            Categoria
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CATEGORIA.Nombre)
-        </dd>
-
-        <dt>
-            Area
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CLIENTE.Alias)
-        </dd>
 
         @if (ViewContext.HttpContext.User.IsInRole("administradores"))
         {
-            
             <dt>
-                @Html.DisplayNameFor(model => model.UnidadesXCaja)
+                @Html.DisplayNameFor(model => model.ProductoConLogo)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.UnidadesXCaja)
-            </dd>
-
-
-
-            <dt>
-                @Html.DisplayNameFor(model => model.TotalCajas)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.TotalCajas)
+                @Html.DisplayFor(model => model.ProductoConLogo)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.TotalSueltas)
+                @Html.DisplayNameFor(model => model.ProductoSinLogo)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.TotalSueltas)
-            </dd>
-
-            <dt>
-                Quilicura Cajas
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.StockQl)
-            </dd>
-
-            <dt>
-                Quilicura Sueltas
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SueltasQL)
-            </dd>
-
-            <dt>
-                Dardignac Cajas
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.StockDÑ)
-            </dd>
-
-            <dt>
-                Dardignac Sueltas
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SueltasDÑ)
+                @Html.DisplayFor(model => model.ProductoSinLogo)
             </dd>
 
             <dt>
@@ -126,9 +84,23 @@
             <dd>
                 @Html.DisplayFor(model => model.Posicion)
             </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaVencimiento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaVencimiento)
+            </dd>
         }
        
+        <dt>
+            Categoria
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIA.Nombre)
+        </dd>
         
 
         <dt>

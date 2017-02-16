@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LosHeroesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LosHeroesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -154,6 +154,10 @@
           <Property Name="SueltasQL" Type="int" />
           <Property Name="SueltasDÑ" Type="int" />
           <Property Name="stock_ideal" Type="int" />
+          <Property Name="ProductoConLogo" Type="int" />
+          <Property Name="ProductoSinLogo" Type="int" />
+          <Property Name="pendiente" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="PRODUCTOBODEGA">
           <Key>
@@ -662,8 +666,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
             <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LosHeroesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -832,6 +835,10 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <NavigationProperty Name="CLIENTE" Relationship="Self.FK__PRODUCTO__IDClie__5812160E" FromRole="PRODUCTO" ToRole="CLIENTE" />
           <NavigationProperty Name="ProductoSolicitud" Relationship="Self.FK__ProductoS__Nombr__797309D9" FromRole="PRODUCTO" ToRole="ProductoSolicitud" />
           <NavigationProperty Name="PRODUCTOBODEGA" Relationship="Self.FK_PRODUCTOBODEGA_PRODUCTO" FromRole="PRODUCTO" ToRole="PRODUCTOBODEGA" />
+          <Property Name="ProductoConLogo" Type="Int32" />
+          <Property Name="ProductoSinLogo" Type="Int32" />
+          <Property Name="pendiente" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PRODUCTOBODEGA">
           <Key>
@@ -1475,6 +1482,10 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySetMapping Name="PRODUCTO">
             <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
               <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="pendiente" ColumnName="pendiente" />
+                <ScalarProperty Name="ProductoSinLogo" ColumnName="ProductoSinLogo" />
+                <ScalarProperty Name="ProductoConLogo" ColumnName="ProductoConLogo" />
                 <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />

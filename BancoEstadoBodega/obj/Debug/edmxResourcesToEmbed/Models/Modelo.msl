@@ -130,6 +130,10 @@
     <EntitySetMapping Name="PRODUCTO">
       <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
         <MappingFragment StoreEntitySet="PRODUCTO">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="pendiente" ColumnName="pendiente" />
+          <ScalarProperty Name="ProductoSinLogo" ColumnName="ProductoSinLogo" />
+          <ScalarProperty Name="ProductoConLogo" ColumnName="ProductoConLogo" />
           <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
           <ScalarProperty Name="Codigo" ColumnName="Codigo" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />

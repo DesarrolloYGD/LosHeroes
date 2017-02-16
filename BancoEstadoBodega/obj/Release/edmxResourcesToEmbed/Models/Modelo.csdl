@@ -165,6 +165,10 @@
     <NavigationProperty Name="CLIENTE" Relationship="Self.FK__PRODUCTO__IDClie__5812160E" FromRole="PRODUCTO" ToRole="CLIENTE" />
     <NavigationProperty Name="ProductoSolicitud" Relationship="Self.FK__ProductoS__Nombr__797309D9" FromRole="PRODUCTO" ToRole="ProductoSolicitud" />
     <NavigationProperty Name="PRODUCTOBODEGA" Relationship="Self.FK_PRODUCTOBODEGA_PRODUCTO" FromRole="PRODUCTO" ToRole="PRODUCTOBODEGA" />
+    <Property Name="ProductoConLogo" Type="Int32" />
+    <Property Name="ProductoSinLogo" Type="Int32" />
+    <Property Name="pendiente" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="PRODUCTOBODEGA">
     <Key>

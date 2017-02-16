@@ -41,6 +41,10 @@ namespace BancoEstadoBodega.Models
         public Nullable<int> SueltasQL { get; set; }
         public Nullable<int> SueltasDÑ { get; set; }
         public Nullable<int> stock_ideal { get; set; }
+        public Nullable<int> ProductoConLogo { get; set; }
+        public Nullable<int> ProductoSinLogo { get; set; }
+        public Nullable<int> pendiente { get; set; }
+        public string Descripcion { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual CLIENTE CLIENTE { get; set; }

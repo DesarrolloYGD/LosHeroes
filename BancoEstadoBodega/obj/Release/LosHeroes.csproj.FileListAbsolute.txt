@@ -64,8 +64,6 @@ C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\System.Web.WebPa
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\System.Web.WebPages.Razor.dll
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\WebGrease.dll
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Antlr3.Runtime.pdb
-C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\ClosedXML.xml
-C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.Azure.KeyVault.Core.xml
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.Data.Edm.xml
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.Data.OData.xml
@@ -134,3 +132,5 @@ C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\zh-Hans\System.S
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Release\BancoEstadoBodega.dll
 C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Release\BancoEstadoBodega.pdb
+C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Release\LosHeroes.csprojResolveAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\ClosedXML.pdb

@@ -149,6 +149,10 @@
     <Property Name="SueltasQL" Type="int" />
     <Property Name="SueltasDÑ" Type="int" />
     <Property Name="stock_ideal" Type="int" />
+    <Property Name="ProductoConLogo" Type="int" />
+    <Property Name="ProductoSinLogo" Type="int" />
+    <Property Name="pendiente" Type="int" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="PRODUCTOBODEGA">
     <Key>

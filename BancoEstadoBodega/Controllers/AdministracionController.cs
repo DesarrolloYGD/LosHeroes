@@ -241,7 +241,7 @@ namespace BancoEstadoBodega.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "IDProducto,Codigo,Nombre,UnidadesXCaja,StockQl,CantidadTotal,TotalCajas,TotalSueltas,SueltasQL,StockDÑ,SueltasDÑ,CostoUnid,Posicion,FechaVencimiento,stock_ideal,IDCategoriaFK,IDClienteFK")] PRODUCTO pRODUCTO, HttpPostedFileBase imagenProducto)
+        public ActionResult Editar([Bind(Include = "IDProducto,Codigo,Nombre,UnidadesXCaja,StockQl,CantidadTotal,TotalCajas,TotalSueltas,SueltasQL,StockDÑ,SueltasDÑ,CostoUnid,Posicion,FechaVencimiento,stock_ideal,IDCategoriaFK,IDClienteFK,ProductoConLogo,ProductoSinLogo,pendiente,Descripcion")] PRODUCTO pRODUCTO, HttpPostedFileBase imagenProducto)
         {
             string imgName = pRODUCTO.Codigo + ".jpg";//variable local que concatena el codigo del producto mas .jpg(imagen)
             if (pRODUCTO.UrlImagen == null)
@@ -254,9 +254,9 @@ namespace BancoEstadoBodega.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(pRODUCTO).State = EntityState.Modified;
-                pRODUCTO.TotalSueltas = pRODUCTO.SueltasDÑ.Value + pRODUCTO.SueltasQL.Value;
-                pRODUCTO.TotalCajas = pRODUCTO.StockDÑ.Value + pRODUCTO.StockQl.Value;
-                pRODUCTO.CantidadTotal = (pRODUCTO.TotalCajas * pRODUCTO.UnidadesXCaja) + pRODUCTO.TotalSueltas;
+                //pRODUCTO.TotalSueltas = pRODUCTO.SueltasDÑ.Value + pRODUCTO.SueltasQL.Value;
+                //pRODUCTO.TotalCajas = pRODUCTO.StockDÑ.Value + pRODUCTO.StockQl.Value;
+                //pRODUCTO.CantidadTotal = (pRODUCTO.TotalCajas * pRODUCTO.UnidadesXCaja) + pRODUCTO.TotalSueltas;
 
                 db.SaveChanges();
                 return RedirectToAction("Producto");
