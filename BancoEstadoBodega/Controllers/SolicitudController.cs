@@ -54,7 +54,155 @@ namespace BancoEstadoBodega.Controllers
         //    //Hard coded for demo. You may replace it with data from db.
         //    return Json(details, JsonRequestBehavior.AllowGet);
         //}
+        public ActionResult CrearSolicitud2()
+        {
+            var model = new SolicitudViewModel();
+            /*if (!User.IsInRole("administradores"))
+            {
+                int cod = EnRol();
+                model.PRODUCTO = db.PRODUCTO.Where(p => p.IDClienteFK == cod).OrderBy(p => p.Nombre).Select(p => new SelectListItem { Value = p.IDProducto.ToString(), Text = p.Nombre }).ToList();
+            }
+            else
+            {
+                model.PRODUCTO = db.PRODUCTO.OrderBy(p => p.Nombre).Select(p => new SelectListItem { Value = p.IDProducto.ToString(), Text = p.Nombre }).ToList();
+            }*/
+            model.PRODUCTO = db.PRODUCTO.OrderBy(p => p.Nombre).Select(p => new SelectListItem { Value = p.IDProducto.ToString(), Text = p.Nombre }).ToList();
+            return View(model);
+        }
+        [HttpPost]
 
+        public ActionResult CrearSolicitud2(SolicitudViewModel objeto)
+        {
+            try
+            {
+                string destino = " ";
+                if (objeto.detalleDestino != null)
+                {
+                    destino = objeto.DestinoSeleccionado + " " + objeto.detalleDestino;
+                }
+                else
+                {
+                    destino = objeto.DestinoSeleccionado;
+                }
+
+                var Solicitud = new SolicitudPedido
+                {
+                    descripcion = objeto.numeroOC,
+                    idTipoDespacho = 1,
+                    destino = destino,
+                    fechaSolicitud = DateTime.Now,
+                    usuarioMandante = objeto.Comprador,
+                    usuarioReceptor = objeto.Solicitante,
+                    estado = "Solicitada",
+                    correo = User.Identity.GetUserName(),
+                    cod_estado = 1
+                };
+
+                db.SolicitudPedido.Add(Solicitud);
+                db.SaveChanges();
+                var idSol = Solicitud.idSolicitud;
+
+                var lista = objeto.productosSeleccionados.ToList();
+
+                if (lista.Count > 0)
+                {
+                    foreach (var item in lista)
+                    {
+                        var ProductoSolicitud = new ProductoSolicitud
+                        {
+                            idSolicitud = idSol,
+                            idProducto = item.idProducto,
+                            cantidad = item.cantidad,
+                            NombreFK = item.NombreFK
+                        };
+                        db.ProductoSolicitud.Add(ProductoSolicitud);
+                        db.SaveChanges();
+                        PRODUCTO producto = db.PRODUCTO.Find(item.idProducto);
+                        db.Entry(producto).State = EntityState.Modified;
+                        var stock = producto.CantidadTotal;
+                        producto.CantidadTotal = stock - item.cantidad;
+                        db.SaveChanges();
+                    }
+
+                }
+                /*-------------------------MENSAJE DE CORREO----------------------*/
+
+                //Creamos un nuevo Objeto de mensaje
+                System.Net.Mail.MailMessage mmsg = new System.Net.Mail.MailMessage();
+
+                //Direccion de correo electronico a la que queremos enviar el mensaje
+                //if (Request.IsAuthenticated)
+                //{
+                //mmsg.To.Add(User.Identity.GetUserName());
+                //}
+                mmsg.To.Add("logistica@promomas.cl");
+
+                //Nota: La propiedad To es una colección que permite enviar el mensaje a más de un destinatario
+
+                //Asunto
+                mmsg.Subject = "Solicitud recepcionada";
+                mmsg.SubjectEncoding = System.Text.Encoding.UTF8;
+
+                //Direccion de correo electronico que queremos que reciba una copia del mensaje
+                if (Request.IsAuthenticated)
+                {
+                    mmsg.Bcc.Add(User.Identity.GetUserName());
+                }
+                else
+                {
+                    mmsg.To.Add("kubeira@promomas.cl");
+                }
+
+
+                //mmsg.Bcc.Add(user); //Opcional;
+
+                //LoginViewModel model3;
+
+                //Cuerpo del Mensaje
+                DateTime fecha = DateTime.Now;
+                string fech = fecha.ToString("dd/MM/yyyy");
+
+                mmsg.Body = "Hemos recibido su pedido numero: " + idSol + "\nCon fecha: " + fech + " \nSu pedido será despachado en un plazo de 1 a 2 días hábiles" + "\nPara mas detalles porfavor visitar la página sección solicitudes ";
+                mmsg.BodyEncoding = System.Text.Encoding.UTF8;
+                mmsg.IsBodyHtml = false; //Si no queremos que se envíe como HTML
+
+                //Correo electronico desde la que enviamos el mensaje
+                mmsg.From = new System.Net.Mail.MailAddress("solicitudes@promomas.cl");
+
+                /*-------------------------CLIENTE DE CORREO----------------------*/
+
+                //Creamos un objeto de cliente de correo
+                System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
+
+                //Hay que crear las credenciales del correo emisor
+                cliente.Credentials = new System.Net.NetworkCredential("solicitudes@promomas.cl", "medalla24");
+
+                //Lo siguiente es obligatorio si enviamos el mensaje desde Gmail
+                /*
+                cliente.Port = 587;
+                cliente.EnableSsl = true;
+                */
+                cliente.Host = "mail.promomas.cl"; //Para Gmail "smtp.gmail.com";
+
+                /*-------------------------ENVIO DE CORREO----------------------*/
+
+                try
+                {
+                    //Enviamos el mensaje      
+                    cliente.Send(mmsg);
+                }
+                catch (System.Net.Mail.SmtpException ex)
+                {
+                    //Aquí gestionamos los errores al intentar enviar el correo
+                }
+
+                return RedirectToAction("SolicitudPedido");
+            }
+            catch
+            {
+                return View();
+            }
+        }
         public ActionResult CrearSolicitud()
         {
             var model = new ProductoViewModel();

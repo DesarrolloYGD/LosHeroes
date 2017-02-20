@@ -118,6 +118,13 @@
     <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
     <Property Name="IdCiudadFK" Type="int" />
   </EntityType>
+  <EntityType Name="estadoSolicitud">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="Mecanizado">
     <Key>
       <PropertyRef Name="IdMeca" />
@@ -209,6 +216,7 @@
     <Property Name="estado" Type="varchar" MaxLength="50" />
     <Property Name="correo" Type="varchar" MaxLength="100" />
     <Property Name="idMecanizado" Type="int" />
+    <Property Name="cod_estado" Type="int" />
   </EntityType>
   <EntityType Name="TipoDespacho">
     <Key>
@@ -356,6 +364,18 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
       </Principal>
       <Dependent Role="ProductoSolicitud">
         <PropertyRef Name="NombreFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Solicitud__cod_e__29221CFB">
+    <End Role="estadoSolicitud" Type="Self.estadoSolicitud" Multiplicity="0..1" />
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estadoSolicitud">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="cod_estado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -551,6 +571,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
     <EntitySet Name="CIUDAD" EntityType="Self.CIUDAD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="estadoSolicitud" EntityType="Self.estadoSolicitud" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mecanizado" EntityType="Self.Mecanizado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTOBODEGA" EntityType="Self.PRODUCTOBODEGA" Schema="dbo" store:Type="Tables" />
@@ -603,6 +624,10 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
     <AssociationSet Name="FK__ProductoS__Nombr__797309D9" Association="Self.FK__ProductoS__Nombr__797309D9">
       <End Role="PRODUCTO" EntitySet="PRODUCTO" />
       <End Role="ProductoSolicitud" EntitySet="ProductoSolicitud" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Solicitud__cod_e__29221CFB" Association="Self.FK__Solicitud__cod_e__29221CFB">
+      <End Role="estadoSolicitud" EntitySet="estadoSolicitud" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
     </AssociationSet>
     <AssociationSet Name="FK__Solicitud__idMec__7B5B524B" Association="Self.FK__Solicitud__idMec__7B5B524B">
       <End Role="Mecanizado" EntitySet="Mecanizado" />

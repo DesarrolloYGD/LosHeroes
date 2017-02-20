@@ -280,6 +280,9 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EditarImagenProductoViewModel.cs" />
+    <Compile Include="Models\estadoSolicitud.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Mecanizado.cs">
@@ -316,6 +319,7 @@
     <Compile Include="Models\SolicitudPedido.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SolicitudViewModel.cs" />
     <Compile Include="Models\sp_listarProductos_Result.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -686,6 +690,7 @@
     <Content Include="Views\Administracion\EditarImagen.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Solicitud\CrearSolicitud2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

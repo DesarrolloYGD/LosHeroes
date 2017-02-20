@@ -43,6 +43,7 @@ namespace BancoEstadoBodega.Models
         public string estado { get; set; }
         public string correo { get; set; }
         public Nullable<int> idMecanizado { get; set; }
+        public Nullable<int> cod_estado { get; set; }
     
         public virtual Area Area { get; set; }
         public virtual Mecanizado Mecanizado { get; set; }
@@ -53,5 +54,6 @@ namespace BancoEstadoBodega.Models
         public virtual TipoEncomienda TipoEncomienda { get; set; }
         public virtual TipoPedido TipoPedido { get; set; }
         public virtual TrasladoDespacho TrasladoDespacho { get; set; }
+        public virtual estadoSolicitud estadoSolicitud { get; set; }
     }
 }

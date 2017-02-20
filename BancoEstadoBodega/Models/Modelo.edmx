@@ -123,6 +123,13 @@
           <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
           <Property Name="IdCiudadFK" Type="int" />
         </EntityType>
+        <EntityType Name="estadoSolicitud">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Mecanizado">
           <Key>
             <PropertyRef Name="IdMeca" />
@@ -214,6 +221,7 @@
           <Property Name="estado" Type="varchar" MaxLength="50" />
           <Property Name="correo" Type="varchar" MaxLength="100" />
           <Property Name="idMecanizado" Type="int" />
+          <Property Name="cod_estado" Type="int" />
         </EntityType>
         <EntityType Name="TipoDespacho">
           <Key>
@@ -361,6 +369,18 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
             </Principal>
             <Dependent Role="ProductoSolicitud">
               <PropertyRef Name="NombreFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Solicitud__cod_e__29221CFB">
+          <End Role="estadoSolicitud" Type="Self.estadoSolicitud" Multiplicity="0..1" />
+          <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estadoSolicitud">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SolicitudPedido">
+              <PropertyRef Name="cod_estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -556,6 +576,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySet Name="CIUDAD" EntityType="Self.CIUDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estadoSolicitud" EntityType="Self.estadoSolicitud" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mecanizado" EntityType="Self.Mecanizado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTOBODEGA" EntityType="Self.PRODUCTOBODEGA" Schema="dbo" store:Type="Tables" />
@@ -608,6 +629,10 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <AssociationSet Name="FK__ProductoS__Nombr__797309D9" Association="Self.FK__ProductoS__Nombr__797309D9">
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
             <End Role="ProductoSolicitud" EntitySet="ProductoSolicitud" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__cod_e__29221CFB" Association="Self.FK__Solicitud__cod_e__29221CFB">
+            <End Role="estadoSolicitud" EntitySet="estadoSolicitud" />
+            <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
           </AssociationSet>
           <AssociationSet Name="FK__Solicitud__idMec__7B5B524B" Association="Self.FK__Solicitud__idMec__7B5B524B">
             <End Role="Mecanizado" EntitySet="Mecanizado" />
@@ -908,6 +933,8 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <NavigationProperty Name="TipoEncomienda" Relationship="Self.FK_SolicitudPedido_TipoEncomienda" FromRole="SolicitudPedido" ToRole="TipoEncomienda" />
           <NavigationProperty Name="TipoPedido" Relationship="Self.FK_SolicitudPedido_TipoPedido" FromRole="SolicitudPedido" ToRole="TipoPedido" />
           <NavigationProperty Name="TrasladoDespacho" Relationship="Self.FK_SolicitudPedido_TrasladoDespacho" FromRole="SolicitudPedido" ToRole="TrasladoDespacho" />
+          <Property Name="cod_estado" Type="Int32" />
+          <NavigationProperty Name="estadoSolicitud" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="SolicitudPedido" ToRole="estadoSolicitud" />
         </EntityType>
         <EntityType Name="TipoDespacho">
           <Key>
@@ -1324,6 +1351,11 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <FunctionImport Name="sp_listarProductos" ReturnType="Collection(LosHeroesModel.sp_listarProductos_Result)" />
           <FunctionImport Name="sp_obtenerDistribucion" />
           <FunctionImport Name="sp_vincularProductosSolicitud" />
+          <EntitySet Name="estadoSolicitud" EntityType="LosHeroesModel.estadoSolicitud" />
+          <AssociationSet Name="FK__Solicitud__cod_e__29221CFB" Association="LosHeroesModel.FK__Solicitud__cod_e__29221CFB">
+            <End Role="estadoSolicitud" EntitySet="estadoSolicitud" />
+            <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_listarProductos_Result">
           <Property Type="Int32" Name="IDProducto" Nullable="false" />
@@ -1347,6 +1379,26 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Type="Int32" Name="SueltasDÑ" Nullable="true" />
           <Property Type="Int32" Name="stock_ideal" Nullable="true" />
         </ComplexType>
+        <EntityType Name="estadoSolicitud">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SolicitudPedido" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="estadoSolicitud" ToRole="SolicitudPedido" />
+        </EntityType>
+        <Association Name="FK__Solicitud__cod_e__29221CFB">
+          <End Type="LosHeroesModel.estadoSolicitud" Role="estadoSolicitud" Multiplicity="0..1" />
+          <End Type="LosHeroesModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estadoSolicitud">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SolicitudPedido">
+              <PropertyRef Name="cod_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1541,6 +1593,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySetMapping Name="SolicitudPedido">
             <EntityTypeMapping TypeName="LosHeroesModel.SolicitudPedido">
               <MappingFragment StoreEntitySet="SolicitudPedido">
+                <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
                 <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
@@ -1655,6 +1708,14 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_obtenerDistribucion" FunctionName="LosHeroesModel.Store.sp_obtenerDistribucion" />
           <FunctionImportMapping FunctionImportName="sp_vincularProductosSolicitud" FunctionName="LosHeroesModel.Store.sp_vincularProductosSolicitud" />
+          <EntitySetMapping Name="estadoSolicitud">
+            <EntityTypeMapping TypeName="LosHeroesModel.estadoSolicitud">
+              <MappingFragment StoreEntitySet="estadoSolicitud">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

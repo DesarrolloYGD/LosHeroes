@@ -49,6 +49,8 @@
         <AssociationConnector Association="LosHeroesModel.FK_SolicitudPedido_TipoPedido" ManuallyRouted="false" />
         <AssociationConnector Association="LosHeroesModel.FK_SolicitudPedido_TrasladoDespacho" ManuallyRouted="false" />
         <AssociationConnector Association="LosHeroesModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LosHeroesModel.estadoSolicitud" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

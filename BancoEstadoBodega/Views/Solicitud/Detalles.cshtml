@@ -10,21 +10,12 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Descripcion
+            N° OC
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.descripcion)
         </dd>
-
-        <dt>
-            Tipo de despacho
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.origen)
-        </dd>
-
         <dt>
             Destino
         </dt>
@@ -40,17 +31,8 @@
         <dd>
             @Html.DisplayFor(model => model.fechaSolicitud)
         </dd>
-
         <dt>
-            Fecha de entrega
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fechaEntrega)
-        </dd>
-
-        <dt>
-            Cod. Seguimiento
+            N° Guía entrega Promomas
         </dt>
 
         <dd>
@@ -58,7 +40,7 @@
         </dd>
 
         <dt>
-            Mandante
+            Comprador
         </dt>
 
         <dd>
@@ -66,21 +48,12 @@
         </dd>
 
         <dt>
-            Receptor
+            Solicitante
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.usuarioReceptor)
         </dd>
-
-        <dt>
-            Bultos
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.bultos)
-        </dd>
-
         <dt>
             Observaciones
         </dt>
@@ -88,8 +61,6 @@
         <dd>
             @Html.DisplayFor(model => model.observacion)
         </dd>
-
-
         <dt>
             Estado
         </dt>
@@ -105,47 +76,6 @@
         <dd>
             @Html.DisplayFor(model => model.Area.nombre)
         </dd>
-
-        <dt>
-            Tipo de Despacho
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoDespacho.descripcion)
-        </dd>
-
-        <dt>
-            Tipo de Empaque
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoEmpaque.descripcion)
-        </dd>
-
-        <dt>
-            Tipo de Encomienda
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoEncomienda.tipoEncomienda1)
-        </dd>
-
-        <dt>
-            Tipo de Pedido
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoPedido.descripcion)
-        </dd>
-
-        <dt>
-            Tipo de Traslado
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrasladoDespacho.descripcion)
-        </dd>
-
         <dt>
             Correo
         </dt>

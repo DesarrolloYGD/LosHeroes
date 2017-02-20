@@ -143,7 +143,7 @@ namespace BancoEstadoBodega.Controllers
 
 
         // Funcion que agrega los productos con imagen (ventana flotante) 
-        public ActionResult AgregarProducto([Bind(Include = "IDProducto,Codigo,Nombre,UnidadesXCaja,StockQl,SueltasQL,StockDÑ,SueltasDÑ,stock_ideal,CostoUnid,Posicion,FechaVencimiento,IDCategoriaFK,IDClienteFK")]PRODUCTO model, FormCollection collection, HttpPostedFileBase imagenProducto)
+        public ActionResult AgregarProducto([Bind(Include = "IDProducto,Descripcion,Codigo,Nombre,stock_ideal,CostoUnid,Posicion,FechaVencimiento,IDCategoriaFK,CantidadTotal,pendiente,ProductoConLogo,ProductoSinLogo")]PRODUCTO model, FormCollection collection, HttpPostedFileBase imagenProducto)
         {
             PRODUCTOBODEGA item = new PRODUCTOBODEGA();
             PRODUCTOBODEGA item2 = new PRODUCTOBODEGA();
@@ -155,10 +155,6 @@ namespace BancoEstadoBodega.Controllers
             item2.Cajas = Convert.ToInt32(collection["Bodega2Sueltas"]);
             item2.BODEGA_IDBodega = 3;
             model.PRODUCTOBODEGA.Add(item);
-
-            model.TotalSueltas = model.SueltasDÑ.Value + model.SueltasQL.Value;
-            model.TotalCajas = model.StockDÑ.Value + model.StockQl.Value;
-            model.CantidadTotal = (model.TotalCajas * model.UnidadesXCaja) + model.TotalSueltas;        
             //model.UrlImagen = model.Codigo + ".jpg";
 
 
