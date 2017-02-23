@@ -19,7 +19,7 @@
                         </p>
                     }
                     <p class="text-right">
-                        <button onclick="window.location.href='CrearSolicitud'" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar Nueva Solicitud</button>
+                        <button onclick="window.location.href='CrearSolicitud2'" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar Nueva Solicitud</button>
                     </p>
                 </div>
             </div>
@@ -35,12 +35,11 @@
                         <thead>
                             <tr class="success">
                                 <th>Codigo</th>
-                                <th>Descripción</th>
-                                <!-- <th>Origen</th> -->
+                                <th>N° OC</th>
                                 <th>Destino</th>
                                 <th>Fecha Solicitud</th>
-                                <th>Fecha Entrega</th>
-                                <th>Código Seguimiento</th>
+                                <th>Solicitante</th>
+                                <th>Comprador</th>
                                 <th>Estado</th>
                                 <th>Opciones</th>
                             </tr>
@@ -51,22 +50,21 @@
                                 <tr>
                                     <td> @item.idSolicitud </td>
                                     <td> @item.descripcion </td>
-                                    <!-- <td> @item.origen </td> --> 
                                     <td> @item.destino </td>
                                     <td> @item.fechaSolicitud</td>
-                                    <td> @item.fechaEntrega</td>
-                                    <td> @item.codigoSeguimiento </td>
-                                    @if (item.estado == "Solicitada")
+                                    <td> @item.usuarioMandante</td>
+                                    <td> @item.usuarioReceptor</td>
+                                    @if (item.cod_estado == 1)
                                     {
                                         <td style="background-color:#2196F3; color:white">
-                                            @item.estado
+                                            @item.estadoSolicitud.descripcion
                                         </td>
                                     }
 
                                     else
                                     {
                                         <td style="background-color:#76FF03; color:white">
-                                            @item.estado
+                                            @item.estadoSolicitud.descripcion
                                         </td>
                                     }
                                     <td class="text-center">

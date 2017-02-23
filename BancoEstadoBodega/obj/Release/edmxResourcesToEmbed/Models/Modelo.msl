@@ -189,6 +189,7 @@
     <EntitySetMapping Name="SolicitudPedido">
       <EntityTypeMapping TypeName="LosHeroesModel.SolicitudPedido">
         <MappingFragment StoreEntitySet="SolicitudPedido">
+          <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
           <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
@@ -303,5 +304,13 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_obtenerDistribucion" FunctionName="LosHeroesModel.Store.sp_obtenerDistribucion" />
     <FunctionImportMapping FunctionImportName="sp_vincularProductosSolicitud" FunctionName="LosHeroesModel.Store.sp_vincularProductosSolicitud" />
+    <EntitySetMapping Name="estadoSolicitud">
+      <EntityTypeMapping TypeName="LosHeroesModel.estadoSolicitud">
+        <MappingFragment StoreEntitySet="estadoSolicitud">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

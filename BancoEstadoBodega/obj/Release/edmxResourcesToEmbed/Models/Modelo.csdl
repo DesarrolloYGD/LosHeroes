@@ -238,6 +238,8 @@
     <NavigationProperty Name="TipoEncomienda" Relationship="Self.FK_SolicitudPedido_TipoEncomienda" FromRole="SolicitudPedido" ToRole="TipoEncomienda" />
     <NavigationProperty Name="TipoPedido" Relationship="Self.FK_SolicitudPedido_TipoPedido" FromRole="SolicitudPedido" ToRole="TipoPedido" />
     <NavigationProperty Name="TrasladoDespacho" Relationship="Self.FK_SolicitudPedido_TrasladoDespacho" FromRole="SolicitudPedido" ToRole="TrasladoDespacho" />
+    <Property Name="cod_estado" Type="Int32" />
+    <NavigationProperty Name="estadoSolicitud" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="SolicitudPedido" ToRole="estadoSolicitud" />
   </EntityType>
   <EntityType Name="TipoDespacho">
     <Key>
@@ -654,6 +656,11 @@
     <FunctionImport Name="sp_listarProductos" ReturnType="Collection(LosHeroesModel.sp_listarProductos_Result)" />
     <FunctionImport Name="sp_obtenerDistribucion" />
     <FunctionImport Name="sp_vincularProductosSolicitud" />
+    <EntitySet Name="estadoSolicitud" EntityType="LosHeroesModel.estadoSolicitud" />
+    <AssociationSet Name="FK__Solicitud__cod_e__29221CFB" Association="LosHeroesModel.FK__Solicitud__cod_e__29221CFB">
+      <End Role="estadoSolicitud" EntitySet="estadoSolicitud" />
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_listarProductos_Result">
     <Property Type="Int32" Name="IDProducto" Nullable="false" />
@@ -677,4 +684,24 @@
     <Property Type="Int32" Name="SueltasDÑ" Nullable="true" />
     <Property Type="Int32" Name="stock_ideal" Nullable="true" />
   </ComplexType>
+  <EntityType Name="estadoSolicitud">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="estadoSolicitud" ToRole="SolicitudPedido" />
+  </EntityType>
+  <Association Name="FK__Solicitud__cod_e__29221CFB">
+    <End Type="LosHeroesModel.estadoSolicitud" Role="estadoSolicitud" Multiplicity="0..1" />
+    <End Type="LosHeroesModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="estadoSolicitud">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SolicitudPedido">
+        <PropertyRef Name="cod_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

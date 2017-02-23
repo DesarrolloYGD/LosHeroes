@@ -3,14 +3,6 @@
     ViewBag.Title = "Producto";
 }
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
-
-
-
 <!-- Seccion que muestra la lista de productos -->
 <div class="row">
     <div class="col-md-12">
@@ -72,49 +64,30 @@
                                     <td>
                                         @item.Nombre
                                     </td>
-                                    <td> @item.CantidadTotal </td>
-                                    <td> @item.stock_ideal </td>
-                                    <td> @item.pendiente </td>
+                                    <td> @string.Format("{0:N0}", @item.CantidadTotal)</td>
+                                    <td> @string.Format("{0:N0}", @item.stock_ideal) </td>
+                                    <td> @string.Format("{0:N0}", @item.pendiente)  </td>
                                     <td> @item.Descripcion </td>
                                     <td>
-                                        
-                                                <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-md-3col-sm-6">
-                                                            <a href="#" class="thumbnail">
-                                                                <img class="thumbnail img-responsive" src="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.UrlImagen)" height="50" width="50" name ="1">
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                     
-                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                      
+                                        <a href="#myID-@item.IDProducto"  data-toggle="modal"> <img width="50" height="50" src="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.UrlImagen)" alt="Img Producto" onerror="imgError(this);" /></a>
+                                        <div class="modal fade" id="myID-@item.IDProducto">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
+                                                    <!-- Header de la ventana -->
                                                     <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title">@item.Nombre</h4>
                                                     </div>
+
+                                                    <!-- Contenido de la Ventana -->
                                                     <div class="modal-body">
-                                                        <div id="myCarousel" class="carousel slide">
-                                                            <div class="carousel-inner">
-                                                                <div class="item active item-active">
-                                                                    <img src="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.UrlImagen)" style="height:400px;width: 566px;" name="1" class="img-responsive">
-                                                                </div>
-                                                            </div>
-                                                            <!-- Controls -->
-                                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                                                <span class="icon-prev"></span>
-                                                            </a>
-                                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                                                <span class="icon-next"></span>
-                                                            </a>
-                                                        </div>
+                                                        <img class="thumbnail img-responsive" src="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.UrlImagen)" name="1">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                       
+                                        
                                     </td>
 
                                     <td class="text-center">
@@ -226,24 +199,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.thumbnail').click(function () {
-            var name = $(this).find('img').attr('src');
-            var mname = $('.carousel-inner').find("img[src='" + $(this).find('img').attr('src') + "']");
-            $('.carousel-innerdiv').removeClass("active");
-            $(mname).parent().addClass("active");
-            $('#myModal').modal({
-                backdrop: 'static',
-            }, 'show');
-        });
-        $(function () {
-            $("#myCarousel").carousel({
-                interval: 5000
-            });
-        });
-    });
-</script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#example').DataTable();
