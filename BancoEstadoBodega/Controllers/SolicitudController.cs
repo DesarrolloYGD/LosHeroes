@@ -135,7 +135,7 @@ namespace BancoEstadoBodega.Controllers
                 //{
                 //mmsg.To.Add(User.Identity.GetUserName());
                 //}
-                mmsg.To.Add("logistica@promomas.cl");
+                mmsg.To.Add("lbasic@promomas.cl");
 
                 //Nota: La propiedad To es una colección que permite enviar el mensaje a más de un destinatario
 
@@ -144,14 +144,13 @@ namespace BancoEstadoBodega.Controllers
                 mmsg.SubjectEncoding = System.Text.Encoding.UTF8;
 
                 //Direccion de correo electronico que queremos que reciba una copia del mensaje
+                mmsg.To.Add("facturacion@promomas.cl");
+                mmsg.To.Add("yessyca@probag.cl");
                 if (Request.IsAuthenticated)
                 {
-                    mmsg.Bcc.Add(User.Identity.GetUserName());
+                    mmsg.Bcc.Add(User.Identity.GetUserName());    
                 }
-                else
-                {
-                    mmsg.To.Add("kubeira@promomas.cl");
-                }
+               
 
 
                 //mmsg.Bcc.Add(user); //Opcional;

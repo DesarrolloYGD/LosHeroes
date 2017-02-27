@@ -64,9 +64,9 @@
                                     <td>
                                         @item.Nombre
                                     </td>
-                                    <td> @item.CantidadTotal </td>
-                                    <td> @item.stock_ideal </td>
-                                    <td> @item.pendiente </td>
+                                    <td> @string.Format("{0:N0}", @item.CantidadTotal)</td>
+                                    <td> @string.Format("{0:N0}", @item.stock_ideal) </td>
+                                    <td> @string.Format("{0:N0}", @item.pendiente)  </td>
                                     <td> @item.Descripcion </td>
                                     <td>
                                       

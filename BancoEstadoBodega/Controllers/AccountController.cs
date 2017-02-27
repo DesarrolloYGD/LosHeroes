@@ -59,7 +59,7 @@ namespace BancoEstadoBodega.Controllers
         {
             if (HttpContext.Request.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Producto", "Administracion");
             }
             else
             {
