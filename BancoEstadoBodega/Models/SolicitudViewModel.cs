@@ -33,6 +33,7 @@ namespace BancoEstadoBodega.Models
                 new SelectListItem { Value = "Holanda 100 Piso 5", Text = "Holanda 100 Piso 5" },
                 new SelectListItem { Value = "Holanda 64", Text = "Holanda 64" },
                 new SelectListItem { Value = "Sucursal Independencia", Text = "Sucursal Independencia" },
+                new SelectListItem { Value = "Prilogic", Text = "Prilogic" },
             };
             }
         }

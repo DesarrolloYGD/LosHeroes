@@ -45,14 +45,27 @@
                         <thead>
                             <tr class="success">
                                 <th>N°</th>
-                                <th>SKU</th>
+                                @if (ViewContext.HttpContext.User.IsInRole("administradores"))
+                                {
+                                    <th>SKU</th>
+                                }
+                                
                                 <th>Nombre</th>
                                 <th>Stock</th>
-                                <th>Acuerdo</th>
-                                <th>Unidades pendientes</th>
+                                @if (ViewContext.HttpContext.User.IsInRole("administradores")|| ViewContext.HttpContext.User.IsInRole("Compradores"))
+                                {
+                                    <th>Acuerdo</th>
+                                    <th>Unidades pendientes</th>
+                                }
+                                    
+                                <th>Precio Unitario Neto</th>
                                 <th>Descripcion</th>
                                 <th>Foto</th>
-                                <th>Detalle</th>
+                                @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
+                                {
+                                    <th>Detalle</th>
+                                }
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -60,13 +73,30 @@
                             {
                                 <tr>
                                     <td>@item.IDProducto</td>
-                                    <td> @item.Codigo </td>
+                                    @if (ViewContext.HttpContext.User.IsInRole("administradores"))
+                                    {
+                                        <td> @item.Codigo </td>
+                                    }
+                                                                        
                                     <td>
                                         @item.Nombre
                                     </td>
                                     <td> @string.Format("{0:N0}", @item.CantidadTotal)</td>
-                                    <td> @string.Format("{0:N0}", @item.stock_ideal) </td>
-                                    <td> @string.Format("{0:N0}", @item.pendiente)  </td>
+                                    @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
+                                    {
+                                        <td> @string.Format("{0:N0}", @item.stock_ideal) </td>
+                                        <td> @string.Format("{0:N0}", @item.pendiente)  </td>
+                                    }
+
+                                    
+                                    @if (@item.PrecioUni != null)
+                                    {
+                                        <td> @string.Format("{0:C0}", + @item.PrecioUni) </td>
+                                    }
+                                    else{ 
+                                    <td>Valor desconocido</td>
+                                    }
+                                    
                                     <td> @item.Descripcion </td>
                                     <td>
                                       
@@ -82,7 +112,7 @@
 
                                                     <!-- Contenido de la Ventana -->
                                                     <div class="modal-body">
-                                                        <img class="thumbnail img-responsive" src="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.UrlImagen)" name="1">
+                                                        <img class="thumbnail img-responsive" src="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.UrlImagen)" name="1" alt="Img Producto" onerror="imgError(this);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,23 +120,26 @@
                                         
                                     </td>
 
-                                    <td class="text-center">
+                                    
 
-                                        <a class="btn btn-success btn-xs" title="Detalles" href="../../Administracion/Detalles/@item.IDProducto"> <span class="glyphicon glyphicon-folder-open"></span>Ver mas</a>
-                                        <br>
+                                       
 
-                                        @if (ViewContext.HttpContext.User.IsInRole("administradores"))
+                                        @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
                                         {
-                                            <a class="btn btn-success btn-xs" title="Detalles" href="../../Administracion/Editar/@item.IDProducto"> <span class="glyphicon glyphicon-edit"></span>Editar Datos</a>
-                                            <br />
-                                            <a class="btn btn-success btn-xs" title="Detalles" href="../../Administracion/EditarImagen/@item.IDProducto"> <span class="glyphicon glyphicon-camera"></span>Editar Imagen</a>
+                                            <td class="text-center">
+                                                <a class="btn btn-success btn-xs" title="Detalles" href="../../Administracion/Detalles/@item.IDProducto"> <span class="glyphicon glyphicon-folder-open"></span>Ver mas</a>
+                                                <br>
+                                                <a class="btn btn-success btn-xs" title="Detalles" href="../../Administracion/Editar/@item.IDProducto"> <span class="glyphicon glyphicon-edit"></span>Editar Datos</a>
+                                                <br />
+                                                <a class="btn btn-success btn-xs" title="Detalles" href="../../Administracion/EditarImagen/@item.IDProducto"> <span class="glyphicon glyphicon-camera"></span>Editar Imagen</a>
+                                            </td>
                                         }
 
 
-                                        <!--  a class="btn btn-info btn-sm" title="Editar" onclick="Editar(Editar('@item.IDProducto'))" href="#"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                                        -->
+                                                <!--  a class="btn btn-info btn-sm" title="Editar" onclick="Editar(Editar('@item.IDProducto'))" href="#"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                                                -->
 
-                                    </td>
+                                            
                                 </tr>
                             }
 

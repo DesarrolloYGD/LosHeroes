@@ -146,12 +146,11 @@ namespace BancoEstadoBodega.Controllers
                 //Direccion de correo electronico que queremos que reciba una copia del mensaje
                 mmsg.To.Add("facturacion@promomas.cl");
                 mmsg.To.Add("yessyca@probag.cl");
+
                 if (Request.IsAuthenticated)
                 {
-                    mmsg.Bcc.Add(User.Identity.GetUserName());    
+                    mmsg.Bcc.Add(User.Identity.GetUserName());
                 }
-               
-
 
                 //mmsg.Bcc.Add(user); //Opcional;
 
@@ -161,9 +160,28 @@ namespace BancoEstadoBodega.Controllers
                 DateTime fecha = DateTime.Now;
                 string fech = fecha.ToString("dd/MM/yyyy");
 
-                mmsg.Body = "Hemos recibido su pedido numero: " + idSol + "\nCon fecha: " + fech + " \nSu pedido será despachado en un plazo de 1 a 2 días hábiles" + "\nPara mas detalles porfavor visitar la página sección solicitudes ";
+                string descripción = "<div><p>OC: " + Solicitud.descripcion + "</p></ br><p>Comprador: " + Solicitud.usuarioMandante + "</p></ br><p>Solicitante: " + Solicitud.usuarioReceptor + "</p><p>Destino: " + Solicitud.destino + "</p></div>";
+                string tabla = "<table align='center' border='0' width='80%'><tr bgcolor='#70bbd9'><th>Código</th><th>Descripción</th><th>Cantidad Solicitada</th></tr>";
+                string list = "";
+                int largo = lista.Count;
+                int contador = 0;
+                if (largo > 0)
+                {
+                    foreach (var item in lista)
+                    {
+                        var productoAux = db.PRODUCTO.Find(item.idProducto);
+                        contador = contador + 1;
+                        list = list + "<tr bgcolor ='#e8e8e8'><td>" + productoAux.Codigo + "</td><td>" + productoAux.Nombre + "</td><td>" + item.cantidad + "</td></tr>";
+                        if (contador == largo)
+                        {
+                            list = list + "</table>";
+                        }
+                    }
+                }
+                string footer = "<p align='center'> para ver más detalles de la solicitud <a href='http://losheroes.micatalogo.cl/Solicitud/Detalles/" + Solicitud.idSolicitud+"'>pinche aquí­</a></p>";
+                mmsg.Body = descripción + "</br>" + tabla + list + footer;
                 mmsg.BodyEncoding = System.Text.Encoding.UTF8;
-                mmsg.IsBodyHtml = false; //Si no queremos que se envíe como HTML
+                mmsg.IsBodyHtml = true; //Si no queremos que se envíe como HTML
 
                 //Correo electronico desde la que enviamos el mensaje
                 mmsg.From = new System.Net.Mail.MailAddress("solicitudes@promomas.cl");

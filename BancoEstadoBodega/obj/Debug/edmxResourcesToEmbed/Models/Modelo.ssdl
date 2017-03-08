@@ -160,6 +160,7 @@
     <Property Name="ProductoSinLogo" Type="int" />
     <Property Name="pendiente" Type="int" />
     <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="PrecioUni" Type="int" />
   </EntityType>
   <EntityType Name="PRODUCTOBODEGA">
     <Key>

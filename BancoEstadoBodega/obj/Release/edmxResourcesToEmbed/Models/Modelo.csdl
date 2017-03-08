@@ -169,6 +169,7 @@
     <Property Name="ProductoSinLogo" Type="Int32" />
     <Property Name="pendiente" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="PrecioUni" Type="Int32" />
   </EntityType>
   <EntityType Name="PRODUCTOBODEGA">
     <Key>

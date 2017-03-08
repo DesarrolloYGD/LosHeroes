@@ -165,6 +165,7 @@
           <Property Name="ProductoSinLogo" Type="int" />
           <Property Name="pendiente" Type="int" />
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="PrecioUni" Type="int" />
         </EntityType>
         <EntityType Name="PRODUCTOBODEGA">
           <Key>
@@ -864,6 +865,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Name="ProductoSinLogo" Type="Int32" />
           <Property Name="pendiente" Type="Int32" />
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioUni" Type="Int32" />
         </EntityType>
         <EntityType Name="PRODUCTOBODEGA">
           <Key>
@@ -1534,6 +1536,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySetMapping Name="PRODUCTO">
             <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
               <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="PrecioUni" ColumnName="PrecioUni" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="pendiente" ColumnName="pendiente" />
                 <ScalarProperty Name="ProductoSinLogo" ColumnName="ProductoSinLogo" />
