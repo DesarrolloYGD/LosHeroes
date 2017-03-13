@@ -1,19 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IIS Web Application Name" description="" value="pruebabanco" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\marco\\Desktop\\banco\ al\ 22122016\\BancoEstadoBodega\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp$" />
-    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\marco\\Desktop\\banco\ al\ 22122016\\BancoEstadoBodega\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp$" />
+  <parameter name="IIS Web Application Name" description="" value="losheroesbodega" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\DesarrolloYGD\\Documents\\GitHub\\LosHeroes\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\DesarrolloYGD\\Documents\\GitHub\\LosHeroes\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="BancoEstadoBodega.Models.pruebatotalEntities-Web.config Connection String" description="" value="BancoEstadoBodega.Models.pruebatotalEntities_ConnectionString" tags="">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\marco\\Desktop\\banco\ al\ 22122016\\BancoEstadoBodega\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BancoEstadoBodega.Models.pruebatotalEntities']/@connectionString" />
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=ztheal2up1.database.windows.net;Initial Catalog=LosHeroes;User ID=servidorazure@ztheal2up1;Password=Yagoda12;Application Name=EntityFramework" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\DesarrolloYGD\\Documents\\GitHub\\LosHeroes\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
-  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=ztheal2up1.database.windows.net;Initial Catalog=pruebatotalNew;User ID=servidorazure@ztheal2up1;Password=Yagoda12;MultipleActiveResultSets=True;Application Name=EntityFramework" tags="">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\marco\\Desktop\\banco\ al\ 22122016\\BancoEstadoBodega\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  <parameter name="Hola-Web.config Connection String" description="" value="Server=tcp:ztheal2up1.database.windows.net,1433;Initial Catalog=LosHeroes;Persist Security Info=False;User ID=servidorazure@ztheal2up1;Password=Yagoda12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\DesarrolloYGD\\Documents\\GitHub\\LosHeroes\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Hola']/@connectionString" />
   </parameter>
-  <parameter name="Hola-Web.config Connection String" description="" value="Server=tcp:ztheal2up1.database.windows.net,1433;Initial Catalog=pruebatotalNew;Persist Security Info=False;User ID=servidorazure@ztheal2up1;Password=Yagoda12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\marco\\Desktop\\banco\ al\ 22122016\\BancoEstadoBodega\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Hola']/@connectionString" />
-  </parameter>
-  <parameter name="pruebatotalNewEntities-Web.config Connection String" description="" value="metadata=res://*/Models.ModeloBDD.csdl|res://*/Models.ModeloBDD.ssdl|res://*/Models.ModeloBDD.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ztheal2up1.database.windows.net;initial catalog=pruebatotalNew;user id=servidorazure@ztheal2up1;password=Yagoda12;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\marco\\Desktop\\banco\ al\ 22122016\\BancoEstadoBodega\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='pruebatotalNewEntities']/@connectionString" />
+  <parameter name="LosHeroesEntities-Web.config Connection String" description="" value="metadata=res://*/Models.Modelo.csdl|res://*/Models.Modelo.ssdl|res://*/Models.Modelo.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=ztheal2up1.database.windows.net;initial catalog=LosHeroes;persist security info=True;user id=servidorazure@ztheal2up1;password=Yagoda12;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\DesarrolloYGD\\Documents\\GitHub\\LosHeroes\\BancoEstadoBodega\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='LosHeroesEntities']/@connectionString" />
   </parameter>
 </parameters>

@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="alert alert-info" role="alert">
                             <h4 class="text-center">
                                 <a href="../../Administracion/Producto" class="alert-link"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span><br />Productos</a>
@@ -21,38 +21,17 @@
                     </div>
                     @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
                     {
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="alert alert-warning" role="alert">
                                 <h4 class="text-center">
                                     <a href="../../Solicitud/SolicitudPedido" class="alert-link"><span class="glyphicon glyphicon-send" aria-hidden="true"></span><br />Solicitudes</a>
                                 </h4>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="alert alert-danger" role="alert">
                                 <h4 class="text-center">
-                                    <a href="../../Solicitud/SolicitudPedido" class="alert-link"><span class="glyphicon glyphicon-road" aria-hidden="true"></span><br />Traslados</a>
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="alert alert-success" role="alert">
-                                <h4 class="text-center">
-                                    <a href="#" class="alert-link"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br />Clientes</a>
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="alert alert-warning" role="alert">
-                                <h4 class="text-center">
-                                    <a href="../../Reporte" class="alert-link"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><br />Resumen</a>
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="alert alert-info" role="alert">
-                                <h4 class="text-center">
-                                    <a href="#" class="alert-link"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><br />Contacto</a>
+                                    <a href="../../Reporte/Index" class="alert-link"><span class="glyphicon glyphicon-file" aria-hidden="true"></span><br />Reportes</a>
                                 </h4>
                             </div>
                         </div>
@@ -62,29 +41,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> En transicion</h3>
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <tr class="success">
-                            <th>Id</th>
-                            <th>Fecha</th>
-                            <th>Detalle</th>
-                            <th>Despacho</th>
-                            <th>Estado</th>
-                        </tr>
-                        <tr>
-                            <td colspan="5">No hay datos disponibles</td>
-                        </tr>
-                        
-                    </table>
-                </div>
-            </div>
-        </div>
-        <p class="text-right"><a href="../../Solicitud/SolicitudPedido" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ver Todo</a></p>
     </div>
 </div>

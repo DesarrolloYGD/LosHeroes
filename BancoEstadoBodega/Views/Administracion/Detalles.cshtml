@@ -1,10 +1,10 @@
 ﻿@model BancoEstadoBodega.Models.PRODUCTO
 
 @{
-    ViewBag.Title = "Detalles";
+    ViewBag.Title = "Detalles producto";
 }
 
-<h2>Detalles Producto</h2>
+<h2>Detalles Producto N° @Html.DisplayFor(model => model.IDProducto)</h2>
 
 <div>
     
@@ -85,15 +85,40 @@
                 @Html.DisplayFor(model => model.Posicion)
             </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.FechaVencimiento)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.FechaVencimiento)
-            </dd>
         }
-       
+        <dt>
+            Precio Unitario Neto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioUni)
+        </dd>
+
+        <dt>
+            Reposición
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TiempoReposicion)
+        </dd>
+
+        <dt>
+            Packing
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Packing)
+        </dd>
+
+
+        <dt>
+            Vencimiento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vencimiento)
+        </dd>
         <dt>
             Categoria
         </dt>

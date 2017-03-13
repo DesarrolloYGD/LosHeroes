@@ -132,7 +132,12 @@ namespace BancoEstadoBodega.Controllers
                 lista = lista.Where(r => r.IDCategoriaFK == IDCategoria).ToList();
             }
 
-            
+            if (User.IsInRole("Vista"))
+            {
+                lista = lista.Where(r => r.CantidadTotal != 0).ToList();
+
+            }
+
 
 
 
@@ -143,18 +148,18 @@ namespace BancoEstadoBodega.Controllers
 
 
         // Funcion que agrega los productos con imagen (ventana flotante) 
-        public ActionResult AgregarProducto([Bind(Include = "IDProducto,Descripcion,Codigo,Nombre,stock_ideal,CostoUnid,Posicion,FechaVencimiento,IDCategoriaFK,CantidadTotal,pendiente,ProductoConLogo,ProductoSinLogo")]PRODUCTO model, FormCollection collection, HttpPostedFileBase imagenProducto)
+        public ActionResult AgregarProducto([Bind(Include = "IDProducto,Descripcion,Codigo,Nombre,stock_ideal,CostoUnid,Posicion,FechaVencimiento,IDCategoriaFK,CantidadTotal,pendiente,ProductoConLogo,ProductoSinLogo,PrecioUni,TiempoReposicion,Packing,Vencimiento")]PRODUCTO model, FormCollection collection, HttpPostedFileBase imagenProducto)
         {
             PRODUCTOBODEGA item = new PRODUCTOBODEGA();
             PRODUCTOBODEGA item2 = new PRODUCTOBODEGA();
 
-            item.BODEGA_IDBodega = 1;
-            model.PRODUCTOBODEGA.Add(item);
+            //item.BODEGA_IDBodega = 1;
+            //model.PRODUCTOBODEGA.Add(item);
 
-            item2.Sueltas = Convert.ToInt32(collection["Bodega2Cajas"]);
-            item2.Cajas = Convert.ToInt32(collection["Bodega2Sueltas"]);
-            item2.BODEGA_IDBodega = 3;
-            model.PRODUCTOBODEGA.Add(item);
+            //item2.Sueltas = Convert.ToInt32(collection["Bodega2Cajas"]);
+            //item2.Cajas = Convert.ToInt32(collection["Bodega2Sueltas"]);
+            //item2.BODEGA_IDBodega = 3;
+            //model.PRODUCTOBODEGA.Add(item);
             //model.UrlImagen = model.Codigo + ".jpg";
 
 
@@ -237,7 +242,7 @@ namespace BancoEstadoBodega.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "IDProducto,Codigo,Nombre,UnidadesXCaja,StockQl,CantidadTotal,TotalCajas,TotalSueltas,SueltasQL,StockDÑ,SueltasDÑ,CostoUnid,Posicion,FechaVencimiento,stock_ideal,IDCategoriaFK,IDClienteFK,ProductoConLogo,ProductoSinLogo,pendiente,Descripcion,PrecioUni")] PRODUCTO pRODUCTO, HttpPostedFileBase imagenProducto)
+        public ActionResult Editar([Bind(Include = "IDProducto,Codigo,Nombre,UnidadesXCaja,StockQl,CantidadTotal,TotalCajas,TotalSueltas,SueltasQL,StockDÑ,SueltasDÑ,CostoUnid,Posicion,FechaVencimiento,stock_ideal,IDCategoriaFK,IDClienteFK,ProductoConLogo,ProductoSinLogo,pendiente,Descripcion,PrecioUni,TiempoReposicion,Packing,Vencimiento")] PRODUCTO pRODUCTO, HttpPostedFileBase imagenProducto)
         {
             string imgName = pRODUCTO.Codigo + ".jpg";//variable local que concatena el codigo del producto mas .jpg(imagen)
             if (pRODUCTO.UrlImagen == null)

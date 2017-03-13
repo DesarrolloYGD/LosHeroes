@@ -270,3 +270,5 @@ C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\zh-Hant\
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Release\LosHeroes.csprojResolveAssemblyReference.cache
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Release\BancoEstadoBodega.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Release\BancoEstadoBodega.pdb
+C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EPPlus.dll
+C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EPPlus.xml

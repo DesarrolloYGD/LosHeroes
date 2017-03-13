@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 pull-right">
-                    @using (Html.BeginForm("ExportDataSolicitudes", "ExportExcel", FormMethod.Post))
+                    @using (Html.BeginForm("DownloadExcel2", "Solicitud", FormMethod.Post))
                     {
                         <p class="text-right">
                             <button type="submit" name="btnExportLicensing" value="Export" id="exportLicensing" class="btn btn-primary"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Exportar Excel</button>
@@ -40,6 +40,7 @@
                                 <th>Fecha Solicitud</th>
                                 <th>Solicitante</th>
                                 <th>Comprador</th>
+                                <th>PDF Despacho</th>
                                 <th>Estado</th>
                                 <th>Opciones</th>
                             </tr>
@@ -54,6 +55,20 @@
                                     <td> @item.fechaSolicitud</td>
                                     <td> @item.usuarioMandante</td>
                                     <td> @item.usuarioReceptor</td>
+                                    @if (item.urlPdf != null)
+                                    {
+                                        
+                                        <td>
+                                            <a href="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.urlPdf)" class="btn btn-success btn-link">
+                                                <span class="glyphicon glyphicon-cloud-download"></span> Link
+                                            </a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>Sin PDF adjunto</td>
+                                    }
+
                                     @if (item.cod_estado == 1)
                                     {
                                         <td style="background-color:#2196F3; color:white">
@@ -73,6 +88,8 @@
                                     @if (ViewContext.HttpContext.User.IsInRole("administradores"))
                                     {
                                         <a class="btn btn-success btn-xs" title="Editar" href="../../Solicitud/Editar/@item.idSolicitud"> <span class="glyphicon glyphicon-edit"></span>Editar</a>
+                                        <br />
+                                        <a class="btn btn-success btn-xs" title="Detalles" href="../../Solicitud/AdjuntarPDF/@item.idSolicitud"> <span class="glyphicon glyphicon-camera"></span>Adjuntar PDF</a>
                                     }
                                         
                                     </td>

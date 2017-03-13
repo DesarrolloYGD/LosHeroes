@@ -170,6 +170,9 @@
     <Property Name="pendiente" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="PrecioUni" Type="Int32" />
+    <Property Name="TiempoReposicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Packing" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Vencimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="PRODUCTOBODEGA">
     <Key>
@@ -241,6 +244,7 @@
     <NavigationProperty Name="TrasladoDespacho" Relationship="Self.FK_SolicitudPedido_TrasladoDespacho" FromRole="SolicitudPedido" ToRole="TrasladoDespacho" />
     <Property Name="cod_estado" Type="Int32" />
     <NavigationProperty Name="estadoSolicitud" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="SolicitudPedido" ToRole="estadoSolicitud" />
+    <Property Name="urlPdf" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="TipoDespacho">
     <Key>

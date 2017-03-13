@@ -161,6 +161,9 @@
     <Property Name="pendiente" Type="int" />
     <Property Name="Descripcion" Type="varchar" MaxLength="200" />
     <Property Name="PrecioUni" Type="int" />
+    <Property Name="TiempoReposicion" Type="varchar" MaxLength="50" />
+    <Property Name="Packing" Type="varchar" MaxLength="100" />
+    <Property Name="Vencimiento" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="PRODUCTOBODEGA">
     <Key>
@@ -218,6 +221,7 @@
     <Property Name="correo" Type="varchar" MaxLength="100" />
     <Property Name="idMecanizado" Type="int" />
     <Property Name="cod_estado" Type="int" />
+    <Property Name="urlPdf" Type="varchar" MaxLength="90" />
   </EntityType>
   <EntityType Name="TipoDespacho">
     <Key>

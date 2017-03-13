@@ -130,6 +130,9 @@
     <EntitySetMapping Name="PRODUCTO">
       <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
         <MappingFragment StoreEntitySet="PRODUCTO">
+          <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
+          <ScalarProperty Name="Packing" ColumnName="Packing" />
+          <ScalarProperty Name="TiempoReposicion" ColumnName="TiempoReposicion" />
           <ScalarProperty Name="PrecioUni" ColumnName="PrecioUni" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="pendiente" ColumnName="pendiente" />
@@ -190,6 +193,7 @@
     <EntitySetMapping Name="SolicitudPedido">
       <EntityTypeMapping TypeName="LosHeroesModel.SolicitudPedido">
         <MappingFragment StoreEntitySet="SolicitudPedido">
+          <ScalarProperty Name="urlPdf" ColumnName="urlPdf" />
           <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
           <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />

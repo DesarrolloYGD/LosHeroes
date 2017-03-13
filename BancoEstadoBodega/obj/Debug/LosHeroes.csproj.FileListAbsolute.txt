@@ -541,3 +541,6 @@ C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\zh-Hans\
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Debug\BancoEstadoBodega.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Debug\BancoEstadoBodega.pdb
+C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Debug\LosHeroes.csprojResolveAssemblyReference.cache
+C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EPPlus.dll
+C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EPPlus.xml

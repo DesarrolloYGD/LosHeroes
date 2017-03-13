@@ -166,6 +166,9 @@
           <Property Name="pendiente" Type="int" />
           <Property Name="Descripcion" Type="varchar" MaxLength="200" />
           <Property Name="PrecioUni" Type="int" />
+          <Property Name="TiempoReposicion" Type="varchar" MaxLength="50" />
+          <Property Name="Packing" Type="varchar" MaxLength="100" />
+          <Property Name="Vencimiento" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PRODUCTOBODEGA">
           <Key>
@@ -223,6 +226,7 @@
           <Property Name="correo" Type="varchar" MaxLength="100" />
           <Property Name="idMecanizado" Type="int" />
           <Property Name="cod_estado" Type="int" />
+          <Property Name="urlPdf" Type="varchar" MaxLength="90" />
         </EntityType>
         <EntityType Name="TipoDespacho">
           <Key>
@@ -866,6 +870,9 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Name="pendiente" Type="Int32" />
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="PrecioUni" Type="Int32" />
+          <Property Name="TiempoReposicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Packing" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Vencimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PRODUCTOBODEGA">
           <Key>
@@ -937,6 +944,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <NavigationProperty Name="TrasladoDespacho" Relationship="Self.FK_SolicitudPedido_TrasladoDespacho" FromRole="SolicitudPedido" ToRole="TrasladoDespacho" />
           <Property Name="cod_estado" Type="Int32" />
           <NavigationProperty Name="estadoSolicitud" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="SolicitudPedido" ToRole="estadoSolicitud" />
+          <Property Name="urlPdf" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TipoDespacho">
           <Key>
@@ -1536,6 +1544,9 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySetMapping Name="PRODUCTO">
             <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
               <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
+                <ScalarProperty Name="Packing" ColumnName="Packing" />
+                <ScalarProperty Name="TiempoReposicion" ColumnName="TiempoReposicion" />
                 <ScalarProperty Name="PrecioUni" ColumnName="PrecioUni" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="pendiente" ColumnName="pendiente" />
@@ -1596,6 +1607,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySetMapping Name="SolicitudPedido">
             <EntityTypeMapping TypeName="LosHeroesModel.SolicitudPedido">
               <MappingFragment StoreEntitySet="SolicitudPedido">
+                <ScalarProperty Name="urlPdf" ColumnName="urlPdf" />
                 <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
                 <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />

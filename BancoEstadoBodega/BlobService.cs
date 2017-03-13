@@ -39,6 +39,32 @@ namespace BancoEstadoBodega
             return auxiliar;
         }
 
+
+        public void AddPDFSol(HttpPostedFileBase pdf, string id_pdfsol)
+        {
+            try
+            {
+                CloudBlobClient cliente = storageAccount.CreateCloudBlobClient();//creaciòn del cliente blob para la cuenta definida en el web.config
+                CloudBlobContainer contenedor = cliente.GetContainerReference("losheroesblob");//especificaciòn del contenedor que almacena los blobs
+                CloudBlockBlob blockBlob = contenedor.GetBlockBlobReference(id_pdfsol);//metodo para referenciar el blob que se crearà en el contenedor
+                blockBlob.Properties.ContentType = "application/pdf";//se define el tipo de contenido del blob
+                blockBlob.UploadFromStream(pdf.InputStream);//se sube el blob a la nube
+            }
+            catch (NullReferenceException e) { };
+
+        }
+
+        public byte[] GetPDFSol(string id_pdfsol)
+        {
+            CloudBlobClient cliente = storageAccount.CreateCloudBlobClient();
+            CloudBlobContainer contenedor = cliente.GetContainerReference("losheroesblob");
+            CloudBlockBlob blockBlob = contenedor.GetBlockBlobReference(id_pdfsol);
+            blockBlob.FetchAttributes();
+            long fileByteLength = blockBlob.Properties.Length;
+            Byte[] auxiliar = new Byte[fileByteLength];
+            blockBlob.DownloadToByteArray(auxiliar, 0);
+            return auxiliar;
+        }
         public void EliminarImgProducto(string id_imgProducto)
         {
             CloudBlobClient cliente = storageAccount.CreateCloudBlobClient();

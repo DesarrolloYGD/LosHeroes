@@ -46,6 +46,9 @@ namespace BancoEstadoBodega.Models
         public Nullable<int> pendiente { get; set; }
         public string Descripcion { get; set; }
         public Nullable<int> PrecioUni { get; set; }
+        public string TiempoReposicion { get; set; }
+        public string Packing { get; set; }
+        public string Vencimiento { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual CLIENTE CLIENTE { get; set; }

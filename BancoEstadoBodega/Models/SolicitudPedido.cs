@@ -44,6 +44,7 @@ namespace BancoEstadoBodega.Models
         public string correo { get; set; }
         public Nullable<int> idMecanizado { get; set; }
         public Nullable<int> cod_estado { get; set; }
+        public string urlPdf { get; set; }
     
         public virtual Area Area { get; set; }
         public virtual Mecanizado Mecanizado { get; set; }

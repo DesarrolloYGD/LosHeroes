@@ -37,14 +37,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
-                <ul class="nav">
-                    <li><img src="~/img/logo2.png" class="img-responsive" /></li>
-                    <li><br /></li>
-                </ul>
+              
            
                     @if (User.Identity.IsAuthenticated && ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
                     {
                         <ul class="nav nav-sidebar">
+                            <li><a href="~/Home/Index"><img src="~/img/logo2.png" width="190" height="50" class="img-responsive" /></a></li>
                             <li @*class="active"*@><a href="../../Administracion/Producto">Productos <span class="sr-only">(current)</span></a></li>                  
                             <li><a href="../../Solicitud/SolicitudPedido">Solicitudes</a></li>
                             <li><a href="../../Reporte/Index">Reportes</a></li>

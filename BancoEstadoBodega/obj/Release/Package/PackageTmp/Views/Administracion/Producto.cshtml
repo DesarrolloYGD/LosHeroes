@@ -72,6 +72,7 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+
                                     <td>@item.IDProducto</td>
                                     @if (ViewContext.HttpContext.User.IsInRole("administradores"))
                                     {
@@ -208,13 +209,28 @@
                     </div>
                     <br />
                     <div class="input-group">
+                        <span class="input-group-addon">Precio U. Neto</span>
+                        <input type="text" class="form-control" name="PrecioUni" placeholder="Precio Unitario Neto" maxlength="100" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
                         <span class="input-group-addon">Posicion</span>
                         <input type="text" class="form-control" name="Posicion" placeholder="Posicion" maxlength="100" required>
                     </div>
                     <br />
                     <div class="input-group">
-                        <span class="input-group-addon">Fecha Vencimiento</span>
-                        <input type="date" class="form-control" name="FechaVencimiento" placeholder="Fecha">
+                        <span class="input-group-addon">Reposición</span>
+                        <input type="text" class="form-control" name="TiempoReposicion" placeholder="Reposición" maxlength="100" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Packing</span>
+                        <input type="text" class="form-control" name="Packing" placeholder="Descripcion Packing" maxlength="100" required>
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Vencimiento</span>
+                        <input type="text" class="form-control" name="Vencimiento" placeholder="Vencimiento" maxlength="100" required>
                     </div>
                     <br />
                     <div class="input-group">

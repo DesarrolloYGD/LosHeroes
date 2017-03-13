@@ -20,6 +20,9 @@ using System.Web.Security;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.Drawing;
 
 namespace BancoEstadoBodega.Controllers
 {
@@ -675,6 +678,150 @@ namespace BancoEstadoBodega.Controllers
             return null;
         }
 
+        public ActionResult DownloadExcel2()
+        {
+            //lista temporal proveniente de la vista index libro
+            List<ProductoSolicitud> sol = db.ProductoSolicitud.ToList();
+
+            ExcelPackage excel = new ExcelPackage();
+            var workSheet = excel.Workbook.Worksheets.Add("Sheet1");
+            workSheet.TabColor = System.Drawing.Color.Black;
+            workSheet.DefaultRowHeight = 12;
+
+            workSheet.Cells["A1:K1"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+            workSheet.Cells["A1:K1"].Style.Fill.BackgroundColor.SetColor(ColorTranslator.FromHtml("#B7DEE8"));
+
+            workSheet.Cells["A1:K1"].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells["A1:K1"].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells["A1:K1"].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            workSheet.Cells["A1:K1"].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+
+            workSheet.Cells["A1:K1"].Style.Border.Top.Color.SetColor(System.Drawing.Color.Black);
+            workSheet.Cells["A1:K1"].Style.Border.Bottom.Color.SetColor(System.Drawing.Color.Black);
+            workSheet.Cells["A1:K1"].Style.Border.Left.Color.SetColor(System.Drawing.Color.Black);
+            workSheet.Cells["A1:K1"].Style.Border.Right.Color.SetColor(System.Drawing.Color.Black);
+
+            //header
+            workSheet.Row(1).Height = 20;
+            workSheet.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            workSheet.Row(1).Style.Font.Bold = true;
+            workSheet.Cells[1, 1].Value = "N° OC";
+            workSheet.Cells[1, 2].Value = "DESTINO";
+            workSheet.Cells[1, 3].Value = "FECHA SOLICITUD";
+            workSheet.Cells[1, 4].Value = "N° GUIA";
+            workSheet.Cells[1, 5].Value = "COMPRADOR";
+            workSheet.Cells[1, 6].Value = "SOLICITANTE";
+            workSheet.Cells[1, 7].Value = "OBSERVACIONES";
+            workSheet.Cells[1, 8].Value = "ESTADO";
+            workSheet.Cells[1, 9].Value = "CORREO";
+            workSheet.Cells[1, 10].Value = "PRODUCTO";
+            workSheet.Cells[1, 11].Value = "CANTIDAD";
+
+            //cuerpo
+            int index = 2;
+            foreach (var p in sol)
+            {
+                string fechaen;
+                if (p.SolicitudPedido.fechaSolicitud.HasValue)
+                {
+                    fechaen = p.SolicitudPedido.fechaSolicitud.Value.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    fechaen = "";
+                }
+
+
+                workSheet.Cells[index, 1].Value = p.SolicitudPedido.descripcion;
+                workSheet.Cells[index, 2].Value = p.SolicitudPedido.destino;
+                workSheet.Cells[index, 3].Value = fechaen;
+                workSheet.Cells[index, 4].Value = p.SolicitudPedido.codigoSeguimiento;
+                workSheet.Cells[index, 5].Value = p.SolicitudPedido.usuarioMandante;
+                workSheet.Cells[index, 6].Value = p.SolicitudPedido.usuarioReceptor;
+                workSheet.Cells[index, 7].Value = p.SolicitudPedido.observacion;
+                workSheet.Cells[index, 8].Value = p.SolicitudPedido.estado;
+                workSheet.Cells[index, 9].Value = p.SolicitudPedido.correo;
+                workSheet.Cells[index, 10].Value = p.PRODUCTO.Nombre;
+                workSheet.Cells[index, 11].Value = p.cantidad;   
+                index++;
+            }
+            workSheet.Column(1).AutoFit();
+            workSheet.Column(2).AutoFit();
+            workSheet.Column(3).AutoFit();
+            workSheet.Column(4).AutoFit();
+            workSheet.Column(5).AutoFit();
+            workSheet.Column(6).AutoFit();
+            workSheet.Column(7).AutoFit();
+            workSheet.Column(8).AutoFit();
+            workSheet.Column(9).AutoFit();
+            workSheet.Column(10).AutoFit();
+            workSheet.Column(11).AutoFit();
+            workSheet.View.FreezePanes(2, 1);
+            string excelName = "ReporteSolicitudes";
+
+            using (var memoryStream = new MemoryStream())
+            {
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment; filename=" + excelName + ".xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+            return View();
+        }
+
+        public ActionResult AdjuntarPDF(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SolicitudPedido SOL = db.SolicitudPedido.Find(id);
+            if (SOL == null)
+            {
+                return HttpNotFound();
+            }
+            if (SOL.urlPdf == null)
+            {
+                ViewBag.imagerurl = "https://pruebasmarco.blob.core.windows.net/prueba-fotos/noimage.jpg";
+            }
+            else
+            {
+                ViewBag.imagerurl = "https://pruebasmarco.blob.core.windows.net/losheroesblob/" + SOL.urlPdf;
+            }
+            return View(SOL);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdjuntarPDF(EditarPDFSolicitud sol, HttpPostedFileBase pdfSolicitud)
+        {
+            if (ModelState.IsValid)
+            {
+                var dbProd = db.SolicitudPedido.FirstOrDefault(p => p.idSolicitud == sol.idSolicitud);
+                if (dbProd == null)
+                {
+                    return HttpNotFound();
+                }
+                string imgName = dbProd.descripcion + ".pdf";//variable local que concatena el codigo del producto mas .jpg(imagen)
+                if (sol.urlPdf == null)
+                {
+                    sol.urlPdf = imgName;//texto concatenado es asignado al valor UrilImagen de la variable local model
+                    new BlobService().AddPDFSol(pdfSolicitud, imgName);//se activa la funcion addImgProducto de la clase BlobService
+                }
+                else
+                {
+                    new BlobService().AddPDFSol(pdfSolicitud, imgName);//se activa la funcion addImgProducto de la clase BlobService
+                }
+
+                dbProd.urlPdf = sol.urlPdf;
+                db.SaveChanges();
+
+                return RedirectToAction("SolicitudPedido", "Solicitud");
+            }
+            return View(sol);
+        }
         #region Roles
         public int EnRol()
         {
