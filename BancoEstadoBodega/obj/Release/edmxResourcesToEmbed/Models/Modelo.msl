@@ -130,6 +130,7 @@
     <EntitySetMapping Name="PRODUCTO">
       <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
         <MappingFragment StoreEntitySet="PRODUCTO">
+          <ScalarProperty Name="Obs" ColumnName="Obs" />
           <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
           <ScalarProperty Name="Packing" ColumnName="Packing" />
           <ScalarProperty Name="TiempoReposicion" ColumnName="TiempoReposicion" />
@@ -154,7 +155,6 @@
           <ScalarProperty Name="StockQl" ColumnName="StockQl" />
           <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
           <ScalarProperty Name="foto" ColumnName="foto" />
-          <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
           <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
           <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
           <ScalarProperty Name="stock_ideal" ColumnName="stock_ideal" />

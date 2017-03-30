@@ -157,7 +157,7 @@
           <Property Name="StockQl" Type="int" />
           <Property Name="StockDÑ" Type="int" />
           <Property Name="foto" Type="image" />
-          <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
+          <Property Name="Obs" Type="varchar" MaxLength="200" />
           <Property Name="SueltasQL" Type="int" />
           <Property Name="SueltasDÑ" Type="int" />
           <Property Name="stock_ideal" Type="int" />
@@ -857,7 +857,6 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Name="StockQl" Type="Int32" />
           <Property Name="StockDÑ" Type="Int32" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SueltasQL" Type="Int32" />
           <Property Name="SueltasDÑ" Type="Int32" />
           <Property Name="stock_ideal" Type="Int32" />
@@ -873,6 +872,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Name="TiempoReposicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Packing" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Vencimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PRODUCTOBODEGA">
           <Key>
@@ -1544,6 +1544,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySetMapping Name="PRODUCTO">
             <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
               <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
                 <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
                 <ScalarProperty Name="Packing" ColumnName="Packing" />
                 <ScalarProperty Name="TiempoReposicion" ColumnName="TiempoReposicion" />
@@ -1568,7 +1569,6 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
                 <ScalarProperty Name="StockQl" ColumnName="StockQl" />
                 <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
                 <ScalarProperty Name="foto" ColumnName="foto" />
-                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
                 <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
                 <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
                 <ScalarProperty Name="stock_ideal" ColumnName="stock_ideal" />

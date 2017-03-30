@@ -152,7 +152,7 @@
     <Property Name="StockQl" Type="int" />
     <Property Name="StockDÑ" Type="int" />
     <Property Name="foto" Type="image" />
-    <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
+    <Property Name="Obs" Type="varchar" MaxLength="200" />
     <Property Name="SueltasQL" Type="int" />
     <Property Name="SueltasDÑ" Type="int" />
     <Property Name="stock_ideal" Type="int" />

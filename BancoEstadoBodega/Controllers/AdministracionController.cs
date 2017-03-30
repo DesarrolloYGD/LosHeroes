@@ -242,7 +242,7 @@ namespace BancoEstadoBodega.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editar([Bind(Include = "IDProducto,Codigo,Nombre,UnidadesXCaja,StockQl,CantidadTotal,TotalCajas,TotalSueltas,SueltasQL,StockDÑ,SueltasDÑ,CostoUnid,Posicion,FechaVencimiento,stock_ideal,IDCategoriaFK,IDClienteFK,ProductoConLogo,ProductoSinLogo,pendiente,Descripcion,PrecioUni,TiempoReposicion,Packing,Vencimiento")] PRODUCTO pRODUCTO, HttpPostedFileBase imagenProducto)
+        public ActionResult Editar([Bind(Include = "IDProducto,Codigo,Nombre,UnidadesXCaja,StockQl,CantidadTotal,TotalCajas,TotalSueltas,SueltasQL,StockDÑ,SueltasDÑ,CostoUnid,Posicion,FechaVencimiento,stock_ideal,IDCategoriaFK,IDClienteFK,ProductoConLogo,ProductoSinLogo,pendiente,Descripcion,PrecioUni,TiempoReposicion,Packing,Vencimiento,Obs")] PRODUCTO pRODUCTO, HttpPostedFileBase imagenProducto)
         {
             string imgName = pRODUCTO.Codigo + ".jpg";//variable local que concatena el codigo del producto mas .jpg(imagen)
             if (pRODUCTO.UrlImagen == null)

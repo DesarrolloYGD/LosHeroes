@@ -37,7 +37,6 @@ namespace BancoEstadoBodega.Models
         public Nullable<int> StockQl { get; set; }
         public Nullable<int> StockDÑ { get; set; }
         public byte[] foto { get; set; }
-        public string ImageMimeType { get; set; }
         public Nullable<int> SueltasQL { get; set; }
         public Nullable<int> SueltasDÑ { get; set; }
         public Nullable<int> stock_ideal { get; set; }
@@ -49,6 +48,7 @@ namespace BancoEstadoBodega.Models
         public string TiempoReposicion { get; set; }
         public string Packing { get; set; }
         public string Vencimiento { get; set; }
+        public string Obs { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual CLIENTE CLIENTE { get; set; }

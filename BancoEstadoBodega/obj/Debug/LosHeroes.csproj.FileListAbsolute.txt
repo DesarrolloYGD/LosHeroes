@@ -440,6 +440,7 @@ C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\ClosedXM
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\DocumentFormat.OpenXml.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EntityFramework.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EntityFramework.SqlServer.dll
+C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EPPlus.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -473,6 +474,7 @@ C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\System.W
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\WebGrease.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Antlr3.Runtime.pdb
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\ClosedXML.pdb
+C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EPPlus.xml
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.Data.Edm.xml
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\Microsoft.Data.OData.xml
@@ -541,6 +543,3 @@ C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\zh-Hans\
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Debug\BancoEstadoBodega.dll
 C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Debug\BancoEstadoBodega.pdb
-C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\obj\Debug\LosHeroes.csprojResolveAssemblyReference.cache
-C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EPPlus.dll
-C:\Users\DesarrolloYGD\Documents\GitHub\LosHeroes\BancoEstadoBodega\bin\EPPlus.xml
