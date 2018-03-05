@@ -23,7 +23,7 @@ namespace BancoEstadoBodega.Controllers
     public class AdministracionController : Controller
     {
 
-        private LosHeroesEntities db = new LosHeroesEntities();
+        private LosHeroesEntities1 db = new LosHeroesEntities1();
         // GET: Administracion  
         public ActionResult Index()
         {
@@ -122,29 +122,21 @@ namespace BancoEstadoBodega.Controllers
             ViewBag.IDCategoriaFK = ViewBag.IDCategoria;
             ViewBag.IDClienteFK = ViewBag.IDEmpresa;
 
-            List<PRODUCTO> lista = db.PRODUCTO.ToList();
+            var modelo = new SolicitudViewModel();
+
+            modelo.lista = db.PRODUCTO.ToList();
+            modelo.lista2 = db.ProductoSolicitud.ToList();
+            
             if (IDEmpresa != null)
             {
-                lista = lista.Where(r => r.IDClienteFK == IDEmpresa).ToList();
+                modelo.lista = modelo.lista.Where(r => r.IDClienteFK == IDEmpresa).ToList();
             }
             if (IDCategoria != null)
             {
-                lista = lista.Where(r => r.IDCategoriaFK == IDCategoria).ToList();
+                modelo.lista = modelo.lista.Where(r => r.IDCategoriaFK == IDCategoria).ToList();
             }
-
-            if (User.IsInRole("Vista"))
-            {
-                lista = lista.Where(r => r.CantidadTotal != 0).ToList();
-
-            }
-
-
-
-
-            return View(lista);
+            return View(modelo);
         }
-
-
 
 
         // Funcion que agrega los productos con imagen (ventana flotante) 
@@ -172,14 +164,10 @@ namespace BancoEstadoBodega.Controllers
                     imageData = binaryReader.ReadBytes(imagenProducto.ContentLength);
                 }
                 setear la imagen a la entidad que se creara
-                model.imagenProducto = imageData;*/
-
-                
+                model.imagenProducto = imageData;*/              
                 string imgName = model.Codigo + ".jpg";//variable local que concatena el codigo del producto mas .jpg(imagen)
                 model.UrlImagen = imgName;//texto concatenado es asignado al valor UrilImagen de la variable local model
                 new BlobService().AddImgProducto(imagenProducto, imgName);//se activa la funcion addImgProducto de la clase BlobService
-
-
             }
 
             db.PRODUCTO.Add(model);

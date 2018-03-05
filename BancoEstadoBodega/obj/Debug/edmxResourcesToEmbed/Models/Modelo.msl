@@ -50,6 +50,7 @@
     <EntitySetMapping Name="AspNetUsers">
       <EntityTypeMapping TypeName="LosHeroesModel.AspNetUsers">
         <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -314,6 +315,17 @@
         <MappingFragment StoreEntitySet="estadoSolicitud">
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductosEnBodega">
+      <EntityTypeMapping TypeName="LosHeroesModel.ProductosEnBodega">
+        <MappingFragment StoreEntitySet="ProductosEnBodega">
+          <ScalarProperty Name="NombreFK" ColumnName="NombreFK" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

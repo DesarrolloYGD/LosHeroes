@@ -29,9 +29,17 @@ namespace BancoEstadoBodega.Models
         public Nullable<int> StockQl { get; set; }
         public Nullable<int> StockDÑ { get; set; }
         public byte[] foto { get; set; }
-        public string ImageMimeType { get; set; }
+        public string Obs { get; set; }
         public Nullable<int> SueltasQL { get; set; }
         public Nullable<int> SueltasDÑ { get; set; }
         public Nullable<int> stock_ideal { get; set; }
+        public Nullable<int> ProductoConLogo { get; set; }
+        public Nullable<int> ProductoSinLogo { get; set; }
+        public Nullable<int> pendiente { get; set; }
+        public string Descripcion { get; set; }
+        public Nullable<int> PrecioUni { get; set; }
+        public string TiempoReposicion { get; set; }
+        public string Packing { get; set; }
+        public string Vencimiento { get; set; }
     }
 }

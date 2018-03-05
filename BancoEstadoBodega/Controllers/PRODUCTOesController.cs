@@ -12,7 +12,7 @@ namespace BancoEstadoBodega.Controllers
 {
     public class PRODUCTOesController : Controller
     {
-        private LosHeroesEntities db = new LosHeroesEntities();
+        private LosHeroesEntities1 db = new LosHeroesEntities1();
 
         // GET: PRODUCTOes
         public ActionResult Index()

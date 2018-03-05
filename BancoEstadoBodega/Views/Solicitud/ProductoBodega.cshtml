@@ -57,7 +57,7 @@
                                     <td> @item.usuarioReceptor</td>
                                     @if (item.urlPdf != null)
                                     {
-                                        
+
                                         <td>
                                             <a href="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.urlPdf)" class="btn btn-success btn-link">
                                                 <span class="glyphicon glyphicon-cloud-download"></span> Link
@@ -83,15 +83,13 @@
                                         </td>
                                     }
                                     <td class="text-center">
-                                        <a class="btn btn-success btn-xs" title="Detalles" href="../../Solicitud/Detalles/@item.idSolicitud"> <span class="glyphicon glyphicon-folder-open"></span>Ver mas</a>
+                                        <a class="btn btn-success btn-xs" title="Detalles" href="../../Solicitud/DetalleBodega/@item.idSolicitud"> <span class="glyphicon glyphicon-folder-open"></span>Ver mas</a>
                                         <br />
-                                    @if (ViewContext.HttpContext.User.IsInRole("administradores"))
-                                    {
-                                        <a class="btn btn-success btn-xs" title="Editar" href="../../Solicitud/Editar/@item.idSolicitud"> <span class="glyphicon glyphicon-edit"></span>Editar</a>
-                                        <br />
-                                        <a class="btn btn-success btn-xs" title="Detalles" href="../../Solicitud/AdjuntarPDF/@item.idSolicitud"> <span class="glyphicon glyphicon-camera"></span>Adjuntar PDF</a>
-                                    }
-                                        
+                                        @if (ViewContext.HttpContext.User.IsInRole("administradores"))
+                                        {
+                                            <a class="btn btn-success btn-xs" title="Despachar" href="../../Solicitud/Despachar/@item.idSolicitud"> <span class="glyphicon glyphicon-edit"></span>Despachar</a>
+                                        }
+
                                     </td>
                                 </tr>
                             }
@@ -104,94 +102,6 @@
     </div>
 </div>
 
-<!-- Ventana agregar solicitud/-->
-
-<div class="modal fade" id="modalExportarExcel">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="@Url.Action("AgregarSolicitud", "")" enctype="multipart/form-data" method="post">
-                <div class="modal-header btn-primary">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Agregar Solicitud</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group">
-                        <span class="input-group-addon">Descripción</span>
-                        <input type="text" class="form-control" name="descripcion" placeholder="descripcion" maxlength="150" required>
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon">Tipo Despacho</span>
-                        @Html.DropDownList("idTipoDespacho", null, "", htmlAttributes: new { @class = "form-control input-sm" })
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon">Destino</span>
-                        <input type="text" class="form-control" name="destino" placeholder="destino" required>
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon">Area</span>
-                        @Html.DropDownList("idArea", null, "", htmlAttributes: new { @class = "form-control input-sm" })
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon">Usuario Mandante</span>
-                        <input type="text" class="form-control" name="usuarioMandante" placeholder="usuarioMandante" maxlength="100" required>
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon">Usuario Receptor</span>
-                        <input type="text" class="form-control" name="usuarioReceptor" placeholder="usuarioReceptor" required>
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon">Observación</span>
-                        <input type="text" class="form-control" name="observacion" placeholder="obsevacion" required>
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <!--pendiente agregar productos a la tabla-->
-                        <input type="hidden" class="form-control" id="estado" name="estado" placeholder="estado" value="" />
-
-                    </div>
-                    <div>
-
-                    </div>
-                    <div>
-                        <table id="tbProductos" class="table table-striped table-bordered">
-                            <tr class="success">
-                                <td class="text-center">
-                                    Producto
-                                </td>
-                                <td class="text-center">
-                                    Cantidad
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td class="text-center">
-                                        @Html.DropDownList("idProducto", null, "", htmlAttributes: new { @class = "form-control input-sm" })
-                                </td>
-                                <td class="text-center"><input type="number" id="productoCantidad" value="0"></td>
-                            </tr>
-                        </table>
-                        <br>
-                        <input type="button" value="Agregar Producto" class="bottom-right" onclick="agregar()">
-                        <input type="button" value="Eliminar" class="glyphicon-sort-by-attributes" onclick="borrarUltima()">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-                </div>
-
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<asp:label id="lbl" runat="server" style="visibility:hidden"></asp:label>
-<!-- Ventana detalle solicitud/-->
 
 <div class="modal fade" id="modalDetalleSolicitud">
     <div class="modal-dialog">
@@ -278,11 +188,10 @@
 </div><!-- /.modal -->
 
 
+
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example').DataTable({
-            "order": [[0, "desc"]]
-        });
+        $('#example').DataTable();
         $('[rel="popover"]').popover({
             container: 'body',
             html: true,
@@ -299,7 +208,7 @@
     var contLin = 0;
     function agregar() {
         //var tr, td;
-        
+
         var item = $('#idProducto').val();//Se obtiene el id del producto
         var valor = $('#productoCantidad').val();
         tr = document.all.tbProductos.insertRow();
@@ -331,7 +240,7 @@
                 cant++;
             }
             lbl.textContent = nuevos;
-        } 
+        }
         estado.textContext = lbl.textContent;
     }
 

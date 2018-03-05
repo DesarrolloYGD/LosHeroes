@@ -68,6 +68,7 @@
     <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="BODEGA">
     <Key>
@@ -159,7 +160,7 @@
     <Property Name="ProductoConLogo" Type="int" />
     <Property Name="ProductoSinLogo" Type="int" />
     <Property Name="pendiente" Type="int" />
-    <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="500" />
     <Property Name="PrecioUni" Type="int" />
     <Property Name="TiempoReposicion" Type="varchar" MaxLength="50" />
     <Property Name="Packing" Type="varchar" MaxLength="100" />
@@ -174,6 +175,17 @@
     <Property Name="BODEGA_IDBodega" Type="int" Nullable="false" />
     <Property Name="Cajas" Type="int" Nullable="false" />
     <Property Name="Sueltas" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductosEnBodega">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idSolicitud" Type="int" Nullable="false" />
+    <Property Name="idProducto" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="250" />
+    <Property Name="NombreFK" Type="int" />
   </EntityType>
   <EntityType Name="ProductoSolicitud">
     <Key>
@@ -357,6 +369,30 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
       </Principal>
       <Dependent Role="PRODUCTO">
         <PropertyRef Name="IDClienteFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Productos__idSol__47A6A41B">
+    <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="1" />
+    <End Role="ProductosEnBodega" Type="Self.ProductosEnBodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudPedido">
+        <PropertyRef Name="idSolicitud" />
+      </Principal>
+      <Dependent Role="ProductosEnBodega">
+        <PropertyRef Name="idSolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Productos__Nombr__489AC854">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="0..1" />
+    <End Role="ProductosEnBodega" Type="Self.ProductosEnBodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="ProductosEnBodega">
+        <PropertyRef Name="NombreFK" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -580,6 +616,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
     <EntitySet Name="Mecanizado" EntityType="Self.Mecanizado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTOBODEGA" EntityType="Self.PRODUCTOBODEGA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductosEnBodega" EntityType="Self.ProductosEnBodega" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductoSolicitud" EntityType="Self.ProductoSolicitud" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="REGION" EntityType="Self.REGION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SolicitudPedido" EntityType="Self.SolicitudPedido" Schema="dbo" store:Type="Tables" />
@@ -625,6 +662,14 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
     <AssociationSet Name="FK__PRODUCTO__IDClie__5812160E" Association="Self.FK__PRODUCTO__IDClie__5812160E">
       <End Role="CLIENTE" EntitySet="CLIENTE" />
       <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Productos__idSol__47A6A41B" Association="Self.FK__Productos__idSol__47A6A41B">
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+      <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Productos__Nombr__489AC854" Association="Self.FK__Productos__Nombr__489AC854">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
     </AssociationSet>
     <AssociationSet Name="FK__ProductoS__Nombr__797309D9" Association="Self.FK__ProductoS__Nombr__797309D9">
       <End Role="PRODUCTO" EntitySet="PRODUCTO" />

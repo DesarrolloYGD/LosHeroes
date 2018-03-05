@@ -17,6 +17,7 @@ namespace BancoEstadoBodega.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCTO()
         {
+            this.ProductosEnBodega = new HashSet<ProductosEnBodega>();
             this.ProductoSolicitud = new HashSet<ProductoSolicitud>();
             this.PRODUCTOBODEGA = new HashSet<PRODUCTOBODEGA>();
         }
@@ -37,6 +38,7 @@ namespace BancoEstadoBodega.Models
         public Nullable<int> StockQl { get; set; }
         public Nullable<int> StockDÑ { get; set; }
         public byte[] foto { get; set; }
+        public string Obs { get; set; }
         public Nullable<int> SueltasQL { get; set; }
         public Nullable<int> SueltasDÑ { get; set; }
         public Nullable<int> stock_ideal { get; set; }
@@ -48,10 +50,11 @@ namespace BancoEstadoBodega.Models
         public string TiempoReposicion { get; set; }
         public string Packing { get; set; }
         public string Vencimiento { get; set; }
-        public string Obs { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual CLIENTE CLIENTE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductosEnBodega> ProductosEnBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductoSolicitud> ProductoSolicitud { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

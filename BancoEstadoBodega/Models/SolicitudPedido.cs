@@ -17,6 +17,7 @@ namespace BancoEstadoBodega.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SolicitudPedido()
         {
+            this.ProductosEnBodega = new HashSet<ProductosEnBodega>();
             this.ProductoSolicitud = new HashSet<ProductoSolicitud>();
         }
     
@@ -47,7 +48,10 @@ namespace BancoEstadoBodega.Models
         public string urlPdf { get; set; }
     
         public virtual Area Area { get; set; }
+        public virtual estadoSolicitud estadoSolicitud { get; set; }
         public virtual Mecanizado Mecanizado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductosEnBodega> ProductosEnBodega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductoSolicitud> ProductoSolicitud { get; set; }
         public virtual TipoDespacho TipoDespacho { get; set; }
@@ -55,6 +59,5 @@ namespace BancoEstadoBodega.Models
         public virtual TipoEncomienda TipoEncomienda { get; set; }
         public virtual TipoPedido TipoPedido { get; set; }
         public virtual TrasladoDespacho TrasladoDespacho { get; set; }
-        public virtual estadoSolicitud estadoSolicitud { get; set; }
     }
 }

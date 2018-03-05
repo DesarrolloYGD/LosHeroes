@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BancoEstadoBodega.Models;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
+
+
 
 namespace BancoEstadoBodega.Models
 {
     public class SolicitudViewModel
     {
         public SolicitudPedido solicitud { get; set; }
+        public ProductosEnBodega bodega { get; set; }
         public List<SelectListItem> PRODUCTO { get; set; }
-        public List<ProductoSolicitud> productosSeleccionados { get; set; }
-
+        public List<ProductosEnBodega> productosSeleccionados { get; set; }
+        public List<ProductosEnBodega> productosSeleccionados2 { get; set; }
+        public List<SelectListItem> UserSoloVista { get; set; }
+        public List<SelectListItem> ProductosEnBodega { get; set; }
+        public List<ProductoSolicitud> ProductoSolicitud2 { get; set; }
+        public List<ProductoSolicitud> ProductoSolicitud3 { get; set; }
+        public List<SelectListItem> ProductoSolicitud { get; set; }
 
 
         public String numeroOC { get; set; }
@@ -39,5 +49,11 @@ namespace BancoEstadoBodega.Models
         }
 
         public string DestinoSeleccionado { get; set; }
+
+
+        public List<PRODUCTO> lista { get; set; }
+        public string sumasolicitdada { get; set; }
+
+        public List<ProductoSolicitud> lista2 { get; set; }
     }
 }

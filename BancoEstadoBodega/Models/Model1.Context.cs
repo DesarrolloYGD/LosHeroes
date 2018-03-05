@@ -15,10 +15,10 @@ namespace BancoEstadoBodega.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class LosHeroesEntities : DbContext
+    public partial class LosHeroesEntities1 : DbContext
     {
-        public LosHeroesEntities()
-            : base("name=LosHeroesEntities")
+        public LosHeroesEntities1()
+            : base("name=LosHeroesEntities1")
         {
         }
     
@@ -38,9 +38,11 @@ namespace BancoEstadoBodega.Models
         public virtual DbSet<CIUDAD> CIUDAD { get; set; }
         public virtual DbSet<CLIENTE> CLIENTE { get; set; }
         public virtual DbSet<COMUNA> COMUNA { get; set; }
+        public virtual DbSet<estadoSolicitud> estadoSolicitud { get; set; }
         public virtual DbSet<Mecanizado> Mecanizado { get; set; }
         public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
         public virtual DbSet<PRODUCTOBODEGA> PRODUCTOBODEGA { get; set; }
+        public virtual DbSet<ProductosEnBodega> ProductosEnBodega { get; set; }
         public virtual DbSet<ProductoSolicitud> ProductoSolicitud { get; set; }
         public virtual DbSet<REGION> REGION { get; set; }
         public virtual DbSet<SolicitudPedido> SolicitudPedido { get; set; }
@@ -50,7 +52,7 @@ namespace BancoEstadoBodega.Models
         public virtual DbSet<TipoPedido> TipoPedido { get; set; }
         public virtual DbSet<TrasladoDespacho> TrasladoDespacho { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
-        public virtual DbSet<estadoSolicitud> estadoSolicitud { get; set; }
+        public virtual DbSet<UserSoloVista> UserSoloVista { get; set; }
     
         public virtual ObjectResult<sp_listarProductos_Result> sp_listarProductos()
         {

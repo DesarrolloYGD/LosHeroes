@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="789ec2c082b04660bfc736dd9ddc8e00" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="LosHeroesModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.Area" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.AspNetRoles" Width="1.5" PointX="5.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.AspNetUserClaims" Width="1.5" PointX="10.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.AspNetUserLogins" Width="1.5" PointX="10.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.AspNetUsers" Width="1.5" PointX="8" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.BODEGA" Width="1.5" PointX="3.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.CIUDAD" Width="1.5" PointX="1.5" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.CLIENTE" Width="1.5" PointX="0.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.COMUNA" Width="1.5" PointX="1.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.estadoSolicitud" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.Mecanizado" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.PRODUCTO" Width="1.5" PointX="3" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.PRODUCTOBODEGA" Width="1.5" PointX="6" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.ProductosEnBodega" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.ProductoSolicitud" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.REGION" Width="1.5" PointX="1.5" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.SolicitudPedido" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.TipoDespacho" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.TipoEmpaque" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.TipoEncomienda" Width="1.5" PointX="0.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.TipoPedido" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.TrasladoDespacho" Width="1.5" PointX="0.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LosHeroesModel.database_firewall_rules" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LosHeroesModel.FK_SolicitudPedido_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__BODEGA__IDComuna__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_PRODUCTOBODEGA_BODEGA" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__CATEGORIA__IdCat__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__PRODUCTO__IDCate__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__CIUDAD__IdRegion__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__COMUNA__IdCiudad__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__CLIENTE__IDComun__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__PRODUCTO__IDClie__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__Solicitud__idMec__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__Productos__Nombr__489AC854" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__ProductoS__Nombr__797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_PRODUCTOBODEGA_PRODUCTO" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK__Productos__idSol__47A6A41B" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_ProductoSolicitud_SolicitudPedido" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_SolicitudPedido_TipoDespacho1" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_SolicitudPedido_TipoEmpaque" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_SolicitudPedido_TipoEncomienda" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_SolicitudPedido_TipoPedido" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.FK_SolicitudPedido_TrasladoDespacho" ManuallyRouted="false" />
+        <AssociationConnector Association="LosHeroesModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LosHeroesModel.UserSoloVista" Width="1.5" PointX="10.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

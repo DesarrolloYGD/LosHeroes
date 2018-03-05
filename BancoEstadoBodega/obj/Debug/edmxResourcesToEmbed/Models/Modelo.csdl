@@ -67,6 +67,7 @@
     <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="BODEGA">
     <Key>
@@ -167,12 +168,14 @@
     <Property Name="ProductoConLogo" Type="Int32" />
     <Property Name="ProductoSinLogo" Type="Int32" />
     <Property Name="pendiente" Type="Int32" />
-    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="PrecioUni" Type="Int32" />
     <Property Name="TiempoReposicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Packing" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Vencimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProductosEnBodega" Relationship="LosHeroesModel.FK__Productos__idPro__3F115E1A" FromRole="PRODUCTO" ToRole="ProductosEnBodega" />
+    <NavigationProperty Name="ProductosEnBodega1" Relationship="LosHeroesModel.FK__Productos__Nombr__42E1EEFE" FromRole="PRODUCTO" ToRole="ProductosEnBodega" />
   </EntityType>
   <EntityType Name="PRODUCTOBODEGA">
     <Key>
@@ -245,6 +248,7 @@
     <Property Name="cod_estado" Type="Int32" />
     <NavigationProperty Name="estadoSolicitud" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="SolicitudPedido" ToRole="estadoSolicitud" />
     <Property Name="urlPdf" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProductosEnBodega" Relationship="LosHeroesModel.FK__Productos__idSol__3D2915A8" FromRole="SolicitudPedido" ToRole="ProductosEnBodega" />
   </EntityType>
   <EntityType Name="TipoDespacho">
     <Key>
@@ -666,6 +670,19 @@
       <End Role="estadoSolicitud" EntitySet="estadoSolicitud" />
       <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
     </AssociationSet>
+    <EntitySet Name="ProductosEnBodega" EntityType="LosHeroesModel.ProductosEnBodega" />
+    <AssociationSet Name="FK__Productos__idPro__3F115E1A" Association="LosHeroesModel.FK__Productos__idPro__3F115E1A">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Productos__Nombr__42E1EEFE" Association="LosHeroesModel.FK__Productos__Nombr__42E1EEFE">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Productos__idSol__3D2915A8" Association="LosHeroesModel.FK__Productos__idSol__3D2915A8">
+      <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+      <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_listarProductos_Result">
     <Property Type="Int32" Name="IDProducto" Nullable="false" />
@@ -706,6 +723,56 @@
       </Principal>
       <Dependent Role="SolicitudPedido">
         <PropertyRef Name="cod_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProductosEnBodega">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+      <PropertyRef Name="idProducto" />
+      <PropertyRef Name="cantidad" />
+    </Key>
+    <Property Name="idSolicitud" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NombreFK" Type="Int32" />
+    <NavigationProperty Name="PRODUCTO" Relationship="LosHeroesModel.FK__Productos__idPro__3F115E1A" FromRole="ProductosEnBodega" ToRole="PRODUCTO" />
+    <NavigationProperty Name="SolicitudPedido" Relationship="LosHeroesModel.FK__Productos__idSol__3D2915A8" FromRole="ProductosEnBodega" ToRole="SolicitudPedido" />
+  </EntityType>
+  <Association Name="FK__Productos__idPro__3F115E1A">
+    <End Type="LosHeroesModel.PRODUCTO" Role="PRODUCTO" Multiplicity="1" />
+    <End Type="LosHeroesModel.ProductosEnBodega" Role="ProductosEnBodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="ProductosEnBodega">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Productos__Nombr__42E1EEFE">
+    <End Type="LosHeroesModel.PRODUCTO" Role="PRODUCTO" Multiplicity="0..1" />
+    <End Type="LosHeroesModel.ProductosEnBodega" Role="ProductosEnBodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="ProductosEnBodega">
+        <PropertyRef Name="NombreFK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Productos__idSol__3D2915A8">
+    <End Type="LosHeroesModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="1" />
+    <End Type="LosHeroesModel.ProductosEnBodega" Role="ProductosEnBodega" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudPedido">
+        <PropertyRef Name="idSolicitud" />
+      </Principal>
+      <Dependent Role="ProductosEnBodega">
+        <PropertyRef Name="idSolicitud" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

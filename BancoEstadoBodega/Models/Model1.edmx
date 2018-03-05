@@ -73,6 +73,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="BODEGA">
           <Key>
@@ -164,7 +165,7 @@
           <Property Name="ProductoConLogo" Type="int" />
           <Property Name="ProductoSinLogo" Type="int" />
           <Property Name="pendiente" Type="int" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
           <Property Name="PrecioUni" Type="int" />
           <Property Name="TiempoReposicion" Type="varchar" MaxLength="50" />
           <Property Name="Packing" Type="varchar" MaxLength="100" />
@@ -180,6 +181,17 @@
           <Property Name="Cajas" Type="int" Nullable="false" />
           <Property Name="Sueltas" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProductosEnBodega">
+          <Key>
+            <PropertyRef Name="idSolicitud" />
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idSolicitud" Type="int" Nullable="false" />
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" />
+          <Property Name="NombreFK" Type="int" />
+        </EntityType>
         <EntityType Name="ProductoSolicitud">
           <Key>
             <PropertyRef Name="idSolicitud" />
@@ -190,6 +202,7 @@
           <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="250" />
           <Property Name="NombreFK" Type="int" />
+          <Property Name="despachada" Type="int" />
         </EntityType>
         <EntityType Name="REGION">
           <Key>
@@ -262,6 +275,14 @@
           </Key>
           <Property Name="idTrasladoDespacho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSoloVista">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Nombre" Type="varchar" MaxLength="500" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -362,6 +383,30 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
             </Principal>
             <Dependent Role="PRODUCTO">
               <PropertyRef Name="IDClienteFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__idSol__47A6A41B">
+          <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="1" />
+          <End Role="ProductosEnBodega" Type="Self.ProductosEnBodega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SolicitudPedido">
+              <PropertyRef Name="idSolicitud" />
+            </Principal>
+            <Dependent Role="ProductosEnBodega">
+              <PropertyRef Name="idSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__Nombr__489AC854">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="0..1" />
+          <End Role="ProductosEnBodega" Type="Self.ProductosEnBodega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="ProductosEnBodega">
+              <PropertyRef Name="NombreFK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -585,6 +630,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySet Name="Mecanizado" EntityType="Self.Mecanizado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTOBODEGA" EntityType="Self.PRODUCTOBODEGA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductosEnBodega" EntityType="Self.ProductosEnBodega" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductoSolicitud" EntityType="Self.ProductoSolicitud" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REGION" EntityType="Self.REGION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SolicitudPedido" EntityType="Self.SolicitudPedido" Schema="dbo" store:Type="Tables" />
@@ -593,6 +639,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySet Name="TipoEncomienda" EntityType="Self.TipoEncomienda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPedido" EntityType="Self.TipoPedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TrasladoDespacho" EntityType="Self.TrasladoDespacho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSoloVista" EntityType="Self.UserSoloVista" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
             <DefiningQuery>SELECT 
     [database_firewall_rules].[id] AS [id], 
@@ -630,6 +677,14 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <AssociationSet Name="FK__PRODUCTO__IDClie__5812160E" Association="Self.FK__PRODUCTO__IDClie__5812160E">
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__idSol__47A6A41B" Association="Self.FK__Productos__idSol__47A6A41B">
+            <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+            <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__Nombr__489AC854" Association="Self.FK__Productos__Nombr__489AC854">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductoS__Nombr__797309D9" Association="Self.FK__ProductoS__Nombr__797309D9">
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
@@ -764,6 +819,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
@@ -829,6 +885,14 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <NavigationProperty Name="CIUDAD" Relationship="Self.FK__COMUNA__IdCiudad__74AE54BC" FromRole="COMUNA" ToRole="CIUDAD" />
           <NavigationProperty Name="CLIENTE" Relationship="Self.FK__CLIENTE__IDComun__5535A963" FromRole="COMUNA" ToRole="CLIENTE" />
         </EntityType>
+        <EntityType Name="estadoSolicitud">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SolicitudPedido" Relationship="Self.FK__Solicitud__cod_e__29221CFB" FromRole="estadoSolicitud" ToRole="SolicitudPedido" />
+        </EntityType>
         <EntityType Name="Mecanizado">
           <Key>
             <PropertyRef Name="IdMeca" />
@@ -857,22 +921,23 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Name="StockQl" Type="Int32" />
           <Property Name="StockDÑ" Type="Int32" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="SueltasQL" Type="Int32" />
           <Property Name="SueltasDÑ" Type="Int32" />
           <Property Name="stock_ideal" Type="Int32" />
-          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK__PRODUCTO__IDCate__571DF1D5" FromRole="PRODUCTO" ToRole="CATEGORIA" />
-          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__PRODUCTO__IDClie__5812160E" FromRole="PRODUCTO" ToRole="CLIENTE" />
-          <NavigationProperty Name="ProductoSolicitud" Relationship="Self.FK__ProductoS__Nombr__797309D9" FromRole="PRODUCTO" ToRole="ProductoSolicitud" />
-          <NavigationProperty Name="PRODUCTOBODEGA" Relationship="Self.FK_PRODUCTOBODEGA_PRODUCTO" FromRole="PRODUCTO" ToRole="PRODUCTOBODEGA" />
           <Property Name="ProductoConLogo" Type="Int32" />
           <Property Name="ProductoSinLogo" Type="Int32" />
           <Property Name="pendiente" Type="Int32" />
-          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="PrecioUni" Type="Int32" />
           <Property Name="TiempoReposicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Packing" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Vencimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Obs" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK__PRODUCTO__IDCate__571DF1D5" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__PRODUCTO__IDClie__5812160E" FromRole="PRODUCTO" ToRole="CLIENTE" />
+          <NavigationProperty Name="ProductosEnBodega" Relationship="Self.FK__Productos__Nombr__489AC854" FromRole="PRODUCTO" ToRole="ProductosEnBodega" />
+          <NavigationProperty Name="ProductoSolicitud" Relationship="Self.FK__ProductoS__Nombr__797309D9" FromRole="PRODUCTO" ToRole="ProductoSolicitud" />
+          <NavigationProperty Name="PRODUCTOBODEGA" Relationship="Self.FK_PRODUCTOBODEGA_PRODUCTO" FromRole="PRODUCTO" ToRole="PRODUCTOBODEGA" />
         </EntityType>
         <EntityType Name="PRODUCTOBODEGA">
           <Key>
@@ -886,6 +951,19 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <NavigationProperty Name="BODEGA" Relationship="Self.FK_PRODUCTOBODEGA_BODEGA" FromRole="PRODUCTOBODEGA" ToRole="BODEGA" />
           <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTOBODEGA_PRODUCTO" FromRole="PRODUCTOBODEGA" ToRole="PRODUCTO" />
         </EntityType>
+        <EntityType Name="ProductosEnBodega">
+          <Key>
+            <PropertyRef Name="idSolicitud" />
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idSolicitud" Type="Int32" Nullable="false" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NombreFK" Type="Int32" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__Productos__Nombr__489AC854" FromRole="ProductosEnBodega" ToRole="PRODUCTO" />
+          <NavigationProperty Name="SolicitudPedido" Relationship="Self.FK__Productos__idSol__47A6A41B" FromRole="ProductosEnBodega" ToRole="SolicitudPedido" />
+        </EntityType>
         <EntityType Name="ProductoSolicitud">
           <Key>
             <PropertyRef Name="idSolicitud" />
@@ -898,6 +976,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Name="NombreFK" Type="Int32" />
           <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__ProductoS__Nombr__797309D9" FromRole="ProductoSolicitud" ToRole="PRODUCTO" />
           <NavigationProperty Name="SolicitudPedido" Relationship="Self.FK_ProductoSolicitud_SolicitudPedido" FromRole="ProductoSolicitud" ToRole="SolicitudPedido" />
+          <Property Name="despachada" Type="Int32" />
         </EntityType>
         <EntityType Name="REGION">
           <Key>
@@ -934,17 +1013,18 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="idMecanizado" Type="Int32" />
+          <Property Name="cod_estado" Type="Int32" />
+          <Property Name="urlPdf" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Area" Relationship="Self.FK_SolicitudPedido_Area" FromRole="SolicitudPedido" ToRole="Area" />
+          <NavigationProperty Name="estadoSolicitud" Relationship="Self.FK__Solicitud__cod_e__29221CFB" FromRole="SolicitudPedido" ToRole="estadoSolicitud" />
           <NavigationProperty Name="Mecanizado" Relationship="Self.FK__Solicitud__idMec__7B5B524B" FromRole="SolicitudPedido" ToRole="Mecanizado" />
+          <NavigationProperty Name="ProductosEnBodega" Relationship="Self.FK__Productos__idSol__47A6A41B" FromRole="SolicitudPedido" ToRole="ProductosEnBodega" />
           <NavigationProperty Name="ProductoSolicitud" Relationship="Self.FK_ProductoSolicitud_SolicitudPedido" FromRole="SolicitudPedido" ToRole="ProductoSolicitud" />
           <NavigationProperty Name="TipoDespacho" Relationship="Self.FK_SolicitudPedido_TipoDespacho1" FromRole="SolicitudPedido" ToRole="TipoDespacho" />
           <NavigationProperty Name="TipoEmpaque" Relationship="Self.FK_SolicitudPedido_TipoEmpaque" FromRole="SolicitudPedido" ToRole="TipoEmpaque" />
           <NavigationProperty Name="TipoEncomienda" Relationship="Self.FK_SolicitudPedido_TipoEncomienda" FromRole="SolicitudPedido" ToRole="TipoEncomienda" />
           <NavigationProperty Name="TipoPedido" Relationship="Self.FK_SolicitudPedido_TipoPedido" FromRole="SolicitudPedido" ToRole="TipoPedido" />
           <NavigationProperty Name="TrasladoDespacho" Relationship="Self.FK_SolicitudPedido_TrasladoDespacho" FromRole="SolicitudPedido" ToRole="TrasladoDespacho" />
-          <Property Name="cod_estado" Type="Int32" />
-          <NavigationProperty Name="estadoSolicitud" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="SolicitudPedido" ToRole="estadoSolicitud" />
-          <Property Name="urlPdf" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TipoDespacho">
           <Key>
@@ -1138,6 +1218,18 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Solicitud__cod_e__29221CFB">
+          <End Role="estadoSolicitud" Type="Self.estadoSolicitud" Multiplicity="0..1" />
+          <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estadoSolicitud">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SolicitudPedido">
+              <PropertyRef Name="cod_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Solicitud__idMec__7B5B524B">
           <End Role="Mecanizado" Type="Self.Mecanizado" Multiplicity="0..1" />
           <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="*" />
@@ -1147,6 +1239,18 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
             </Principal>
             <Dependent Role="SolicitudPedido">
               <PropertyRef Name="idMecanizado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__Nombr__489AC854">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="0..1" />
+          <End Role="ProductosEnBodega" Type="Self.ProductosEnBodega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="IDProducto" />
+            </Principal>
+            <Dependent Role="ProductosEnBodega">
+              <PropertyRef Name="NombreFK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1171,6 +1275,18 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
             </Principal>
             <Dependent Role="PRODUCTOBODEGA">
               <PropertyRef Name="PRODUCTO_IDProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Productos__idSol__47A6A41B">
+          <End Role="SolicitudPedido" Type="Self.SolicitudPedido" Multiplicity="1" />
+          <End Role="ProductosEnBodega" Type="Self.ProductosEnBodega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SolicitudPedido">
+              <PropertyRef Name="idSolicitud" />
+            </Principal>
+            <Dependent Role="ProductosEnBodega">
+              <PropertyRef Name="idSolicitud" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1250,7 +1366,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="LosHeroesEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LosHeroesEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Area" EntityType="Self.Area" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
@@ -1262,9 +1378,11 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySet Name="CIUDAD" EntityType="Self.CIUDAD" />
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
           <EntitySet Name="COMUNA" EntityType="Self.COMUNA" />
+          <EntitySet Name="estadoSolicitud" EntityType="Self.estadoSolicitud" />
           <EntitySet Name="Mecanizado" EntityType="Self.Mecanizado" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
           <EntitySet Name="PRODUCTOBODEGA" EntityType="Self.PRODUCTOBODEGA" />
+          <EntitySet Name="ProductosEnBodega" EntityType="Self.ProductosEnBodega" />
           <EntitySet Name="ProductoSolicitud" EntityType="Self.ProductoSolicitud" />
           <EntitySet Name="REGION" EntityType="Self.REGION" />
           <EntitySet Name="SolicitudPedido" EntityType="Self.SolicitudPedido" />
@@ -1318,9 +1436,17 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
             <End Role="CLIENTE" EntitySet="CLIENTE" />
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
           </AssociationSet>
+          <AssociationSet Name="FK__Solicitud__cod_e__29221CFB" Association="Self.FK__Solicitud__cod_e__29221CFB">
+            <End Role="estadoSolicitud" EntitySet="estadoSolicitud" />
+            <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+          </AssociationSet>
           <AssociationSet Name="FK__Solicitud__idMec__7B5B524B" Association="Self.FK__Solicitud__idMec__7B5B524B">
             <End Role="Mecanizado" EntitySet="Mecanizado" />
             <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__Nombr__489AC854" Association="Self.FK__Productos__Nombr__489AC854">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductoS__Nombr__797309D9" Association="Self.FK__ProductoS__Nombr__797309D9">
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
@@ -1329,6 +1455,10 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <AssociationSet Name="FK_PRODUCTOBODEGA_PRODUCTO" Association="Self.FK_PRODUCTOBODEGA_PRODUCTO">
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
             <End Role="PRODUCTOBODEGA" EntitySet="PRODUCTOBODEGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Productos__idSol__47A6A41B" Association="Self.FK__Productos__idSol__47A6A41B">
+            <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
+            <End Role="ProductosEnBodega" EntitySet="ProductosEnBodega" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductoSolicitud_SolicitudPedido" Association="Self.FK_ProductoSolicitud_SolicitudPedido">
             <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
@@ -1361,11 +1491,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <FunctionImport Name="sp_listarProductos" ReturnType="Collection(LosHeroesModel.sp_listarProductos_Result)" />
           <FunctionImport Name="sp_obtenerDistribucion" />
           <FunctionImport Name="sp_vincularProductosSolicitud" />
-          <EntitySet Name="estadoSolicitud" EntityType="LosHeroesModel.estadoSolicitud" />
-          <AssociationSet Name="FK__Solicitud__cod_e__29221CFB" Association="LosHeroesModel.FK__Solicitud__cod_e__29221CFB">
-            <End Role="estadoSolicitud" EntitySet="estadoSolicitud" />
-            <End Role="SolicitudPedido" EntitySet="SolicitudPedido" />
-          </AssociationSet>
+          <EntitySet Name="UserSoloVista" EntityType="LosHeroesModel.UserSoloVista" />
         </EntityContainer>
         <ComplexType Name="sp_listarProductos_Result">
           <Property Type="Int32" Name="IDProducto" Nullable="false" />
@@ -1384,37 +1510,33 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <Property Type="Int32" Name="StockQl" Nullable="true" />
           <Property Type="Int32" Name="StockDÑ" Nullable="true" />
           <Property Type="Binary" Name="foto" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="ImageMimeType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Obs" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="SueltasQL" Nullable="true" />
           <Property Type="Int32" Name="SueltasDÑ" Nullable="true" />
           <Property Type="Int32" Name="stock_ideal" Nullable="true" />
+          <Property Type="Int32" Name="ProductoConLogo" Nullable="true" />
+          <Property Type="Int32" Name="ProductoSinLogo" Nullable="true" />
+          <Property Type="Int32" Name="pendiente" Nullable="true" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="PrecioUni" Nullable="true" />
+          <Property Type="String" Name="TiempoReposicion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Packing" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Vencimiento" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <EntityType Name="estadoSolicitud">
+        <EntityType Name="UserSoloVista">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SolicitudPedido" Relationship="LosHeroesModel.FK__Solicitud__cod_e__29221CFB" FromRole="estadoSolicitud" ToRole="SolicitudPedido" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
-        <Association Name="FK__Solicitud__cod_e__29221CFB">
-          <End Type="LosHeroesModel.estadoSolicitud" Role="estadoSolicitud" Multiplicity="0..1" />
-          <End Type="LosHeroesModel.SolicitudPedido" Role="SolicitudPedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estadoSolicitud">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SolicitudPedido">
-              <PropertyRef Name="cod_estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LosHeroesModelStoreContainer" CdmEntityContainer="LosHeroesEntities">
+        <EntityContainerMapping StorageEntityContainer="LosHeroesModelStoreContainer" CdmEntityContainer="LosHeroesEntities1">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="LosHeroesModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -1476,6 +1598,7 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1533,6 +1656,14 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="estadoSolicitud">
+            <EntityTypeMapping TypeName="LosHeroesModel.estadoSolicitud">
+              <MappingFragment StoreEntitySet="estadoSolicitud">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Mecanizado">
             <EntityTypeMapping TypeName="LosHeroesModel.Mecanizado">
               <MappingFragment StoreEntitySet="Mecanizado">
@@ -1544,15 +1675,6 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySetMapping Name="PRODUCTO">
             <EntityTypeMapping TypeName="LosHeroesModel.PRODUCTO">
               <MappingFragment StoreEntitySet="PRODUCTO">
-                <ScalarProperty Name="Obs" ColumnName="Obs" />
-                <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
-                <ScalarProperty Name="Packing" ColumnName="Packing" />
-                <ScalarProperty Name="TiempoReposicion" ColumnName="TiempoReposicion" />
-                <ScalarProperty Name="PrecioUni" ColumnName="PrecioUni" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="pendiente" ColumnName="pendiente" />
-                <ScalarProperty Name="ProductoSinLogo" ColumnName="ProductoSinLogo" />
-                <ScalarProperty Name="ProductoConLogo" ColumnName="ProductoConLogo" />
                 <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1569,9 +1691,18 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
                 <ScalarProperty Name="StockQl" ColumnName="StockQl" />
                 <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
                 <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
                 <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
                 <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
                 <ScalarProperty Name="stock_ideal" ColumnName="stock_ideal" />
+                <ScalarProperty Name="ProductoConLogo" ColumnName="ProductoConLogo" />
+                <ScalarProperty Name="ProductoSinLogo" ColumnName="ProductoSinLogo" />
+                <ScalarProperty Name="pendiente" ColumnName="pendiente" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PrecioUni" ColumnName="PrecioUni" />
+                <ScalarProperty Name="TiempoReposicion" ColumnName="TiempoReposicion" />
+                <ScalarProperty Name="Packing" ColumnName="Packing" />
+                <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1585,9 +1716,21 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProductosEnBodega">
+            <EntityTypeMapping TypeName="LosHeroesModel.ProductosEnBodega">
+              <MappingFragment StoreEntitySet="ProductosEnBodega">
+                <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="NombreFK" ColumnName="NombreFK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ProductoSolicitud">
             <EntityTypeMapping TypeName="LosHeroesModel.ProductoSolicitud">
               <MappingFragment StoreEntitySet="ProductoSolicitud">
+                <ScalarProperty Name="despachada" ColumnName="despachada" />
                 <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
@@ -1607,8 +1750,6 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
           <EntitySetMapping Name="SolicitudPedido">
             <EntityTypeMapping TypeName="LosHeroesModel.SolicitudPedido">
               <MappingFragment StoreEntitySet="SolicitudPedido">
-                <ScalarProperty Name="urlPdf" ColumnName="urlPdf" />
-                <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
                 <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idTipoEncomienda" ColumnName="idTipoEncomienda" />
@@ -1632,6 +1773,8 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="correo" ColumnName="correo" />
                 <ScalarProperty Name="idMecanizado" ColumnName="idMecanizado" />
+                <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
+                <ScalarProperty Name="urlPdf" ColumnName="urlPdf" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1714,20 +1857,29 @@ advertencia 6002: La tabla o vista 'LosHeroes.sys.database_firewall_rules' no ti
                 <ScalarProperty Name="StockQl" ColumnName="StockQl" />
                 <ScalarProperty Name="StockDÑ" ColumnName="StockDÑ" />
                 <ScalarProperty Name="foto" ColumnName="foto" />
-                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
                 <ScalarProperty Name="SueltasQL" ColumnName="SueltasQL" />
                 <ScalarProperty Name="SueltasDÑ" ColumnName="SueltasDÑ" />
                 <ScalarProperty Name="stock_ideal" ColumnName="stock_ideal" />
+                <ScalarProperty Name="ProductoConLogo" ColumnName="ProductoConLogo" />
+                <ScalarProperty Name="ProductoSinLogo" ColumnName="ProductoSinLogo" />
+                <ScalarProperty Name="pendiente" ColumnName="pendiente" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PrecioUni" ColumnName="PrecioUni" />
+                <ScalarProperty Name="TiempoReposicion" ColumnName="TiempoReposicion" />
+                <ScalarProperty Name="Packing" ColumnName="Packing" />
+                <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_obtenerDistribucion" FunctionName="LosHeroesModel.Store.sp_obtenerDistribucion" />
           <FunctionImportMapping FunctionImportName="sp_vincularProductosSolicitud" FunctionName="LosHeroesModel.Store.sp_vincularProductosSolicitud" />
-          <EntitySetMapping Name="estadoSolicitud">
-            <EntityTypeMapping TypeName="LosHeroesModel.estadoSolicitud">
-              <MappingFragment StoreEntitySet="estadoSolicitud">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="UserSoloVista">
+            <EntityTypeMapping TypeName="LosHeroesModel.UserSoloVista">
+              <MappingFragment StoreEntitySet="UserSoloVista">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

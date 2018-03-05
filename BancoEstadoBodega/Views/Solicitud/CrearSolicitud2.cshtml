@@ -34,8 +34,8 @@
             <br />
             <div class="input-group">
                 <span class="input-group-addon">Solicitante</span>
-                @Html.EditorFor(model => model.Solicitante, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(x => x.Solicitante)
+                @Html.DropDownListFor(x => x.Solicitante, Model.UserSoloVista, "Seleccione", htmlAttributes: new { @class = "form-control input-sm" })
+                @Html.ValidationMessageFor(model => model.UserSoloVista, "", new { @class = "text-danger" })
             </div>
             <br />
             <div class="input-group">
@@ -46,38 +46,38 @@
             <br />
             <div>
                 @*Seccion de lista de productos*@
-            <table id="tbProductos" class="table table-striped table-bordered">
-                <thead>
-                    <tr class="success">
-                        <td width="75%" class="text-center">Producto</td>
-                        <td width="25%" class="text-center"> Cantidad</td>
-                    </tr>
+                <table id="tbProductos" class="table table-striped table-bordered">
+                    <thead>
+                        <tr class="success">
+                            <td width="75%" class="text-center">Producto</td>
+                            <td width="25%" class="text-center"> Cantidad</td>
+                        </tr>
 
-                    <tr class="success">
-                        <td>
-                            @Html.DropDownList("Productos", Model.PRODUCTO, "Seleccione...", htmlAttributes: new { @class = "form-control input-sm" })
-                        </td>
-                        <td><input type="number" id="cantidadMaxima" min="0" placeholder="Seleccione Producto" /></td>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <br />
-            <button id="buttonAdicionar" type="button" class="btn btn-primary">Adicionar</button>
-            <input type="button" value="Eliminar" class="glyphicon-sort-by-attributes" onclick="borrarUltima()" />
+                        <tr class="success">
+                            <td>
+                                @Html.DropDownList("Productos", Model.PRODUCTO, "Seleccione...", htmlAttributes: new { @class = "form-control input-sm" })
+                            </td>
+                            <td><input type="number" id="cantidadMaxima" min="0" placeholder="Seleccione Producto" /></td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <br />
+                <button id="buttonAdicionar" type="button" class="btn btn-primary">Adicionar</button>
+                <input type="button" value="Eliminar" class="glyphicon-sort-by-attributes" onclick="borrarUltima()" />
+            </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" id="finish" class="btn btn-primary" onclick="validar()">Agregar Solicitud</button>
-    </div>
-</form>
+        <div class="modal-footer">
+            <button type="button" onclick="window.location.href = 'SolicitudPedido'" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="button" id="finish" class="btn btn-primary" onclick="validar()">Agregar Solicitud</button>
+        </div>
+    </form>
 </div>
 
 <script type="text/javascript">
     var contLin = 0;
     $(document).ready(function () {
-        
+
         $("#buttonAdicionar").on("click", function () {
             var item = $('#Productos').val();//Se obtiene el id del producto
             var valor = $('#cantidadMaxima').val();// se obtiene la cantidad de productos
@@ -87,6 +87,16 @@
             $('#Productos').focus();
         });
     });
+
+    function borrarUltima() {
+        if (contLin >= 1) {
+            ultima = document.all.tbProductos.rows.length - 1;
+            document.all.tbProductos.deleteRow(ultima);
+            contLin--;
+        } else {
+            alert('No hay mas elementos para eliminar en la lista');
+        }
+    }
 
     function validar() {
         if (contLin == 0) {
@@ -112,6 +122,7 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
+        var cantidadMaximaInicial = 0;
         $(function () {
             $("[name='Productos']").change(function () {
                 $("#cantidadMaxima").val("");
@@ -121,11 +132,34 @@
 
                     //$("#cantidadMaxima").val(data);
                     var max = data;
-                    $("#cantidadMaxima").attr("placeholder", "Stock disponible: "+data);
+                    $("#cantidadMaxima").attr("placeholder", "Stock disponible: " + data);
                     $("#cantidadMaxima").attr("max", data);
                     $("#cantidadMaxima").val(data);
+                    cantidadMaximaInicial = parseInt(data);
                 });
             });
+        });
+        $("#Productos").on("change", function () {
+            $("#buttonAdicionar").prop("disabled", false);
+            $("#finish").prop("disabled", false);
+        });
+        $("#cantidadMaxima").on("change", function () {
+            if ($(this).val() > cantidadMaximaInicial || $(this).val() <= 0) {
+                alert("No puede super la cantidad maxima de: " + cantidadMaximaInicial + " ni puede ser 0");
+                $("#cantidadMaxima").focus();
+                $("#buttonAdicionar").prop("disabled", true);
+                $("#finish").prop("disabled", true);
+            } else {
+                console.log(cantidadMaximaInicial + " - " + $(this).val());
+                $("#buttonAdicionar").prop("disabled", false);
+                $("#finish").prop("disabled", false);
+            }
+        });
+        $("#cantidadMaxima").keyup(function (e) {
+            if (/\D/g.test(this.value) || /^0+/.test(this.value)) {
+                this.value = this.value.replace(/\D/g, '');
+                this.value = this.value.replace(/^0+/, '');
+            }
         });
     });
 </script>

@@ -23,13 +23,17 @@ using System.Threading.Tasks;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Drawing;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BancoEstadoBodega.Controllers
 {
     [Authorize]
     public class SolicitudController : Controller
     {
-        private LosHeroesEntities db = new LosHeroesEntities();
+        private LosHeroesEntities1 db = new LosHeroesEntities1();
 
 
         // GET: Solicitud
@@ -48,6 +52,11 @@ namespace BancoEstadoBodega.Controllers
             return View(sp);
         }
 
+        public ViewResult DetalleBodega(int id)
+        {
+            SolicitudPedido sp = db.SolicitudPedido.Find(id);
+            return View(sp);
+        }
 
 
         // Funcion que agrega los productos con imagen (ventana flotante) 
@@ -70,6 +79,7 @@ namespace BancoEstadoBodega.Controllers
                 model.PRODUCTO = db.PRODUCTO.OrderBy(p => p.Nombre).Select(p => new SelectListItem { Value = p.IDProducto.ToString(), Text = p.Nombre }).ToList();
             }*/
             model.PRODUCTO = db.PRODUCTO.OrderBy(p => p.Nombre).Select(p => new SelectListItem { Value = p.IDProducto.ToString(), Text = p.Nombre }).ToList();
+            model.UserSoloVista = db.UserSoloVista.OrderBy(p => p.Nombre).Select(p => new SelectListItem { Value = p.Nombre.ToString(), Text = p.Nombre }).ToList();
             return View(model);
         }
         [HttpPost]
@@ -87,6 +97,7 @@ namespace BancoEstadoBodega.Controllers
                 {
                     destino = objeto.DestinoSeleccionado;
                 }
+
 
                 var Solicitud = new SolicitudPedido
                 {
@@ -107,6 +118,7 @@ namespace BancoEstadoBodega.Controllers
 
                 var lista = objeto.productosSeleccionados.ToList();
 
+            
                 if (lista.Count > 0)
                 {
                     foreach (var item in lista)
@@ -118,7 +130,15 @@ namespace BancoEstadoBodega.Controllers
                             cantidad = item.cantidad,
                             NombreFK = item.NombreFK
                         };
+                        var ProductoEnBodega = new ProductosEnBodega
+                        {
+                            idSolicitud = idSol,
+                            idProducto = item.idProducto,
+                            cantidad = item.cantidad,
+                            NombreFK = item.NombreFK
+                        };
                         db.ProductoSolicitud.Add(ProductoSolicitud);
+                        db.ProductosEnBodega.Add(ProductoEnBodega);
                         db.SaveChanges();
                         PRODUCTO producto = db.PRODUCTO.Find(item.idProducto);
                         db.Entry(producto).State = EntityState.Modified;
@@ -139,6 +159,7 @@ namespace BancoEstadoBodega.Controllers
                 //mmsg.To.Add(User.Identity.GetUserName());
                 //}
                 mmsg.To.Add("lbasic@promomas.cl");
+                //mmsg.To.Add("marco.molina@probag.cl");
 
                 //Nota: La propiedad To es una colección que permite enviar el mensaje a más de un destinatario
 
@@ -147,13 +168,22 @@ namespace BancoEstadoBodega.Controllers
                 mmsg.SubjectEncoding = System.Text.Encoding.UTF8;
 
                 //Direccion de correo electronico que queremos que reciba una copia del mensaje
-                mmsg.To.Add("facturacion@promomas.cl");
-                mmsg.To.Add("yessyca@probag.cl");
+                mmsg.Bcc.Add("marco.molina@probag.cl");
+                //mmsg.Bcc.Add("marco.molina.hidalgo@gmail.cl");
 
-                if (Request.IsAuthenticated)
-                {
-                    mmsg.Bcc.Add(User.Identity.GetUserName());
-                }
+                //if (Request.IsAuthenticated)
+                //{
+                    //mmsg.Bcc.Add(User.Identity.GetUserName());
+                //}
+
+                mmsg.To.Add("lbasic@promomas.cl");
+                mmsg.Bcc.Add("yessyca@probag.cl");
+                mmsg.Bcc.Add("facturacion@promomas.cl");
+                //mmsg.To.Add("marco.molina@probag.cl");
+                //if (Request.IsAuthenticated)
+                //{
+                //mmsg.Bcc.Add(User.Identity.GetUserName());
+                //}
 
                 //mmsg.Bcc.Add(user); //Opcional;
 
@@ -162,8 +192,8 @@ namespace BancoEstadoBodega.Controllers
                 //Cuerpo del Mensaje
                 DateTime fecha = DateTime.Now;
                 string fech = fecha.ToString("dd/MM/yyyy");
-
-                string descripción = "<div><p>OC: " + Solicitud.descripcion + "</p></ br><p>Comprador: " + Solicitud.usuarioMandante + "</p></ br><p>Solicitante: " + Solicitud.usuarioReceptor + "</p><p>Destino: " + Solicitud.destino + "</p></div>";
+         
+                string descripción = "<div><p>Empresa: Los Heroes</p> </br><p>OC: " + Solicitud.descripcion + "</p></ br><p>Comprador: " + Solicitud.usuarioMandante + "</p></ br><p>Solicitante: " + Solicitud.usuarioReceptor + "</p><p>Destino: " + Solicitud.destino + "</p></div>";
                 string tabla = "<table align='center' border='0' width='80%'><tr bgcolor='#70bbd9'><th>Código</th><th>Descripción</th><th>Cantidad Solicitada</th></tr>";
                 string list = "";
                 int largo = lista.Count;
@@ -195,7 +225,7 @@ namespace BancoEstadoBodega.Controllers
                 System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient();
 
                 //Hay que crear las credenciales del correo emisor
-                cliente.Credentials = new System.Net.NetworkCredential("solicitudes@promomas.cl", "medalla24");
+                cliente.Credentials = new System.Net.NetworkCredential("solicitudes@promomas.cl", "probag63");
 
                 //Lo siguiente es obligatorio si enviamos el mensaje desde Gmail
                 /*
@@ -246,9 +276,6 @@ namespace BancoEstadoBodega.Controllers
             ViewBag.idTipoDespacho = new SelectList(db.TipoDespacho.ToList(), "idTipoDespacho", "descripcion");
             ViewBag.idArea = new SelectList(db.Area.ToList(), "idArea", "nombre");
             ViewBag.idMecanizado = new SelectList(db.Mecanizado.ToList(), "idMeca", "Descripcion");
-
-
-
             return View(model);
         }
 
@@ -467,6 +494,29 @@ namespace BancoEstadoBodega.Controllers
         }
 
 
+        public ActionResult ProductoBodega(int? idSolicitud, SolicitudViewModel sol)
+        {
+            ViewBag.idTipoDespacho = new SelectList(db.TipoDespacho.ToList(), "idTipoDespacho", "descripcion");
+            ViewBag.idArea = new SelectList(db.Area.ToList(), "idArea", "nombre");
+            ViewBag.idProducto = new SelectList(db.PRODUCTO.ToList(), "IDProducto", "Nombre");
+            //ViewBag.cantidad = ViewBag.IDCategoria;
+            //ViewBag.IDClienteFK = ViewBag.IDEmpresa;
+            var context = new ApplicationDbContext();
+            var username = User.Identity.Name;
+
+            var user = context.Users.SingleOrDefault(u => u.UserName == username);
+            string fullName = string.Concat(new string[] { user.Nombre});
+            List<SolicitudPedido> lista = db.SolicitudPedido.Where(x => x.ProductosEnBodega.Sum(y => y.cantidad) > 0).ToList();
+            if (!User.IsInRole("administradores"))
+            {
+                    lista = lista.Where(r => r.usuarioReceptor == fullName).ToList();
+                
+            }
+
+
+            return View(lista);
+        }
+
         //public ActionResult AsignarProducto(int? idSolicitud, int? idProducto)
         //{
         //    //ViewBag.IDEmpresa = new SelectList(db.CLIENTE.ToList(), "IDCliente", "Alias", IDEmpresa);
@@ -620,6 +670,104 @@ namespace BancoEstadoBodega.Controllers
             return View(sol);
         }
 
+
+        // GET: PRODUCTOes/Edit/5
+        public ActionResult Despachar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var model = new SolicitudViewModel();
+            model.solicitud = db.SolicitudPedido.Find(id);
+            //model.productosSeleccionados = model.solicitud.ProductosEnBodega.ToList();
+            if (model.solicitud == null)
+            {
+                return HttpNotFound();
+            }
+            model.productosSeleccionados = db.ProductosEnBodega.Where(x => x.idSolicitud == model.solicitud.idSolicitud).ToList();
+            model.productosSeleccionados2 = db.ProductosEnBodega.Where(x => x.idSolicitud == model.solicitud.idSolicitud).ToList();
+            model.ProductoSolicitud2 = db.ProductoSolicitud.Where(x => x.idSolicitud == model.solicitud.idSolicitud).ToList();
+            model.ProductoSolicitud3 = db.ProductoSolicitud.Where(x => x.idSolicitud == model.solicitud.idSolicitud).ToList();
+            return View(model);
+        }
+
+        // POST: PRODUCTOes/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Despachar(SolicitudViewModel sol )
+        {
+            if (ModelState.IsValid)
+            {
+                for(int i = 0; i < sol.productosSeleccionados.Count; i++)
+                {
+                    int cant1 = sol.productosSeleccionados[i].cantidad;
+                    int cant2 = sol.productosSeleccionados2[i].cantidad;
+
+                    sol.productosSeleccionados2[i].cantidad = cant1 - cant2;
+
+                    var id = sol.productosSeleccionados2[i].idProducto;
+                    var id2 = sol.solicitud.idSolicitud;
+                    var pbodega = db.ProductosEnBodega.Find(id2, id);
+                    var queda = cant1 - cant2;
+                    pbodega.cantidad = queda;
+                    db.Entry(pbodega).State = EntityState.Modified;
+                    
+                    ViewBag.idproducto = new SelectList(db.PRODUCTO.ToList(), "idProducto", "Nombre");
+                    db.SaveChanges();
+
+                }
+                
+                return RedirectToAction("ProductoBodega");
+            }
+            return View(sol);
+        }
+
+
+        
+        /*public ActionResult ProductosSolicitud(int? id , int? id2)
+        {
+            ViewBag.id = new SelectList(db.ProductoSolicitud.ToList(), id);
+            ViewBag.id2 = new SelectList(db.ProductoSolicitud.ToList(), id2);
+            if (id == null )
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var modelo = new SolicitudViewModel();
+
+            modelo.lista2 = db.ProductoSolicitud.ToList();
+
+            if (id != null)
+            {
+                modelo.lista2 = modelo.lista2.Where(r => r.despachada == 0).ToList();
+            }
+            return View(modelo);
+        }
+        */
+        public ActionResult ProductosSolicitud(int? idSolicitud, SolicitudViewModel sol)
+        {
+            ViewBag.idTipoDespacho = new SelectList(db.TipoDespacho.ToList(), "idTipoDespacho", "descripcion");
+            ViewBag.idArea = new SelectList(db.Area.ToList(), "idArea", "nombre");
+            ViewBag.idProducto = new SelectList(db.PRODUCTO.ToList(), "IDProducto", "Nombre");
+            //ViewBag.cantidad = ViewBag.IDCategoria;
+            //ViewBag.IDClienteFK = ViewBag.IDEmpresa;
+            List<ProductoSolicitud> lista = db.ProductoSolicitud.ToList();
+
+            if (User.IsInRole("administradores"))
+            {
+                lista = lista.Where(r => r.despachada == 0).ToList();
+            }
+
+            
+           
+
+            return View(lista);
+        }
+
+
+
         // GET: Solicitud/Edit/5
         public ActionResult Edit(int id)
         {
@@ -677,6 +825,28 @@ namespace BancoEstadoBodega.Controllers
             { }
             return null;
         }
+
+        public ActionResult Confirmar(int idProducto, int idSolicitud, SolicitudViewModel sol)
+        {
+            var item = db.ProductoSolicitud.Find(idSolicitud,idProducto );
+            
+            db.Entry(item).State = EntityState.Modified;
+            item.despachada = 1;
+            
+            db.SaveChanges();
+
+            var item2 = db.SolicitudPedido.Where(x => x.ProductoSolicitud.Sum(y => y.despachada) > 0);
+            if (1==1)
+            {
+                var cambio = db.SolicitudPedido.Find(idSolicitud);
+                db.Entry(cambio).State = EntityState.Modified;
+                cambio.cod_estado = 2;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("ProductosSolicitud");
+        }
+
 
         public ActionResult DownloadExcel2()
         {

@@ -21,7 +21,7 @@ namespace BancoEstadoBodega.Controllers
     [Authorize]
     public class ReporteController : Controller
     {
-        private LosHeroesEntities db = new LosHeroesEntities();
+        private LosHeroesEntities1 db = new LosHeroesEntities1();
         // GET: Reporte
         public ActionResult Index()
         {

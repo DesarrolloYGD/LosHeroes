@@ -1,6 +1,7 @@
-﻿@model IEnumerable<BancoEstadoBodega.Models.PRODUCTO>
+﻿@model BancoEstadoBodega.Models.SolicitudViewModel
 @{
     ViewBag.Title = "Producto";
+
 }
 
 <!-- Seccion que muestra la lista de productos -->
@@ -26,7 +27,7 @@
                 }
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="width:105%;position:relative; top:20px; left:-40px;">
             <div class="panel-heading">
                 <h3 class="panel-title"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Lista Productos</h3>
             </div>
@@ -45,21 +46,22 @@
                         <thead>
                             <tr class="success">
                                 <th>N°</th>
-                                @if (ViewContext.HttpContext.User.IsInRole("administradores"))
-                                {
-                                    <th>SKU</th>
-                                }
-                                
-                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <!--<th>Categoria</th>-->
                                 <th>Stock</th>
-                                @if (ViewContext.HttpContext.User.IsInRole("administradores")|| ViewContext.HttpContext.User.IsInRole("Compradores"))
+                                @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
                                 {
                                     <th>Acuerdo</th>
+                                }       
+                                @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
+                                {
                                     <th>Unidades pendientes</th>
-                                }
-                                    
+                                    <th>Unidades vendidas</th>
+                                }                             
+                                
                                 <th>Precio Unitario Neto</th>
-                                <th>Descripcion</th>
+                                <th>Tiempo reposición</th>
+                                <th>Observaciones</th>
                                 <th>Foto</th>
                                 @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
                                 {
@@ -69,27 +71,53 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.lista)
                             {
+                                var listaP = Model.lista2;
                                 <tr>
 
                                     <td>@item.IDProducto</td>
-                                    @if (ViewContext.HttpContext.User.IsInRole("administradores"))
-                                    {
-                                        <td> @item.Codigo </td>
-                                    }
+                                   
                                                                         
                                     <td>
                                         @item.Nombre
                                     </td>
+                                    <!--
+                                        <td>
+                                        @item.CATEGORIA.Nombre
+                                    </td>
+                                    -->
+                                    
+
                                     <td> @string.Format("{0:N0}", @item.CantidadTotal)</td>
+                                   
                                     @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
                                     {
                                         <td> @string.Format("{0:N0}", @item.stock_ideal) </td>
-                                        <td> @string.Format("{0:N0}", @item.pendiente)  </td>
-                                    }
-
+                                    }                               
                                     
+
+                                    @if (ViewContext.HttpContext.User.IsInRole("administradores") || ViewContext.HttpContext.User.IsInRole("Compradores"))
+                                    {
+                                        <td> @string.Format("{0:N0}", @item.pendiente)  </td>
+
+                                        if (listaP.Any(x => x.idProducto == item.IDProducto))
+                                        {
+                                            listaP = listaP.Where(x => x.idProducto == item.IDProducto).ToList();
+                                            var suma = listaP.Sum(x => x.cantidad);
+                                            <td>@string.Format("{0:N0}", suma) </td>
+
+                                        }
+                                        else
+                                        {
+                                            <td>Sin Movimiento</td>
+                                        }
+
+
+                                    }   
+                                    
+                                   
+
                                     @if (@item.PrecioUni != null)
                                     {
                                         <td> @string.Format("{0:C0}", + @item.PrecioUni) </td>
@@ -98,7 +126,19 @@
                                     <td>Valor desconocido</td>
                                     }
                                     
-                                    <td> @item.Descripcion </td>
+                                    @if (@item.TiempoReposicion == null)
+                                    {
+                                        <td>No definido</td>
+                                    }
+                                    else
+                                    {
+                                        <td> @item.TiempoReposicion </td>
+                                    }
+
+                                    <td>
+                                        @item.Obs
+                                    </td>
+                                    
                                     <td>
                                       
                                         <a href="#myID-@item.IDProducto"  data-toggle="modal"> <img width="50" height="50" src="https://pruebasmarco.blob.core.windows.net/losheroesblob/@(item.UrlImagen)" alt="Img Producto" onerror="imgError(this);" /></a>

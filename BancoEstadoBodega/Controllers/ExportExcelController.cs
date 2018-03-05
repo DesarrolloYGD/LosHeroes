@@ -15,7 +15,7 @@ namespace BancoEstadoBodega.Controllers
 {
     public class ExportExcelController : Controller
     {
-        private LosHeroesEntities db = new LosHeroesEntities();
+        private LosHeroesEntities1 db = new LosHeroesEntities1();
         // GET: ExcelStock
         public ActionResult Index()
         {
